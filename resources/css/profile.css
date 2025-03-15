@@ -1,0 +1,188 @@
+
+:root {
+  --color-primary-1: #fff9ea;
+  --color-primary-2: #ffe8b4;
+  --color-primary-3: #f8d477;
+  --color-primary-4: #ffe100;
+  --color-primary-5: #ffcb45;
+  --color-primary-6: #e9a209;
+  --color-secundary-1: #c3ffab;
+  --color-secundary-2: #ff0000;
+  --color-secundary-3: #183d00;
+  --color-secundary-4: #0044ff;
+
+  --color-neutral-0: #fff;
+  --color-neutral-1: #1d1d1d;
+}
+
+/* Reset de estilos básicos */
+body.profile-page, h1.profile-title, p {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Usando a fonte Poppins */
+}
+
+body.profile-page {
+  background-color: var(--color-primary-1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1.profile-title {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-form {
+  background-color: var(--color-primary-1);
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%; /* Ajustado para 90% da largura da tela */
+  max-width: 400px; /* Limite máximo de 400px */
+  text-align: center;
+}
+
+
+.profile-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.profile-input:focus {
+  border-color: var(--color-primary-6);
+  outline: none;
+}
+
+.profile-button {
+  background-color: var(--color-primary-6);
+  color: #000000;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 28px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+.profile-button:hover {
+  background-color: var(--color-secundary-1);
+}
+
+.profile-link {
+  color: var(--color-secundary-4);
+  text-decoration: underline;
+  margin-top: 10px; /* Margem acima */
+  margin-bottom: 20px; /* Margem abaixo para aumentar o espaço até o botão */
+  display: block; /* Faz com que o link ocupe toda a linha */
+}
+
+.profile-link:hover {
+  text-decoration: underline;
+}
+
+#topo-perfil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+#nav_logo {
+  font-size: 50px; /* Aumente este valor conforme desejado */
+  color: var(--color-primary-6);
+}
+
+.sustenta {
+font-size: 50px;
+color: var(--color-primary-6);
+}
+
+#logo {
+  max-width: 150px; /* Ajuste o valor conforme necessário */
+  height: auto; /* Mantém a proporção da imagem */
+  margin-bottom: 20px; /* Espaçamento abaixo do logotipo */
+}
+
+
+/*responsividade*/
+
+@media screen and (max-width: 768px) {
+  /* Ajustes para telas menores que 768px */
+
+  body.profile-page {
+    height: auto; /* Permite que a altura do corpo se ajuste */
+    padding: 20px; /* Adiciona um pouco de padding */
+  }
+
+  .profile-form {
+    width: 95%; /* Aumenta a largura em telas menores */
+    padding: 15px; /* Reduz o padding do formulário */
+  }
+
+  h1.profile-title {
+    font-size: 24px; /* Ajusta o tamanho da fonte do título */
+    margin-bottom: 15px; /* Ajusta a margem abaixo do título */
+  }
+
+  .profile-input {
+    padding: 8px; /* Reduz o padding dos inputs */
+  }
+
+  .profile-button {
+    font-size: 14px; /* Reduz o tamanho do botão */
+    font-weight: bold;
+  }
+
+  #nav_logo {
+    font-size: 40px; /* Ajusta o tamanho do logo */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  /* Ajustes para telas menores que 480px */
+
+  h1.profile-title {
+    font-size: 20px; /* Ajusta ainda mais o tamanho da fonte do título */
+  }
+
+  .profile-form {
+    padding: 10px; /* Reduz o padding do formulário */
+  }
+
+  .profile-input {
+    padding: 6px; /* Reduz ainda mais o padding dos inputs */
+  }
+
+  .profile-button {
+    font-size: 12px; /* Reduz o tamanho do botão */
+  }
+
+  .profile-link {
+    margin-top: 5px; /* Ajusta a margem do link */
+    margin-bottom: 10px; /* Ajusta a margem do link */
+  }
+}

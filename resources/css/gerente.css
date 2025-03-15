@@ -1,0 +1,177 @@
+/* Reset básico de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.containerGerente {
+    display: flex;
+    margin: 20px;
+    gap: 20px;
+    background-color:var(--color-neutral-0);
+}
+
+/* Barra lateral */
+.barra-lateral {
+    width: 250px;
+    background-color: var(--color-neutral-0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    color: var(--color-neutral-1);
+    position: relative;
+}
+
+
+@media (max-width: 768px) {
+    .barra-lateral {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 10px;
+    }
+
+    .containerGerente {
+        flex-direction: column; /* Muda a direção do layout para coluna em telas pequenas */
+    }
+}
+
+/* Barra lateral links */
+.barra-lateral h2 {
+    margin-bottom: 10px;
+    color: var(--color-neutral-1);
+    background-color: var(--color-primary-2);
+    text-align: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+}
+
+.barra-lateral ul {
+    list-style: none;
+}
+
+.barra-lateral ul li {
+    margin: 10px;
+}
+
+.barra-lateral a {
+    color: var(--color-neutral-1);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+.containerGerente main {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--color-neutral-0);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.containerGerente h2 {
+    color:var(--color-neutral-1);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Responsividade para o conteúdo principal */
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+    }
+}
+
+/* Reservas */
+.reservas-tabela {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--color-primary-2);
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.reservas-tabela table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.reservas-tabela th, .reservas-tabela td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.reservas-tabela th {
+    background-color: var(--color-primary-3);
+    color: var(--color-neutral-0);
+    font-weight: bold;
+}
+
+.reservas-tabela td {
+    background-color: var(--color-neutral-0);
+    color: var(--color-neutral-1);
+}
+
+.reservas-tabela p {
+    font-size: 1.1rem;
+    color: var(--color-neutral-1);
+    text-align: center;
+}
+
+/* Estilos adicionais para as tabelas (bordas e melhorias) */
+.reservas-tabela tr:nth-child(even) {
+    background-color: var(--color-primary-1);
+}
+
+.reservas-tabela tr:hover {
+    background-color: var(--color-primary-3);
+    cursor: pointer;
+}
+
+/* Responsividade das tabelas */
+@media (max-width: 768px) {
+    .reservas-tabela table {
+        font-size: 0.9rem; /* Ajuste de tamanho de fonte para telas menores */
+    }
+
+    .reservas-tabela th, .reservas-tabela td {
+        padding: 8px;
+    }
+}
+
+/* Seções */
+section {
+    padding: 20px 0;
+}
+
+/* Botões */
+button {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: var(--color-primary-4);
+    border: none;
+    border-radius: 8px;
+    color: var(--color-neutral-0);
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--color-primary-5);
+}
+
+/* Estilo da barra de navegação do gerente */
+.barra-lateral a:hover {
+    background-color: var(--color-primary-5);
+    padding-left: 10px;
+    transition: 0.3s ease;
+}

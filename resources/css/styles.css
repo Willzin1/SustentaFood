@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import './header.css';
+@import './home.css';
+@import './menu.css';
+@import './testimonials.css';
+@import './footer.css';
+@import './perfil.css'; /* criar pagina do perfil */
+@import './cadastro.css';
+@import './profile.css'; /* criar pagina do cadastro */
+@import './perfilReserva.css';
+@import './reserva.css';
+@import './gerente.css';
+/*se necessário criar mais*/
+
+
+:root {
+    --color-primary-0: #dbd8c6;
+    --color-primary-1: #fefae0;
+    --color-primary-2: #dda15e;
+    --color-primary-3: #bc6c25;
+    --color-primary-4: #422718;
+    --color-primary-5: #a56734;
+    --color-primary-6: #a05135;
+    --color-primary-7: #ffd700;
+    --color-secundary-1: #d9b9a0;
+    --color-secundary-2: #ff0000;
+
+    --color-neutral-0: #fffff2;
+    --color-neutral-1: #383330;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--color-primary-1);
+}
+
+section {
+    padding: 28px 8%;
+}
+
+.btn-default {
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary-5);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-weight: 600;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color .3s ease;
+}
+
+.btn-default:hover {
+    background-color: var(--color-secundary-1);
+}
+
+.btn-red {
+    background-color: #ff0000c2;
+}
+
+.btn-red:hover{
+    background-color: #ff000067;
+}
+
+.social-media-buttons {
+    display: flex;
+    gap: 18px;
+}
+
+.social-media-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 40px;
+    background-color: var(--color-neutral-0);
+    font-size: 1.25rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--color-neutral-1);
+    box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow .3s ease;
+}
+
+.social-media-buttons a:hover {
+    box-shadow: 0px 0px 12px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    color: var(--color-primary-6);
+    font-size: 1.563rem;
+}
+
+.section-subtitle {
+    font-size: 2.1875rem;
+}
+
+.message-box {
+    display: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* ACRESCENTADO 12/03 */
+.dish-image {
+    width: 100%; /* Faz a imagem ocupar toda a largura do contêiner */
+    height: auto; /* Mantém a proporção original */
+    max-height: 35%; /* Ajuste para limitar a altura se necessário */
+    object-fit: cover; /* Ajusta a imagem para cobrir o espaço disponível */
+    border-radius: 10px; /* Opcional, para bordas arredondadas */
+}
+
+@media screen and (max-width: 600px) {
+    .dish-image {
+        max-height:60%; /* Reduz um pouco a altura para se ajustar melhor a telas pequenas */
+    }
+}
+
+.reservartions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os cards */
+    gap: 10px; /* Espaçamento entre os cards */
+}
+
+.reservation-card {
+    background-color: var(--color-primary-0);
+    color: var(--color-primary-5);
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(105, 55, 55, 0.1);
+    border: 2px solid var(--color-primary-5);
+    padding: 16px;
+    margin: 10px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform:  0.2s ease-in-out;
+    justify-content: center;
+}
+
+#menu .login-container .button-link {
+    display: flex;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: var(--color-primary-5);
+    color: var(--color-primary-1);
+    border: 2px solid var(--color-primary-5);
+    text-decoration: none;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out;
+    text-align: center;
+}
+
+.button-link {
+    display: flex;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: var(--color-primary-5);
+    color: var(--color-primary-1);
+    border: 2px solid var(--color-primary-5);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out;
+    text-align: center;
+}
+
+#menu .login-container .button-link:hover {
+    background-color: rgb(165, 81, 53);
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+.button-link:hover {
+    color: var(--color-primary-2);
+    background-color: var(--color-primary-1);
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.text-danger {
+    color: red;
+    padding: 5px;
+}
+
+.alert-custom {
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 300px;
+    margin: 1rem auto;
+}
+
+.alert-success-custom {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #155724;
+}
+
+.alert-warning-custom {
+    background-color: #fff3cd;
+    color: #af8300;
+    border: 1px solid #af8300;
+}
+
+.alert-danger-custom {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #721c24;
+}
+
+.full-width-container {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centraliza o botão */
+    margin-top: 1rem; /* Espaçamento opcional */
+}
+
+.full-width-button {
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+    max-width: 400px; /* Define um limite para não ficar exagerado */
+}
+

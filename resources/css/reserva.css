@@ -1,0 +1,106 @@
+/* Container principal */
+.container-reserva {
+    max-width: 600px; /* Definido em pixels para um limite máximo */
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box; /* Inclui padding e border no tamanho do elemento */
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    font-size: 2em; /* Aumenta o tamanho do título */
+}
+
+/* Formulário */
+.grupo-formulario-reserva {
+    margin-bottom: 20px;
+}
+
+/* Estilo dos labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-primary-6);
+    font-weight: bold; /* Tornar os labels mais visíveis */
+}
+
+/* Estilo dos inputs e selects */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-primary-3);
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--color-primary-4);
+    outline: none;
+}
+
+/* Botões container */
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Espaça os botões de forma equilibrada */
+    flex-wrap: wrap; /* Permite que os botões quebrem para a próxima linha em telas menores */
+    gap: 10px; /* Espaço entre os botões */
+    margin-top: 20px;
+}
+
+/* Estilo dos botões */
+.shadow__btn {
+    background-color: var(--color-primary-5);
+    color: var(--color-neutral-0);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    flex: 1;
+    min-width: 120px; /* Tamanho mínimo para o botão */
+}
+
+.shadow__btn:hover {
+    background-color: var(--color-primary-6);
+}
+
+/* Esconde o campo de entrada personalizada de assentos até que necessário */
+.hidden {
+    display: none;
+}
+
+/* Estilos Responsivos */
+@media screen and (max-width: 768px) {
+    /* Para telas menores que 768px (tablets e smartphones maiores) */
+    .container-reserva {
+        width: 90%;
+    }
+
+    .button-container {
+        flex-direction: column; /* Faz com que os botões fiquem empilhados verticalmente */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    /* Para telas menores que 600px (smartphones) */
+    .container-reserva {
+        width: 95%;
+    }
+
+    .shadow__btn {
+        font-size: 14px; /* Diminuir o tamanho da fonte para botões em telas pequenas */
+        padding: 10px 15px; /* Ajusta o padding para botões pequenos */
+    }
+
+    .grupo-formulario-reserva {
+        margin-bottom: 10%;
+    }
+}
