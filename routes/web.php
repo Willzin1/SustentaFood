@@ -26,7 +26,7 @@ Route::controller(LoginController::class)->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
-    Route::controller(UserController::class)->middleware('check.user')->group(function() {
+    Route::controller(UserController::class)->middleware('check.userId')->group(function() {
         Route::get('/perfil/{user}', 'show')->name('users.show');
         Route::get('/perfil/{user}/edit', 'edit')->name('users.edit');
         Route::put('/perfil/{user}', 'update')->name('users.update');
@@ -36,8 +36,8 @@ Route::middleware('auth')->group(function() {
     Route::controller(ReservasController::class)->group(function() {
         Route::get('/reservas', 'create')->name('reservas.create');
         Route::post('/reservas', 'store')->name('reservas.store');
-        Route::get('/reservas/{reserva}/edit', 'edit')->name('reservas.edit');
-        Route::put('/reservas/{reserva}', 'update')->name('reservas.update');
-        Route::delete('/reservas/{reserva}', 'destroy')->name('reservas.destroy');
+        Route::get('/reservas/{reserva}/edit', 'edit')->name('reservas.edit')->middleware('check.reservaId');
+        Route::put('/reservas/{reserva}', 'update')->name('reservas.update')->middleware('check.reservaId');
+        Route::delete('/reservas/{reserva}', 'destroy')->name('reservas.destroy')->middleware('check.reservaId');
     });
 });

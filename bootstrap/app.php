@@ -12,7 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
-            'check.user' => \App\Http\Middleware\CheckUser::class,
+            'check.userId' => \App\Http\Middleware\CheckUser::class,
+            'check.reservaId' => \App\Http\Middleware\CheckReserva::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
