@@ -16,7 +16,7 @@ class LoginController extends Controller
     }
 
     public function create() {
-        return view('users.login');
+        return view('pages.users.login');
     }
 
     /**

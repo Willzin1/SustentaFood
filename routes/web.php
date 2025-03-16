@@ -26,7 +26,7 @@ Route::controller(LoginController::class)->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
-    Route::controller(UserController::class)->group(function() {
+    Route::controller(UserController::class)->middleware('check.user')->group(function() {
         Route::get('/perfil/{user}', 'show')->name('users.show');
         Route::get('/perfil/{user}/edit', 'edit')->name('users.edit');
         Route::put('/perfil/{user}', 'update')->name('users.update');

@@ -15,7 +15,7 @@ class RegisterController extends Controller
     }
 
     public function create() {
-        return view('users.create');
+        return view('pages.users.create');
     }
 
     /**

@@ -12,7 +12,7 @@ class CardapioController extends Controller
      */
     public function index()
     {
-        return view('cardapio.index');
+        return view('pages.cardapio.index');
     }
 
     /**

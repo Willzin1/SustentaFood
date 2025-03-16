@@ -55,13 +55,13 @@ class UserController extends Controller
     public function show(string $id) {
 
         $user = $this->user->find($id);
-        return view('users.dashboard', ['user' => $user, 'reservas' => $user->reservas]);
+        return view('pages.users.dashboard', ['user' => $user, 'reservas' => $user->reservas]);
     }
 
     public function edit(string $id) {
 
         $user = $this->user->find($id);
-        return view('users.edit', ['user' => $user]);
+        return view('pages.users.edit', ['user' => $user]);
     }
 
     public function update(Request $request, string $id) {

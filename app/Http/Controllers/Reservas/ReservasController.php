@@ -28,7 +28,7 @@ class ReservasController extends Controller
      */
     public function create()
     {
-        return view('reservas.create');
+        return view('pages.reservas.create');
     }
 
     /**
@@ -85,7 +85,7 @@ class ReservasController extends Controller
     public function edit(string $id)
     {
         $reserva = $this->reserva->find($id);
-        return view('reservas.edit', ['reserva' => $reserva]);
+        return view('pages.reservas.edit', ['reserva' => $reserva]);
     }
 
     /**
