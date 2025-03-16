@@ -43,7 +43,7 @@
                     <option value="5">5</option>
                     <option value="mais">+ Mais</option>
                 </select>
-                <input type="number" id="custom_assentos" name="quantidade_custom" class="hidden" placeholder="Quantidade personalizada" min="5" value="{[ $reserva->quantidade_cadeiras }}">
+                <input type="number" id="custom_assentos" name="quantidade_custom" class="hidden" placeholder="Quantidade personalizada" min="5" value="{{ $reserva->quantidade_cadeiras }}">
                 @error('quantidade_custom')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror

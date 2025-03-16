@@ -53,6 +53,6 @@ class RegisterController extends Controller
             return redirect()->back()->with('error', 'Erro ao criar usuário.');
         }
 
-        return redirect()->back()->with('success', 'Sucesso ao criar conta');
+        return redirect()->route('login')->with('success', 'Sucesso ao criar conta');
     }
 }

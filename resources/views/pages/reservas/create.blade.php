@@ -1,9 +1,13 @@
 @extends('templates.master')
 @section('content')
     <div class="container-reserva">
-        @if(session()->has('message'))
+        @if(session()->has('success'))
+            <div class="alert-custom alert-success-custom">
+                <p>{{ session('success') }}</p>
+            </div>
+        @elseif(session()->has('error'))
             <div class="alert-custom alert-danger-custom">
-                <p>{{ session()->get('message') }}</p>
+                <p>{{ session('error') }}</p>
             </div>
         @endif
         <h1>Reserva de Mesa</h1>

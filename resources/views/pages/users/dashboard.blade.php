@@ -17,7 +17,7 @@
             </div>
 
             <div class="profile-info">
-                <h3></h3>
+                <h3>{{ $user->name }}</h3>
                 <p><strong>Email: </strong>{{ $user->email }}</p>
                 <p><strong>Telefone: </strong> {{ $user->phone }} </p>
                 <!-- <p><strong>Localização:</strong> São Paulo, SP</p>-->

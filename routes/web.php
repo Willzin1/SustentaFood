@@ -14,14 +14,14 @@ Route::controller(CardapioController::class)->group(function() {
     Route::get('/cardapio', 'index')->name('cardapio.index');
 });
 
-Route::controller(RegisterController::class)->prefix('/register')->group(function() {
+Route::controller(RegisterController::class)->prefix('/register')->middleware('guest')->group(function() {
     Route::get('/', 'create')->name('register.create');
     Route::post('/', 'store')->name('register.store');
 });
 
 Route::controller(LoginController::class)->group(function() {
-    Route::get('/login', 'create')->name('login');
-    Route::post('/login', 'store')->name('login.store');
+    Route::get('/login', 'create')->name('login')->middleware('guest');
+    Route::post('/login', 'store')->name('login.store')->middleware('guest');
     Route::post('/logout', 'destroy')->name('login.destroy');
 });
 
