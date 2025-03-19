@@ -25,7 +25,7 @@
                 </div>
                 <div class="grupo-formulario">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="example@gmail.com" value="{{ old('email') }}">
+                    <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" value="{{ old('email') }}">
                     @error('email')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
