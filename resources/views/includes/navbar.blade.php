@@ -13,7 +13,7 @@
             @if(Auth::user())
                 @if(Auth::user()->role == 'admin')
                     <li class="nav-item">
-                        <a href="{{ route('admin.index') }}">Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </li>
                 @else
                     <li class="nav-item">

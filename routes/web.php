@@ -43,8 +43,15 @@ Route::middleware('auth')->group(function() {
     });
 });
 
+Route::middleware('auth', 'check.role')->group(function() {
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth', 'check.role');
-Route::get('/admin/dashboard', function () {
-    return view('pages.admin.dashboard');
-})->name('admin.dashboard')->middleware('check.role');
+    Route::controller(AdminController::class)->group(function() {
+
+        Route::get('/admin', 'index')->name('admin.index');
+        Route::get('/admin/reserva/{reserva}', 'show')->name('admin.show');
+
+        Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+
+        Route::get('/admin/users/{user}', 'showUser')->name('admin.user');
+    });
+});

@@ -118,6 +118,10 @@ class ReservasController extends Controller
             redirect()->back()->with('error', 'Erro ao alterar reserva');
         }
 
+        if($user->role == 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+
         return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Reserva alterada com sucesso');
     }
 
@@ -131,6 +135,10 @@ class ReservasController extends Controller
 
         if (!$deleted) {
             return redirect()->back()->with('error', 'Erro ao deletar reserva');
+        }
+
+        if($user->role == 'admin') {
+            return redirect()->route('admin.dashboard');
         }
 
         return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Reserva apagada com sucesso.');

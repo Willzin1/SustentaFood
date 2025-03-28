@@ -21,7 +21,15 @@ class CheckReserva
         $reservaId = $request->route('reserva');
         $reserva = Reserva::find($reservaId);
 
-        if (!$reserva || $reserva->user_id !== $user->id) {
+        if(!$reserva) {
+            return response()->view('errors.page404');
+        }
+
+        if ($user->role === 'admin') {
+            return $next($request);
+        }
+
+        if ($reserva->user_id !== $user->id) {
             return response()->view('errors.page404');
         }
 
