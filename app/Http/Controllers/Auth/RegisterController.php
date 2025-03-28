@@ -47,6 +47,7 @@ class RegisterController extends Controller
             'password' => password_hash($request->input('password'), PASSWORD_DEFAULT),
             'created_at' => now(),
             'updated_at' => now(),
+            'role' => 'user',
         ]);
 
         if(!$created) {

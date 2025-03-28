@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Cardapio\CardapioController;
@@ -41,3 +42,9 @@ Route::middleware('auth')->group(function() {
         Route::delete('/reservas/{reserva}', 'destroy')->name('reservas.destroy')->middleware('check.reservaId');
     });
 });
+
+
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('/admin/dashboard', function () {
+    return view('pages.admin.dashboard');
+})->name('admin.dashboard');

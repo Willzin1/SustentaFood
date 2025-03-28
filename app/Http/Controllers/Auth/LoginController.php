@@ -46,6 +46,10 @@ class LoginController extends Controller
 
         Auth::loginUsingId($user->id);
 
+        if ($user->role == 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+
         return redirect()->route('users.show', ['user' => $user->id]);
     }
 

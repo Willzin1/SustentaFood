@@ -11,9 +11,15 @@
                 <a href="{{ route('cardapio.index') }}">Cardápio</a>
             </li>
             @if(Auth::user())
-                <li class="nav-item">
-                    <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">Perfil</a>
-                </li>
+                @if(Auth::user()->role == 'admin')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.index') }}">Dashboard</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">Perfil</a>
+                    </li>
+                @endif
             @else
                 <li class="nav-item">
                     <a href="{{ route('login') }}">Entrar</a>
@@ -21,9 +27,16 @@
             @endif
         </ul>
 
-        <button class="btn-default">
-            <a href="{{ route('reservas.create') }}" >Faça sua reserva aqui</a>
-        </button>
+        @if(Auth::user() && Auth::user()->role == 'admin')
+            <form action="{{ route('login.destroy') }}" method="POST">
+                @csrf
+                <button type="submit" class="profile-button btn-red">Sair</button>
+            </form>
+        @else
+            <button class="btn-default">
+            <a href="{{ route('reservas.create') }}" >Faça sua reserva</a>
+            </button>
+        @endif
 
         <button id="mobile_btn">
             <i class="fa-solid fa-bars"></i>
