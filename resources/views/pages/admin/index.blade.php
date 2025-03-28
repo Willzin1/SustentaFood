@@ -34,7 +34,7 @@
                                     <td>{{ $reserva->data->format('d-m-Y') }}</td>
                                     <td>{{ $reserva->hora->format('H:i') }}</td>
                                     <td>{{ $reserva->quantidade_cadeiras }}</td>
-                                    <td><a href="">Apagar reserva</a></td>
+                                    <td><a href="">Gerenciar reserva</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

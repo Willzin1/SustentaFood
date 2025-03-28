@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function() {
 });
 
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth', 'check.role');
 Route::get('/admin/dashboard', function () {
     return view('pages.admin.dashboard');
-})->name('admin.dashboard');
+})->name('admin.dashboard')->middleware('check.role');
