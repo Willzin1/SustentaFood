@@ -65,6 +65,6 @@ class LoginController extends Controller
     public function destroy() : RedirectResponse
     {
         Auth::logout();
-        return redirect()->route('login')->with('success', 'Desconectado...');
+        return redirect()->route('login');
     }
 }

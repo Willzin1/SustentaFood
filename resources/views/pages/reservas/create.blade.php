@@ -15,7 +15,7 @@
             @csrf
             <div class="grupo-formulario-reserva">
                 <label for="data">Data:</label>
-                <input type="text" id="data" name="data" placeholder="Selecione a data da reserva">
+                <input type="text" id="data" name="data" placeholder="Selecione a data da reserva" value="{{ old('data') }}">
                 @error('data')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
