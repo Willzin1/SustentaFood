@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ReservasController as AdminReserva;
+use App\Http\Controllers\Admin\UserController as AdminUser;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Cardapio\CardapioController;
@@ -27,31 +29,35 @@ Route::controller(LoginController::class)->group(function() {
 });
 
 Route::middleware('auth')->group(function() {
-    Route::controller(UserController::class)->middleware('check.userId')->group(function() {
-        Route::get('/perfil/{user}', 'show')->name('users.show');
-        Route::get('/perfil/{user}/edit', 'edit')->name('users.edit');
-        Route::put('/perfil/{user}', 'update')->name('users.update');
-        Route::delete('/perfil/{user}', 'destroy')->name('users.destroy');
+    Route::controller(UserController::class)->prefix('/perfil')->middleware('check.userId')->group(function() {
+        Route::get('/{user}', 'show')->name('users.show');
+        Route::get('/{user}/edit', 'edit')->name('users.edit');
+        Route::put('/{user}', 'update')->name('users.update');
+        Route::delete('/{user}', 'destroy')->name('users.destroy');
     });
 
-    Route::controller(ReservasController::class)->group(function() {
-        Route::get('/reservas', 'create')->name('reservas.create');
-        Route::post('/reservas', 'store')->name('reservas.store');
-        Route::get('/reservas/{reserva}/edit', 'edit')->name('reservas.edit')->middleware('check.reservaId');
-        Route::put('/reservas/{reserva}', 'update')->name('reservas.update')->middleware('check.reservaId');
-        Route::delete('/reservas/{reserva}', 'destroy')->name('reservas.destroy')->middleware('check.reservaId');
+    Route::controller(ReservasController::class)->prefix('/reservas')->group(function() {
+        Route::get('/', 'create')->name('reservas.create');
+        Route::post('/', 'store')->name('reservas.store');
+        Route::get('/{reserva}/edit', 'edit')->name('reservas.edit')->middleware('check.reservaId');
+        Route::put('/{reserva}', 'update')->name('reservas.update')->middleware('check.reservaId');
+        Route::delete('/{reserva}', 'destroy')->name('reservas.destroy')->middleware('check.reservaId');
     });
 });
 
+
+// ROTAS DO ADMINISTRADOR
 Route::middleware('auth', 'check.role')->group(function() {
-
     Route::controller(AdminController::class)->group(function() {
-
-        Route::get('/admin', 'index')->name('admin.index');
-        Route::get('/admin/reserva/{reserva}', 'show')->name('admin.show');
-
         Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+    });
 
-        Route::get('/admin/users/{user}', 'showUser')->name('admin.user');
+    Route::controller(AdminReserva::class)->group(function() {
+        Route::get('/admin/reservas', 'index')->name('admin.index');
+        Route::get('/admin/reservas/{reserva}', 'show')->name('admin.show');
+    });
+
+    Route::controller(AdminUser::class)->group(function() {
+        Route::get('/admin/users/{user}', 'show')->name('admin.user');
     });
 });
