@@ -4,8 +4,8 @@
         <div class="login-container">
             <h1>Editar usuário.</h1>
 
-            @if(session()->has('message'))
-                <p class="msg-erro">{{ session()->get('message') }}</p>
+            @if(session()->has('error'))
+                <p class="text-danger">{{ session('message') }}</p>
             @endif
 
             <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post">

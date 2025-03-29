@@ -94,7 +94,9 @@ class UserController extends Controller
             return redirect()->back()->with('message', 'Erro ao editar informações.');
         }
 
-        return redirect()->back()->with('message', 'Informações alteradas com sucesso.');
+        $user = $this->user->find($id);
+
+        return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Informações alteradas com sucesso.');
     }
 
     /**

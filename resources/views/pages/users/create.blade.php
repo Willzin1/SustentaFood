@@ -12,7 +12,7 @@
                 </div>
             @endif
 
-            <h1>Crie sua conta.</h1>
+            <h1>Crie sua conta</h1>
 
             <form action="{{ route('register.store') }}" method="post">
                 @csrf

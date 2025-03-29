@@ -43,11 +43,11 @@ class LoginController extends Controller
         $user = User::where('email', $request->input('email'))->first();
 
         if(!$user) {
-            return redirect()->back()->with('error', 'E-mail não encontrado.');
+            return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
         }
 
         if(!password_verify($request->input('password'), $user->password)) {
-            return redirect()->back()->with('error', 'Senha inválida.');
+            return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
         }
 
         Auth::loginUsingId($user->id);

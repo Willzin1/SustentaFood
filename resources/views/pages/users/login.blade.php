@@ -8,6 +8,8 @@
             <div class="alert-custom alert-success-custom">
                 <p>{{ session('success') }}</p>
             </div>
+        @elseif(session()->has('error'))
+                <p class="text-danger">{{ session('error') }}</p>
         @endif
 
         <form action="{{ route('login.store') }}" method="POST">
@@ -27,10 +29,6 @@
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
             </div>
-
-            @if(session()->has('error'))
-                <p class="text-danger">{{ session('error') }}</p>
-            @endif
 
             <button type="submit" class="shadow__btn">Entrar</button>
         </form>
