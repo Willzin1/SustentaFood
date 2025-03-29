@@ -9,7 +9,7 @@
             <p><strong>Email:</strong> {{ $reserva->user->email }}</p>
             <p><strong>Telefone:</strong> {{ $reserva->user->phone }}</p>
 
-            <form action="{{ route('reservas.update', ['reserva' => $reserva->id]) }}" method="POST" onsubmit="return validarReserva()">
+            <form action="{{ route('admin.reserva.update', ['reserva' => $reserva->id]) }}" method="POST" onsubmit="return validarReserva()">
                 <input type="hidden" name="_method" value="PUT">
                 @csrf
                 <div class="grupo-formulario-reserva">
@@ -52,7 +52,7 @@
                 </div>
             </form>
 
-            <form action="{{ route('reservas.destroy', ['reserva' => $reserva->id]) }}" method="post">
+            <form action="{{ route('admin.reserva.destroy', ['reserva' => $reserva->id]) }}" method="post">
                 @method('DELETE')
                 @csrf
                 <div class="grupo-formulario"></div>

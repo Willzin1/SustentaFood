@@ -31,7 +31,7 @@
                                     <td>{{ $reserva->data->format('d-m-Y') }}</td>
                                     <td>{{ $reserva->hora->format('H:i') }}</td>
                                     <td>{{ $reserva->quantidade_cadeiras }}</td>
-                                    <td><a href="{{ route('admin.show', ['reserva' => $reserva->id]) }}">Gerenciar</a></td>
+                                    <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva->id]) }}">Gerenciar</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

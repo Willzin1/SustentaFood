@@ -55,7 +55,9 @@ Route::middleware('auth', 'check.role')->group(function() {
 
     Route::controller(AdminReserva::class)->group(function() {
         Route::get('/admin/reservas', 'index')->name('admin.index');
-        Route::get('/admin/reservas/{reserva}', 'show')->name('admin.show');
+        Route::get('/admin/reservas/{reserva}/edit', 'edit')->name('admin.reserva.edit');
+        Route::put('/admin/reservas/{reserva}', 'update')->name('admin.reserva.update');
+        Route::delete('/admin/reservas/{reserva}', 'destroy')->name('admin.reserva.destroy');
     });
 
     Route::controller(AdminUser::class)->group(function() {

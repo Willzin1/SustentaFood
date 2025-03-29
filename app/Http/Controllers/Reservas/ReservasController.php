@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Reservas;
 
 use App\Http\Controllers\Controller;
 use App\Models\Reserva;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,13 +22,13 @@ class ReservasController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create() : View
     {
         return view('pages.reservas.create');
     }
@@ -34,7 +36,7 @@ class ReservasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $user = Auth::user();
         $reservasAtual = $this->reserva->where('user_id', $user->id)->count();
@@ -82,7 +84,7 @@ class ReservasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id) : View
     {
         $reserva = $this->reserva->find($id);
         return view('pages.reservas.edit', ['reserva' => $reserva]);
@@ -91,7 +93,7 @@ class ReservasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id) : RedirectResponse
     {
         $user = Auth::user();
 
@@ -118,27 +120,19 @@ class ReservasController extends Controller
             redirect()->back()->with('error', 'Erro ao alterar reserva');
         }
 
-        if($user->role == 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
-
         return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Reserva alterada com sucesso');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id) : RedirectResponse
     {
         $user = Auth::user();
         $deleted = $this->reserva->where('id', $id)->delete();
 
         if (!$deleted) {
             return redirect()->back()->with('error', 'Erro ao deletar reserva');
-        }
-
-        if($user->role == 'admin') {
-            return redirect()->route('admin.dashboard');
         }
 
         return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Reserva apagada com sucesso.');

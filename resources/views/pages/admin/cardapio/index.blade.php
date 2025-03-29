@@ -38,6 +38,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="pagination">
+                {{ $pratos->links() }}
+            </div>
         </section>
     </div>
 @endsection

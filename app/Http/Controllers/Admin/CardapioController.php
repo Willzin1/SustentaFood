@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Prato;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CardapioController extends Controller
@@ -14,19 +16,27 @@ class CardapioController extends Controller
         $this->prato = new Prato;
     }
 
-
-    public function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index() : View
     {
-        $pratos = Prato::all();
+        $pratos = Prato::paginate(5);
         return view('pages.admin.cardapio.index', compact('pratos'));
     }
 
-    public function create()
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create() : View
     {
         return view('pages.admin.cardapio.create');
     }
 
-    public function store(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'nome' => 'required|string|max:255',
@@ -50,12 +60,18 @@ class CardapioController extends Controller
         return redirect()->route('admin.cardapio.index')->with('success', 'Prato adicionado!');
     }
 
-    public function edit(Prato $prato)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Prato $prato) : View
     {
         return view('pages.admin.cardapio.edit', compact('prato'));
     }
 
-    public function update(Request $request, String $id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, String $id) : RedirectResponse
     {
         $request->validate([
             'nome' => 'required|string|max:255',
@@ -79,7 +95,10 @@ class CardapioController extends Controller
         return redirect()->route('admin.cardapio.index')->with('success', 'Prato atualizado!');
     }
 
-    public function destroy(Prato $prato)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Prato $prato) : RedirectResponse
     {
         $prato->delete();
         return redirect()->route('admin.cardapio.index')->with('success', 'Prato removido!');

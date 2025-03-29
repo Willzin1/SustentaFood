@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,14 +17,18 @@ class LoginController extends Controller
         $this->user = new User;
     }
 
-    public function create() {
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create() : View
+    {
         return view('pages.users.login');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'email' => 'required|email',
@@ -56,7 +62,7 @@ class LoginController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy() : RedirectResponse
     {
         Auth::logout();
         return redirect()->route('login')->with('success', 'Desconectado...');

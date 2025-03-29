@@ -4,11 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function show(String $id) {
+    /**
+     * Display the specified resource.
+     */
+    public function show(String $id) : View
+    {
         $user = User::findOrFail($id);
         $reservas = $user->reservas;
 

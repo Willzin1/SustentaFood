@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,7 +19,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'name' => 'required|string',
@@ -52,19 +54,31 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'Sucesso ao criar conta');
     }
 
-    public function show(string $id) {
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id) : View
+    {
 
         $user = $this->user->find($id);
         return view('pages.users.dashboard', ['user' => $user, 'reservas' => $user->reservas]);
     }
 
-    public function edit(string $id) {
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id) : View
+    {
 
         $user = $this->user->find($id);
         return view('pages.users.edit', ['user' => $user]);
     }
 
-    public function update(Request $request, string $id) {
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id) : RedirectResponse
+    {
 
         $request->validate([
             'name' => 'required',
@@ -83,7 +97,11 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'Informações alteradas com sucesso.');
     }
 
-    public function destroy(string $id) {
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id) : RedirectResponse
+    {
 
         $this->user->where('id', $id)->delete();
         return redirect()->route('login')->with('success', 'Usuário deletado com sucesso.');
