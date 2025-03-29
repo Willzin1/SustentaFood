@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Cardapio;
 
 use App\Http\Controllers\Controller;
+use App\Models\Prato;
 use Illuminate\Http\Request;
 
 class CardapioController extends Controller
@@ -12,7 +13,8 @@ class CardapioController extends Controller
      */
     public function index()
     {
-        return view('pages.cardapio.index');
+        $pratos = Prato::all(); // Busca todos os pratos
+        return view('pages.cardapio.index', compact('pratos'));
     }
 
     /**

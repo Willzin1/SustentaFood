@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ReservasController as AdminReserva;
 use App\Http\Controllers\Admin\UserController as AdminUser;
+use App\Http\Controllers\Admin\CardapioController as AdminCardapio;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Cardapio\CardapioController;
@@ -60,4 +61,16 @@ Route::middleware('auth', 'check.role')->group(function() {
     Route::controller(AdminUser::class)->group(function() {
         Route::get('/admin/users/{user}', 'show')->name('admin.user');
     });
+
+    Route::controller(AdminCardapio::class)->group(function() {
+        Route::get('/admin/cardapio/', 'index')->name('admin.cardapio.index');
+        Route::get('/admin/cardapio/create', 'create')->name('admin.cardapio.create');
+        Route::post('/admin/cardapio/', 'store')->name('admin.cardapio.store');
+        Route::get('/admin/cardapio/{prato}/edit', 'edit')->name('admin.cardapio.edit');
+        Route::put('/admin/cardapio/{prato}', 'update')->name('admin.cardapio.update');
+        Route::delete('/admin/cardapio/{prato}', 'destroy')->name('admin.cardapio.destroy');
+    });
+
 });
+
+
