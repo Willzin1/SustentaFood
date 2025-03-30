@@ -46,7 +46,7 @@
                 </div>
                 <div class="grupo-formulario">
                     <label for="confirmarSenha">Confirmar senha:</label>
-                    <input type="password" name="password_confirmation" class="validar senhaRepetida" id="confirmarSenha" placeholder="Confirmar senha">
+                    <input type="password" name="password_confirmation" class="validar senhaRepetida handleRegister" id="confirmarSenha" placeholder="Confirmar senha">
                     @error('password')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror

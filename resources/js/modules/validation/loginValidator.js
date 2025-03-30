@@ -1,9 +1,6 @@
-import { isEmail, isMobilePhone } from 'validator';
-import validaReserva from './reservaValidator';
-
 class ValidaFormulario {
     constructor() {
-        this.formulario = document.querySelector('.formulario');
+        this.formulario = document.querySelector('.formu');
 
         if(!this.formulario) return;
 
@@ -20,9 +17,8 @@ class ValidaFormulario {
         event.preventDefault();
         const camposValidos = this.camposSaoValidos();
         const senhasValidas = this.senhasSaoValidas();
-        const reservaValida = validaReserva();
 
-        if(camposValidos && senhasValidas && reservaValida) {
+        if(camposValidos && senhasValidas) {
             this.formulario.submit();
         }
     }
@@ -32,13 +28,11 @@ class ValidaFormulario {
         const senha = this.formulario.querySelector('.senha');
         const senhaRepetida = this.formulario.querySelector('.senhaRepetida');
 
-        if(!senhaRepetida) return valid;
-
         if(senha.value.length < 6 || senha.value.length > 20){
             valid = false;
             this.criaErro(senha, 'Senha precisa conter entre 6 a 20 caracteres');
+            return;
         }
-
 
         if(senha.value !== senhaRepetida.value) {
             valid = false;
@@ -62,36 +56,16 @@ class ValidaFormulario {
             if(!campo.value) {
                 this.criaErro(campo, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
                 valid = false;
+            } else {
+
+                if(campo.classList.contains('email')) {
+                    if(!this.validaEmail(campo)) valid = false;
+                }
+
+                if(campo.classList.contains('senha')) {
+                    if(!this.senhasSaoValidas()) valid = false;
+                }
             }
-
-            if(campo.classList.contains('nome')) {
-                if(!this.validaUsuario(campo)) valid = false;
-            }
-
-            if(campo.classList.contains('email')) {
-                if(!this.validaEmail(campo)) valid = false;
-            }
-
-            if(campo.classList.contains('telefone')) {
-                if(!this.validaTelefone(campo)) valid = false;
-            }
-        }
-
-        return valid;
-    }
-
-    validaUsuario(campo) {
-        const usuario = campo.value;
-        let valid = true;
-
-        if(usuario.length < 3 || usuario.length > 12) {
-            this.criaErro(campo, 'Nome deve conter entre 3 e 255 caracteres.');
-            valid = false;
-        };
-
-        if(!usuario.match(/[a-zA-Z]+/g)) {
-            this.criaErro(campo, 'Nome deve conter apenas letras.');
-            valid = false;
         }
 
         return valid;
@@ -113,20 +87,6 @@ class ValidaFormulario {
         return valid;
     }
 
-    validaTelefone(campo) {
-        if(!campo) return;
-
-        const tel = campo.value;
-        let valid = true;
-
-        if(!isMobilePhone(tel, 'pt-BR')) {
-            this.criaErro(campo, 'Insira um telefone válido');
-            valid = false;
-        }
-
-        return valid;
-    }
-
     criaErro(campo, mensagem){
         const div = document.createElement('div');
         div.innerHTML = mensagem;
@@ -134,5 +94,3 @@ class ValidaFormulario {
         campo.insertAdjacentElement('afterend', div);
     }
 }
-
-export default new ValidaFormulario();

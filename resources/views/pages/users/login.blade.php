@@ -25,7 +25,7 @@
 
             <div class="grupo-formulario">
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="password" class="validar senha" placeholder="Digite sua senha">
+                <input type="password" id="senha" name="password" class="validar senha handleLogin" placeholder="Digite sua senha">
                 @error('password')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
