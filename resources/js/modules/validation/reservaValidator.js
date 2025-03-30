@@ -4,9 +4,11 @@ export default function validaReserva() {
     const dataInput = document.getElementById('data');
     const horaInput = document.getElementById('hora');
     const quantidadeInput = document.getElementById('quantidade_cadeiras');
-    let IsValid = true;
+    let isValid = true;
 
-    if (!dataInput || !horaInput || !quantidadeInput) return;
+    if (!dataInput || !horaInput || !quantidadeInput) {
+        return isValid;
+    };
 
     const data = dataInput.value;
     const hora = horaInput.value;
@@ -19,11 +21,10 @@ export default function validaReserva() {
 
     if (quantidadeSolicitada + cadeirasOcupadas > totalAssentos) {
         alert('Número total de assentos excede a disponibilidade.');
-        IsValid = false;
-        return IsValid;
+        isValid = false;
     }
 
-    return IsValid;
+    return isValid;
 };
 
 validaReserva();

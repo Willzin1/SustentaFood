@@ -11,7 +11,7 @@
             </div>
         @endif
         <h1>Editar reserva</h1>
-        <form action="{{ route('reservas.update', ['reserva' => $reserva->id]) }}" class="formulario" method="POST" onsubmit="return validarReserva()">
+        <form action="{{ route('reservas.update', ['reserva' => $reserva->id]) }}" class="formulario" method="POST">
             <input type="hidden" name="_method" value="PUT">
             @csrf
             <div class="grupo-formulario-reserva">
@@ -50,12 +50,12 @@
             </div>
 
             <div class="button-container">
-                <button type="submit" id="button-reserva" class="shadow__btn" onclick="adicionarReserva()">Editar reserva</button>
+                <button type="submit" id="button-reserva" class="shadow__btn">Editar reserva</button>
             </div>
         </form>
 
         <div class="button-container">
-            <form action="{{ route('reservas.destroy', ['reserva' => $reserva->id]) }}" method="POST" class="">
+            <form action="{{ route('reservas.destroy', ['reserva' => $reserva->id]) }}" method="POST">
                 @method('DELETE')
                 @csrf
                 <button type="submit" id="button-reserva" class="shadow__btn btn-red">Excluir reserva</button>
