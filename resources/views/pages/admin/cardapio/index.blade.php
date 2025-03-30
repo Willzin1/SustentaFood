@@ -4,7 +4,19 @@
     <div class="containerGerente">
 
         @include('includes.aside')
+
         <section id="reservas">
+
+            @if(session()->has('success'))
+                <div class="alert-custom alert-success-custom">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @elseif(session()->has('error'))
+                <div class="alert-custom alert-danger-custom">
+                    <p>{{ session('error') }}</p>
+                </div>
+            @endif
+
             <h2>Gerenciar Cardápio</h2>
             <div class="reservas-tabela">
             <a href="{{ route('admin.cardapio.create') }}" class="btn btn-primary">Adicionar Prato</a>
@@ -22,7 +34,7 @@
                 <tbody>
                     @foreach ($pratos as $prato)
                         <tr>
-                            <td><img src="{{ asset($prato->imagem ? 'storage/' . $prato->imagem : 'assets/images/pudimCaramelo1.png') }}" width="50"></td>
+                            <td><img src="{{ asset($prato->imagem ? 'storage/' . $prato->imagem : 'assets/images/default-prato.png') }}" width="50"></td>
                             <td>{{ $prato->nome }}</td>
                             <td>{{ $prato->descricao }}</td>
                             <td>{{ ucfirst($prato->categoria) }}</td>

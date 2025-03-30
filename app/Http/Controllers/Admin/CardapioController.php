@@ -40,9 +40,19 @@ class CardapioController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'descricao' => 'required|string',
+            'descricao' => 'required|string|max:255',
             'imagem' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'categoria' => 'required|in:Entradas,Prato principal,Sobremesas,Cardapio infantil,Bebidas',
+        ],[
+            'nome.required' => 'Nome do prato é obrigatório',
+            'nome.max' => 'Máximo de :max caracteres',
+            'descricao.required' => 'Descrição do prato é obrigatório',
+            'descricao.max' => 'Máximo de 255 caracteres',
+            'imagem.image' => 'Somente fotos são válidas',
+            'imagem.mimes' => 'Somente formatos jpeg, png, jpg, gif',
+            'imagem.max' => 'Tamanho máximo aceito :max KB',
+            'categoria.required' => 'Selecione uma categoria',
+            'categoria.in' => 'Categoria não encontrada'
         ]);
 
         $created = $this->prato->create([
@@ -75,16 +85,25 @@ class CardapioController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'descricao' => 'required|string',
+            'descricao' => 'required|string|max:255',
             'imagem' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'categoria' => 'required|in:Entradas,Prato principal,Sobremesas,Cardapio infantil,Bebidas',
+        ],[
+            'nome.required' => 'Nome do prato é obrigatório',
+            'nome.max' => 'Máximo de :max caracteres',
+            'descricao.required' => 'Descrição do prato é obrigatório',
+            'descricao.max' => 'Máximo de 255 caracteres',
+            'imagem.image' => 'Somente fotos são válidas',
+            'imagem.mimes' => 'Somente formatos jpeg, png, jpg, gif',
+            'imagem.max' => 'Tamanho máximo aceito :max KB'
         ]);
 
         $prato = $this->prato->find($id);
 
         $updated = $prato->update($request->except('_token', '_method', 'imagem'));
+        $hasImage = $request->hasFile('imagem');
 
-        if ($request->hasFile('imagem')) {
+        if ($hasImage) {
             $path = $request->file('imagem')->store('pratos', 'public');
             $prato->imagem = $path;
             $prato->save();
@@ -103,7 +122,7 @@ class CardapioController extends Controller
     public function destroy(Prato $prato) : RedirectResponse
     {
         $prato->delete();
-        return redirect()->route('admin.cardapio.index')->with('success', 'Prato removido!');
+        return redirect()->back()->with('success', 'Prato removido!');
     }
 
 }

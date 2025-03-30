@@ -6,39 +6,51 @@
     @include('includes.aside')
 
     <div class="container-reserva">
+        @if(session()->has('success'))
+            <div class="alert-custom alert-success-custom">
+                <p>{{ session('success') }}</p>
+            </div>
+        @elseif(session()->has('error'))
+            <div class="alert-custom alert-danger-custom">
+                <p>{{ session('error') }}</p>
+            </div>
+        @endif
+
         <h2>Editar Prato</h2>
 
         <form action="{{ route('admin.cardapio.update', ['prato' => $prato->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
-            <div class="mb-3">
-                <label for="nome" class="form-label">Nome do Prato</label>
-                <input type="text" class="form-control" id="nome" name="nome" value="{{ $prato->nome }}" required>
-            </div>
+            <label for="nome" class="form-label">Nome do Prato</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{ $prato->nome }}">
+            @error('nome')
+                <p class="msg-erro">{{ $message }}</p>
+            @enderror
 
-            <div class="mb-3">
-                <label for="descricao" class="form-label">Descrição</label>
-                <textarea class="form-control" id="descricao" name="descricao" rows="3" required>{{ $prato->descricao }}</textarea>
-            </div>
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ $prato->descricao }}</textarea>
+            @error('descricao')
+                <p class="msg-erro">{{ $message }}</p>
+            @enderror
 
-            <div>
-                <label for="categoria">Categoria</label>
-                <select name="categoria" required>
-                    <option value="Entradas">Entrada</option>
-                    <option value="Prato Principal">Prato Principal</option>
-                    <option value="Sobremesas">Sobremesa</option>
-                    <option value="Bebidas">Bebida</option>
-                </select>
-            </div>
+            <label for="categoria">Categoria</label>
+            <select name="categoria" required>
+                <option value="{{ $prato->categoria }}">{{ $prato->categoria }}</option>
+                <option value="Entradas">Entradas</option>
+                <option value="Prato principal">Prato principal</option>
+                <option value="Sobremesas">Sobremesas</option>
+                <option value="Bebidas">Bebidas</option>
+            </select>
+            @error('categoria')
+                <p class="msg-erro">{{ $message }}</p>
+            @enderror
 
-            <div class="mb-3">
-                <label for="imagem" class="form-label">Imagem</label>
-                <input type="file" class="form-control" id="imagem" name="imagem">
-                @if($prato->imagem)
-                    <img src="{{ $prato->imagem_url }}" width="100" class="mt-2">
-                @endif
-            </div>
+            <label for="imagem" class="form-label">Imagem</label>
+            <input type="file" class="form-control" id="imagem" name="imagem">
+            @error('imagem')
+                <p class="msg-erro">{{ $message }}</p>
+            @enderror
 
             <button type="submit" class="btn btn-primary">Atualizar</button>
             <a href="{{ route('admin.cardapio.index') }}" class="btn btn-secondary">Cancelar</a>
