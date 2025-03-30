@@ -9,6 +9,7 @@ export default function() {
             const option = document.createElement('option');
             option.value = timeOption;
             option.textContent = timeOption;
+            horaInput.classList.add('validar');
             horaInput.appendChild(option);
         }
     }

@@ -1,4 +1,5 @@
 import { isEmail, isMobilePhone } from 'validator';
+import validaReserva from './reservaValidator';
 
 class ValidaFormulario {
     constructor() {
@@ -19,9 +20,9 @@ class ValidaFormulario {
         event.preventDefault();
         const camposValidos = this.camposSaoValidos();
         const senhasValidas = this.senhasSaoValidas();
-        const validaReserva = this.validaReserva();
+        const reservaValida = validaReserva();
 
-        if(camposValidos && senhasValidas && validaReserva) {
+        if(camposValidos && senhasValidas && reservaValida) {
             this.formulario.submit();
         }
     }
@@ -121,29 +122,6 @@ class ValidaFormulario {
         if(!isMobilePhone(tel, 'pt-BR')) {
             this.criaErro(campo, 'Insira um telefone válido');
             valid = false;
-        }
-
-        return valid;
-    }
-
-    validaReserva() {
-        const totalAssentos = 90;
-        const reservas = [];
-        const dataInput = document.getElementById('data').value;
-        const horaInput = document.getElementById('hora').value;
-        const quantidadeInput = document.getElementById('quantidade_cadeiras').value;
-        let valid = true;
-
-
-        const reservasDataHora = reservas.filter(reserva => reserva.data === dataInput && reserva.hora === horaInput);
-        const cadeirasOcupadas = reservasDataHora.reduce((total, reserva) => total + reserva.quantidade_cadeiras, 0);
-
-        const quantidadeSolicitada = quantidadeInput === 'mais' ? parseInt(document.getElementById('custom_assentos').value) : parseInt(quantidadeInput);
-
-        if (quantidadeSolicitada + cadeirasOcupadas > totalAssentos) {
-            alert('Número total de assentos excede a disponibilidade.');
-            valid = false;
-            return valid;
         }
 
         return valid;
