@@ -11,11 +11,11 @@
             </div>
         @endif
         <h1>Reserva de Mesa</h1>
-        <form action="{{ route('reservas.store') }}" method="POST" onsubmit="return validarReserva()">
+        <form action="{{ route('reservas.store') }}" class="formulario" method="POST">
             @csrf
             <div class="grupo-formulario-reserva">
                 <label for="data">Data:</label>
-                <input type="text" id="data" name="data" placeholder="Selecione a data da reserva" value="{{ old('data') }}">
+                <input type="text" id="data" name="data" class="validar" placeholder="Selecione a data da reserva" value="{{ old('data') }}">
                 @error('data')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
@@ -52,7 +52,7 @@
             </div>
 
             <div class="button-container">
-                <button type="submit" id="button-reserva" class="shadow__btn" onclick="adicionarReserva()">Reservar</button>
+                <button type="submit" id="button-reserva" class="shadow__btn">Reservar</button>
                 <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">
                     <button type="button" id="button-reserva" class="shadow__btn">Voltar ao perfil</button>
                 </a>

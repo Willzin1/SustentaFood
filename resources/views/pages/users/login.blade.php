@@ -8,15 +8,16 @@
             <div class="alert-custom alert-success-custom">
                 <p>{{ session('success') }}</p>
             </div>
+
         @elseif(session()->has('error'))
-                <p class="text-danger">{{ session('error') }}</p>
+            <p class="text-danger">{{ session('error') }}</p>
         @endif
 
-        <form action="{{ route('login.store') }}" method="POST">
+        <form action="{{ route('login.store') }}" class="formulario" method="POST">
             @csrf
             <div class="grupo-formulario">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" value="{{ old('email') }}">
+                <input type="email" id="email" name="email" class="validar email" placeholder="Digite seu e-mail" value="{{ old('email') }}">
                 @error('email')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
@@ -24,7 +25,7 @@
 
             <div class="grupo-formulario">
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="password" placeholder="Digite sua senha">
+                <input type="password" id="senha" name="password" class="validar senha" placeholder="Digite sua senha">
                 @error('password')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror

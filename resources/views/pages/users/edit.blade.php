@@ -8,19 +8,19 @@
                 <p class="text-danger">{{ session('message') }}</p>
             @endif
 
-            <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post">
+            <form action="{{ route('users.update', ['user' => $user->id]) }}" class="formulario" method="post">
                 <input type="hidden" name="_method" value="PUT">
                 @csrf
                 <div class="grupo-formulario">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="name" value="{{ $user->name }}">
+                    <input type="text" id="nome" class="validar nome" name="name" value="{{ $user->name }}">
                     @error('name')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="grupo-formulario">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" name="phone" id="telefone" value="{{ $user->phone }}">
+                    <input type="tel" name="phone" class="validar telefone" id="telefone" value="{{ $user->phone }}">
                     @error('phone')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror

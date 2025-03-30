@@ -14,39 +14,39 @@
 
             <h1>Crie sua conta</h1>
 
-            <form action="{{ route('register.store') }}" method="post">
+            <form action="{{ route('register.store') }}" class="formulario" method="post">
                 @csrf
                 <div class="grupo-formulario">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="name" placeholder="Informe seu nome" value="{{ old('name') }}">
+                    <input type="text" id="nome" class="validar nome" name="name" placeholder="Informe seu nome" value="{{ old('name') }}">
                     @error('name')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="grupo-formulario">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="exemplo@gmail.com" value="{{ old('email') }}">
+                    <input type="email" id="email" class="validar telefone" name="email" placeholder="exemplo@gmail.com" value="{{ old('email') }}">
                     @error('email')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="grupo-formulario">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" name="phone" id="telefone" placeholder="Tel: 0000-0000" value="{{ old('phone') }}">
+                    <input type="tel" name="phone" class="validar" id="telefone" placeholder="Tel: 0000-0000" value="{{ old('phone') }}">
                     @error('phone')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="grupo-formulario">
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="password" placeholder="Digite sua senha">
+                    <input type="password" id="senha" class="validar senha" name="password" placeholder="Digite sua senha">
                     @error('password')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="grupo-formulario">
                     <label for="confirmarSenha">Confirmar senha:</label>
-                    <input type="password" name="password_confirmation" id="confirmarSenha" placeholder="Confirmar senha">
+                    <input type="password" name="password_confirmation" class="validar senhaRepetida" id="confirmarSenha" placeholder="Confirmar senha">
                     @error('password')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror

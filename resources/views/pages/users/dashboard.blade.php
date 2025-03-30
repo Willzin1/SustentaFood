@@ -25,7 +25,7 @@
                 <a href="{{ route('users.edit', $user->id) }}"><button class="profile-button" id="edit-profile-btn">Editar Perfil</button></a>
 
                 <li>
-                    <form action="{{ route('login.destroy') }}" method="POST">
+                    <form action="{{ route('login.destroy') }}" class="formulario" method="POST">
                         @csrf
                         <button type="submit" class="profile-button btn-red">Sair</button>
                     </form>
