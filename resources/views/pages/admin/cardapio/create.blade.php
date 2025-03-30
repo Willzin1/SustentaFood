@@ -1,7 +1,9 @@
 @extends('templates.master')
 
 @section('content')
-    <div class="container">
+<div class="containerGerente">
+    @include('includes.aside')
+    <div class="container-reserva">
         <h2>Adicionar Prato</h2>
 
         <form action="{{ route('admin.cardapio.store') }}" method="POST" enctype="multipart/form-data">
@@ -28,4 +30,5 @@
             <button type="submit">Adicionar Prato</button>
         </form>
     </div>
+</div>
 @endsection

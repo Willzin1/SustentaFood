@@ -80,16 +80,18 @@ class CardapioController extends Controller
             'categoria' => 'required|in:Entradas,Prato principal,Sobremesas,Cardapio infantil,Bebidas',
         ]);
 
-        $updated = $this->prato->where('id', $id)->update($request->except('_token', '_method', 'imagem'));
+        $prato = $this->prato->find($id);
+
+        $updated = $prato->update($request->except('_token', '_method', 'imagem'));
 
         if ($request->hasFile('imagem')) {
             $path = $request->file('imagem')->store('pratos', 'public');
-            $updated->imagem = $path;
-            $updated->save();
+            $prato->imagem = $path;
+            $prato->save();
         }
 
         if(!$updated) {
-            return redirect()->back()->with('error', 'Não foi possivel alterar');
+            return redirect()->back()->with('error', 'Erro ao atualizar prato');
         }
 
         return redirect()->route('admin.cardapio.index')->with('success', 'Prato atualizado!');

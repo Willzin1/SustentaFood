@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="containerGerente">
-        @include('includes.aside')
+    @include('includes.aside')
 
     <div class="container-reserva">
         <h2>Editar Prato</h2>

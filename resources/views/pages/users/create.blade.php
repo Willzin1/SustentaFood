@@ -25,14 +25,14 @@
                 </div>
                 <div class="grupo-formulario">
                     <label for="email">Email:</label>
-                    <input type="email" id="email" class="validar telefone" name="email" placeholder="exemplo@gmail.com" value="{{ old('email') }}">
+                    <input type="email" id="email" class="validar email" name="email" placeholder="exemplo@gmail.com" value="{{ old('email') }}">
                     @error('email')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="grupo-formulario">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" name="phone" class="validar" id="telefone" placeholder="Tel: 0000-0000" value="{{ old('phone') }}">
+                    <input type="tel" name="phone" class="validar telefone" id="telefone" placeholder="Tel: 0000-0000" value="{{ old('phone') }}">
                     @error('phone')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
