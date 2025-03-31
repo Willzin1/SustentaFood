@@ -11,7 +11,7 @@
             </div>
         @endif
         <h1>Editar reserva</h1>
-        <form action="{{ route('reservas.update', ['reserva' => $reserva->id]) }}" class="formulario" method="POST">
+        <form action="{{ route('reservas.update', ['reserva' => $reserva->id]) }}" class="reserva-form" method="POST">
             <input type="hidden" name="_method" value="PUT">
             @csrf
             <div class="grupo-formulario-reserva">

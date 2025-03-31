@@ -10,6 +10,7 @@ export default function() {
             option.value = timeOption;
             option.textContent = timeOption;
             horaInput.classList.add('validar');
+            horaInput.classList.add('horaRes');
             horaInput.appendChild(option);
         }
     }

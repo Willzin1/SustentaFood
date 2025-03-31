@@ -5,6 +5,7 @@ import horas from './modules/reservas/horas';
 import data from './modules/reservas/data';
 import scrollButtons from './components/scrollButtons';
 import './modules/validation/ValidaUserFormulario';
+import './modules/validation/ValidarReservaForm';
 
 function init() {
     scrollButtons();

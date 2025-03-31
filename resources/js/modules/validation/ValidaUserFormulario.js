@@ -1,5 +1,7 @@
 import { isEmail, isMobilePhone } from 'validator';
 
+import Error from '../utils/Error';
+
 class ValidaUserFormulario {
     constructor() {
         this.formulario = document.querySelector('.formulario');
@@ -30,7 +32,7 @@ class ValidaUserFormulario {
 
         if(senha.length < 6 || senha.length > 20) {
             valid = false;
-            this.criaErro(campo, 'Senha precisa conter entre 6 a 20 caracteres');
+            Error.criaErro(campo, 'Senha precisa conter entre 6 a 20 caracteres');
         }
 
         return valid;
@@ -43,14 +45,14 @@ class ValidaUserFormulario {
 
         if(senha.length < 6 || senha.length > 20) {
             valid = false;
-            this.criaErro(campo, 'Senha precisa conter entre 6 a 20 caracteres');
+            Error.criaErro(campo, 'Senha precisa conter entre 6 a 20 caracteres');
             return;
         }
 
         if(senha !== senhaRepetida.value) {
             valid = false;
-            this.criaErro(campo, 'Senhas não coincidem');
-            this.criaErro(senhaRepetida, 'Senha não coincidem');
+            Error.criaErro(campo, 'Senhas não coincidem');
+            Error.criaErro(senhaRepetida, 'Senha não coincidem');
         }
 
         return valid;
@@ -67,7 +69,7 @@ class ValidaUserFormulario {
             let label = campo.previousElementSibling.innerHTML;
 
             if(!campo.value) {
-                this.criaErro(campo, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
+                Error.criaErro(campo, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
                 valid = false;
             } else {
 
@@ -98,17 +100,17 @@ class ValidaUserFormulario {
     }
 
     validaUsuario(campo) {
-        const usuario = campo.value;
+        const nomeUser = campo.value;
         let valid = true;
 
-        if(usuario.length < 3 || usuario.length > 12) {
-            this.criaErro(campo, 'Nome deve conter entre 3 e 255 caracteres.');
+        if(nomeUser.length < 3 || nomeUser.length > 255) {
+            Error.criaErro(campo, 'Nome deve conter entre 3 e 255 caracteres.');
             valid = false;
             return valid;
         };
 
-        if(!/^[a-zA-Z]+$/.test(usuario)) {
-            this.criaErro(campo, 'Nome deve conter apenas letras.');
+        if(!/^[a-zA-Zà-úÀ-Ú\s]+$/.test(nomeUser)) {
+            Error.criaErro(campo, 'Nome deve conter apenas letras.');
             valid = false;
             return valid;
         }
@@ -121,7 +123,7 @@ class ValidaUserFormulario {
         let valid = true;
 
         if(!isEmail(email)) {
-            this.criaErro(campo, 'Insira um e-mail válido');
+            Error.criaErro(campo, 'Insira um e-mail válido');
             valid = false;
         }
 
@@ -133,18 +135,11 @@ class ValidaUserFormulario {
         let valid = true;
 
         if(!isMobilePhone(tel, 'pt-BR')) {
-            this.criaErro(campo, 'Insira um telefone válido');
+            Error.criaErro(campo, 'Insira um telefone válido');
             valid = false;
         }
 
         return valid;
-    }
-
-    criaErro(campo, mensagem){
-        const div = document.createElement('div');
-        div.innerHTML = mensagem;
-        div.classList.add('text-danger');
-        campo.insertAdjacentElement('afterend', div);
     }
 }
 
