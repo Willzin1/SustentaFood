@@ -1,13 +1,16 @@
 import Error from './../utils/Error';
+import validaReserva from './reservaValidator';
 
 class ValidarReservaForm {
     constructor() {
         this.formulario = document.querySelector('.reserva-form');
+        this.validaRes = validaReserva;
 
         if (!this.formulario) return;
 
         this.init();
     }
+
 
     init() {
         this.formulario.addEventListener('submit', event => {
@@ -18,8 +21,9 @@ class ValidarReservaForm {
     handleSubmit(event) {
         event.preventDefault();
         const camposValidos = this.isFieldValid();
+        const validaRes = this.validaRes();
 
-        if(camposValidos) {
+        if(camposValidos && validaRes) {
             this.formulario.submit();
         }
     }

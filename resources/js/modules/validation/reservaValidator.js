@@ -26,5 +26,3 @@ export default function validaReserva() {
 
     return isValid;
 };
-
-validaReserva();
