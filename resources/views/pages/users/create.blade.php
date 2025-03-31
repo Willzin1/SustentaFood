@@ -14,7 +14,7 @@
 
             <h1>Crie sua conta</h1>
 
-            <form action="{{ route('register.store') }}" class="formulario" method="post">
+            <form action="{{ route('register.store') }}" class="formulario register-form" method="post">
                 @csrf
                 <div class="grupo-formulario">
                     <label for="nome">Nome:</label>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="grupo-formulario">
                     <label for="confirmarSenha">Confirmar senha:</label>
-                    <input type="password" name="password_confirmation" class="validar senhaRepetida handleRegister" id="confirmarSenha" placeholder="Confirmar senha">
+                    <input type="password" name="password_confirmation" class="senhaRepetida" id="confirmarSenha" placeholder="Confirmar senha">
                     @error('password')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror

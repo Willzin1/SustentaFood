@@ -1,6 +1,6 @@
 import { isEmail, isMobilePhone } from 'validator';
 
-class FormUserValidator {
+class ValidaUserFormulario {
     constructor() {
         this.formulario = document.querySelector('.formulario');
 
@@ -24,34 +24,33 @@ class FormUserValidator {
         }
     }
 
-    handleLogin() {
-        const senha = this.formulario.querySelector('.senha');
+    handleLogin(campo) {
+        const senha = campo.value;
         let valid = true;
 
-        if(senha.value.length < 6 || senha.value.length > 20){
+        if(senha.length < 6 || senha.length > 20) {
             valid = false;
-            this.criaErro(senha, 'Senha precisa conter entre 6 a 20 caracteres');
-            return;
+            this.criaErro(campo, 'Senha precisa conter entre 6 a 20 caracteres');
         }
 
         return valid;
     }
 
-    handleRegister() {
-        let valid = true;
-        const senha = this.formulario.querySelector('.senha');
+    handleRegister(campo) {
+        const senha = campo.value;
         const senhaRepetida = this.formulario.querySelector('.senhaRepetida');
+        let valid = true;
 
-        if(senha.value.length < 6 || senha.value.length > 20){
+        if(senha.length < 6 || senha.length > 20) {
             valid = false;
-            this.criaErro(senha, 'Senha precisa conter entre 6 a 20 caracteres');
+            this.criaErro(campo, 'Senha precisa conter entre 6 a 20 caracteres');
             return;
         }
 
-        if(senha.value !== senhaRepetida.value) {
+        if(senha !== senhaRepetida.value) {
             valid = false;
-            this.criaErro(senha, 'Senhas não coincidem.');
-            this.criaErro(senhaRepetida, 'Senhas não coincidem.');
+            this.criaErro(campo, 'Senhas não coincidem');
+            this.criaErro(senhaRepetida, 'Senha não coincidem');
         }
 
         return valid;
@@ -84,12 +83,13 @@ class FormUserValidator {
                     if(!this.validaTelefone(campo)) valid = false;
                 }
 
-                if(campo.classList.contains('handleRegister')) {
-                    if(!this.handleRegister()) valid = false;
-                }
-
-                if(campo.classList.contains('handleLogin')) {
-                    if(!this.handleLogin()) valid = false;
+                if(campo.classList.contains('senha')) {
+                    if(this.formulario.classList.contains('login-form')) {
+                        if(!this.handleLogin(campo)) valid = false;
+                    }
+                    if(this.formulario.classList.contains('register-form')) {
+                        if(!this.handleRegister(campo)) valid = false;
+                    }
                 }
             }
         }
@@ -117,12 +117,8 @@ class FormUserValidator {
     }
 
     validaEmail(campo) {
-        if(!campo) return;
-
         const email = campo.value;
         let valid = true;
-
-        if(!email) return valid;
 
         if(!isEmail(email)) {
             this.criaErro(campo, 'Insira um e-mail válido');
@@ -133,8 +129,6 @@ class FormUserValidator {
     }
 
     validaTelefone(campo) {
-        if(!campo) return;
-
         const tel = campo.value;
         let valid = true;
 
@@ -154,4 +148,4 @@ class FormUserValidator {
     }
 }
 
-export default new FormUserValidator();
+export default new ValidaUserFormulario();

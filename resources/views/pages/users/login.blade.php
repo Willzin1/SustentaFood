@@ -13,7 +13,7 @@
             <p class="text-danger">{{ session('error') }}</p>
         @endif
 
-        <form action="{{ route('login.store') }}" class="formulario" method="POST">
+        <form action="{{ route('login.store') }}" class="formulario login-form" method="POST">
             @csrf
             <div class="grupo-formulario">
                 <label for="email">Email:</label>
@@ -25,7 +25,7 @@
 
             <div class="grupo-formulario">
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" name="password" class="validar senha handleLogin" placeholder="Digite sua senha">
+                <input type="password" id="senha" name="password" class="validar senha" placeholder="Digite sua senha">
                 @error('password')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
