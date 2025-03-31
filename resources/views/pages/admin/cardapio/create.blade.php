@@ -17,23 +17,23 @@
         @endif
         <h2>Adicionar Prato</h2>
 
-        <form action="{{ route('admin.cardapio.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.cardapio.store') }}" class="prato-form" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label for="nome">Nome do Prato</label>
-            <input type="text" name="nome" id="nome" value="{{ old('nome') }}">
+            <input type="text" name="nome" class="validar nome" id="nome" value="{{ old('nome') }}">
             @error('nome')
                 <p class="msg-erro">{{ $message }}</p>
             @enderror
 
             <label for="descricao">Descrição</label>
-            <textarea name="descricao" id="descricao">{{ old('descricao') }}</textarea>
+            <textarea name="descricao" class="validar descricao" id="descricao">{{ old('descricao') }}</textarea>
             @error('descricao')
                 <p class="msg-erro">{{ $message }}</p>
             @enderror
 
             <label for="categoria">Categoria</label>
-            <select name="categoria" id="categoria">
+            <select name="categoria" class="validar categoria" id="categoria">
                 <option value="Entradas">Entradas</option>
                 <option value="Prato principal">Prato Principal</option>
                 <option value="Sobremesas">Sobremesas</option>
@@ -45,7 +45,7 @@
             @enderror
 
             <label for="imagem">Imagem</label>
-            <input type="file" name="imagem" id="imagem" accept="image/*">
+            <input type="file" name="imagem" class="validar imagem" id="imagem" accept="image/*">
             @error('imagem')
                 <p class="msg-erro">{{ $message }}</p>
             @enderror
