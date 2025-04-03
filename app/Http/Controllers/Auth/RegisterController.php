@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class RegisterController extends Controller
 {
@@ -27,39 +28,19 @@ class RegisterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required|string',
-            'password' => 'required|min:6|max:20|confirmed'
-        ], [
-            'name.required' => 'Campo nome é obrigatório',
-            'email.required' => 'Campo e-mail é obrigatório',
-            'email.email' => 'Informe um e-mail válido',
-            'email.unique' => 'E-mail já cadastrado',
-            'phone' => 'Campo telefone é obrigatório',
-            'password.required' => 'Campo senha é obrigatório',
-            'password.min' => 'Senha deve conter no mínimo :min caracteres',
-            'password.max' => 'Senha deve conter no máximo :max caracteres',
-            'password.confirmed' => 'Senhas não coincidem'
-        ]);
+        $response = Http::post('http://localhost:3030/api/users/', [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => $request->password
+           ]);
 
-        $created = $this->user->create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'),
-            'password' => password_hash($request->input('password'), PASSWORD_DEFAULT),
-            'created_at' => now(),
-            'updated_at' => now(),
-            'role' => 'user',
-        ]);
-
-        if(!$created) {
-            return redirect()->back()->with('error', 'Erro ao criar usuário.');
+        if ($response->successful()) {
+            return redirect()->route('login')->with('success', $response->json()['message']);
         }
 
-        return redirect()->route('login')->with('success', 'Sucesso ao criar conta');
+        return redirect()->back()->withInput()->withErrors(['error' => $response->json()['errors']]);
     }
 }

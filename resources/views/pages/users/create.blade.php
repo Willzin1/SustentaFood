@@ -11,6 +11,13 @@
                     <p>{{ session('error') }}</p>
                 </div>
             @endif
+            @if($errors->any())
+                <div class="alert-custom alert-danger-custom">
+                    @foreach($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
 
             <h1>Crie sua conta</h1>
 
