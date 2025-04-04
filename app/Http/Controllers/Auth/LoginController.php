@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
@@ -30,33 +31,26 @@ class LoginController extends Controller
      */
     public function store(Request $request) : RedirectResponse
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:5'
-        ], [
-            'email.required' => 'O campo e-mail é obrigatório.',
-            'email.email' => 'Por favor, insira um e-mail válido.',
-            'password.required' => 'O campo senha é obrigatório.',
-            'password.min' => 'Senha deve conter pelo menos :min caracteres',
+        $response = Http::post('http://localhost:3030/login/', [
+            'email' => $request->email,
+            'password' => $request->password
         ]);
 
-        $user = User::where('email', $request->input('email'))->first();
+        if($response->successful()) {
+            $data = $response->json();
+            $userId = $data['user']['id'];
 
-        if(!$user) {
-            return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
+            $user = User::find($userId);
+            Auth::loginUsingId($user->id);
+
+            if ($user->role == 'admin') {
+                return redirect()->route('admin.dashboard');
+            }
+
+            return redirect()->route('users.show', ['user' => $user->id]);
         }
 
-        if(!password_verify($request->input('password'), $user->password)) {
-            return redirect()->back()->with('error', 'E-mail ou senha inválidos.');
-        }
-
-        Auth::loginUsingId($user->id);
-
-        if ($user->role == 'admin') {
-            return redirect()->route('admin.dashboard');
-        }
-
-        return redirect()->route('users.show', ['user' => $user->id]);
+        return redirect()->back()->with('error', 'Erro ao logar');
     }
 
     /**
