@@ -31,7 +31,7 @@ class LoginController extends Controller
      */
     public function store(Request $request) : RedirectResponse
     {
-        $response = Http::post('http://localhost:3030/login/', [
+        $response = Http::post('http://localhost:3030/api/login/', [
             'email' => $request->email,
             'password' => $request->password
         ]);
@@ -40,7 +40,9 @@ class LoginController extends Controller
             $data = $response->json();
             $userId = $data['user']['id'];
 
-            $user = User::find($userId);
+            session(['api_token' => $data['token']]);
+
+            $user = $this->user->find($userId);
             Auth::loginUsingId($user->id);
 
             if ($user->role == 'admin') {
@@ -50,7 +52,7 @@ class LoginController extends Controller
             return redirect()->route('users.show', ['user' => $user->id]);
         }
 
-        return redirect()->back()->with('error', 'Erro ao logar');
+        return redirect()->back()->with('error', $response->json('error'));
     }
 
     /**
@@ -58,7 +60,22 @@ class LoginController extends Controller
      */
     public function destroy() : RedirectResponse
     {
+        $token = session('api_token');
+
+        if ($token) {
+            $response = Http::withToken($token)->delete('http://localhost:3030/api/logout');
+
+            if ($response->successful()) {
+                session()->forget('api_token');
+                Auth::logout();
+
+                return redirect()->route('login')->with('success', 'Você saiu com sucesso!');
+            }
+
+            return redirect()->back()->with('error', 'Erro ao tentar realizar logout na API');
+        }
+
         Auth::logout();
-        return redirect()->route('login');
+        return redirect()->back()->with('error', 'Não há token');
     }
 }
