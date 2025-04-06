@@ -85,7 +85,7 @@ class ReservasController extends Controller
         $user = Auth::user();
         $reserva = $this->reserva->find($id);
         $token = session('api_token');
-        $dados = $request->except('_method, _token', 'quantidade_custom');
+        $dados = $request->except(['_method', '_token', 'quantidade_custom']);
 
         $response = Http::withToken($token)->put('http://localhost:3030/api/reservas/' . $reserva->id, $dados);
 

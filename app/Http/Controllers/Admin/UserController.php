@@ -3,20 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
     /**
      * Display the specified resource.
      */
-    public function show(String $id) : View
+    public function show(String $id): View
     {
-        $user = User::findOrFail($id);
-        $reservas = $user->reservas;
+        $token = session('api_token');
+        $response = Http::withToken($token)->get("http://localhost:3030/api/users/{$id}");
 
-        return view('pages.admin.users.show', ['user' => $user, 'reservas' => $reservas]);
+        if ($response->failed()) {
+            abort(404, 'Erro inesperado.');
+        }
+
+        $user = $response->json();
+        $reservas = Http::withToken($token)->get("http://localhost:3030/api/reservas?user_id={$id}")->json();
+
+        return view('pages.admin.users.show', [
+            'user' => $user,
+            'reservas' => $reservas
+        ]);
     }
 }

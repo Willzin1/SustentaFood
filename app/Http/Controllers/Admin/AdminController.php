@@ -11,7 +11,7 @@ class AdminController extends Controller
     /**
      * Show the dashboard.
      */
-    public function dashboard() : View
+    public function dashboard(): View
     {
         return view('pages.admin.dashboard');
     }

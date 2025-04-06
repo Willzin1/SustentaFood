@@ -5,9 +5,18 @@
         @include('includes.aside')
 
         <section id="reservas">
+            @if(session()->has('success'))
+                <div class="alert-custom alert-success-custom">
+                    <p>{{ session('success') }}</p>
+                </div>
+            @elseif(session()->has('error'))
+                <div class="alert-custom alert-danger-custom">
+                    <p>{{ session('error') }}</p>
+                </div>
+            @endif
             <h2>Todas as Reservas</h2>
             <div class="reservas-tabela">
-                @if($reservas->isEmpty())
+                @if(empty($reservas))
                     <p>Não há reservas registradas.</p>
                 @else
                     <table>
@@ -21,23 +30,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($reservas as $reserva)
+                            @foreach($reservas['data'] as $reserva)
                                 <tr>
-                                    <td>{{ $reserva->id }}</td>
-                                    <td><a href="{{ route('admin.user', ['user' => $reserva->user->id]) }}">{{ $reserva->user->name }}</a></td>
-                                    <td>{{ $reserva->data->format('d-m-Y') }}</td>
-                                    <td>{{ $reserva->hora->format('H:i') }}</td>
-                                    <td>{{ $reserva->quantidade_cadeiras }}</td>
-                                    <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva->id]) }}">Gerenciar reserva</a></td>
+                                    <td>{{ $reserva['user']['id'] }}</td>
+                                    <td><a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}">{{ $reserva['user']['name'] }}</a></td>
+                                    <td>{{ date('d-m-Y', strtotime($reserva['data'])) }}</td>
+                                    <td>{{ date('H:i', strtotime($reserva['hora'])) }}</td>
+                                    <td>{{ $reserva['quantidade_cadeiras'] }}</td>
+                                    <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar reserva</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 @endif
             </div>
-            <div class="pagination">
-                {{ $reservas->links() }}
-            </div>
+            <x-pagination :links="$reservas['links']" :currentPage="$reservas['current_page']"
+            :lastPage="$reservas['last_page']" base-url="{{ route('admin.reservas.index') }}" />
         </section>
     </div>
 @endsection

@@ -19,7 +19,7 @@ class CardapioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index(): View
     {
         $pratos = Prato::paginate(5);
         return view('pages.admin.cardapio.index', compact('pratos'));
@@ -28,7 +28,7 @@ class CardapioController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() : View
+    public function create(): View
     {
         return view('pages.admin.cardapio.create');
     }
@@ -36,7 +36,7 @@ class CardapioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'nome' => 'required|string|max:255',
@@ -73,7 +73,7 @@ class CardapioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Prato $prato) : View
+    public function edit(Prato $prato): View
     {
         return view('pages.admin.cardapio.edit', compact('prato'));
     }
@@ -81,7 +81,7 @@ class CardapioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, String $id) : RedirectResponse
+    public function update(Request $request, String $id): RedirectResponse
     {
         $request->validate([
             'nome' => 'required|string|max:255',
@@ -119,7 +119,7 @@ class CardapioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Prato $prato) : RedirectResponse
+    public function destroy(Prato $prato): RedirectResponse
     {
         $prato->delete();
         return redirect()->back()->with('success', 'Prato removido!');

@@ -6,13 +6,13 @@
 
         <section id="user-info">
             <h2>Informações do Cliente</h2>
-            <p><strong>Nome:</strong> {{ $user->name }}</p>
-            <p><strong>Email:</strong> {{ $user->email }}</p>
-            <p><strong>Telefone:</strong> {{ $user->phone }}</p>
+            <p><strong>Nome:</strong> {{ $user['name'] }}</p>
+            <p><strong>Email:</strong> {{ $user['email'] }}</p>
+            <p><strong>Telefone:</strong> {{ $user['phone'] }}</p>
 
             <h3>Reservas do Cliente</h3>
             <div class="reservas-tabela">
-                @if($reservas->isEmpty())
+                @if(empty($reservas))
                     <p>Esse cliente não tem reservas.</p>
                 @else
                     <table>
@@ -27,11 +27,11 @@
                         <tbody>
                             @foreach($reservas as $reserva)
                                 <tr>
-                                    <td>{{ $reserva->id }}</td>
-                                    <td>{{ $reserva->data->format('d-m-Y') }}</td>
-                                    <td>{{ $reserva->hora->format('H:i') }}</td>
-                                    <td>{{ $reserva->quantidade_cadeiras }}</td>
-                                    <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva->id]) }}">Gerenciar</a></td>
+                                    <td>{{ $reserva['id'] }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($reserva['data'])) }}</td>
+                                    <td>{{ date('H:i', strtotime($reserva['hora'])) }}</td>
+                                    <td>{{ $reserva['quantidade_cadeiras'] }}</td>
+                                    <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
