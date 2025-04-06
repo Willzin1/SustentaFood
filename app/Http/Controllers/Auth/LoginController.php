@@ -29,7 +29,7 @@ class LoginController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $response = Http::post('http://localhost:3030/api/login/', [
             'email' => $request->email,
@@ -52,13 +52,13 @@ class LoginController extends Controller
             return redirect()->route('users.show', ['user' => $user->id]);
         }
 
-        return redirect()->back()->with('error', $response['error']);
+        return redirect()->back()->with('error', $response['message']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy() : RedirectResponse
+    public function destroy(): RedirectResponse
     {
         $token = session('api_token');
 

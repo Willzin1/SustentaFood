@@ -67,7 +67,7 @@ class ReservasController extends Controller
             return redirect()->route('admin.reservas.index')->with('success', $response['message']);
         }
 
-        return redirect()->back()->with('error', $response['message']);
+        return redirect()->back()->with('error', $response['error']);
     }
 
     /**

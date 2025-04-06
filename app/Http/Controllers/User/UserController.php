@@ -79,7 +79,7 @@ class UserController extends Controller
             return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
         }
 
-        return redirect()->back()->with('error', $response->json('error'));
+        return redirect()->back()->with('error', $response['message']);
     }
 
     /**
