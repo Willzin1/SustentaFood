@@ -20,7 +20,7 @@ class RegisterController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() : View
+    public function create(): View
     {
         return view('pages.users.create');
     }
@@ -28,7 +28,7 @@ class RegisterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $response = Http::post('http://localhost:3030/api/users/', [
             'name' => $request->name,
@@ -38,9 +38,9 @@ class RegisterController extends Controller
            ]);
 
         if ($response->successful()) {
-            return redirect()->route('login')->with('success', $response->json()['message']);
+            return redirect()->route('login')->with('success', $response['message']);
         }
 
-        return redirect()->back()->withInput()->withErrors(['error' => $response->json()['errors']]);
+        return redirect()->back()->withInput()->withErrors(['error' => $response['errors']]);
     }
 }

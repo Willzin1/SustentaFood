@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class ReservasController extends Controller
 {
@@ -28,7 +29,7 @@ class ReservasController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() : View
+    public function create(): View
     {
         return view('pages.reservas.create');
     }
@@ -36,41 +37,27 @@ class ReservasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $user = Auth::user();
         $reservasAtual = $this->reserva->where('user_id', $user->id)->count();
+        $token = session('api_token');
 
         if ($reservasAtual >= 4) {
             return redirect()->back()->with('error', 'Você já atingiu o limite de 4 reservas.');
         }
 
-        $request->validate([
-            'data' => 'required',
-            'hora' => 'required',
-            'quantidade_cadeiras' => 'required',
-            'quantidade_custom' => 'required_if:quantidade_cadeiras,mais'
-        ], [
-            'data.required' => 'Informe uma data',
-            'hora.required' => 'Informe o horário da reserva',
-            'quantidade_cadeiras.required' => 'Informe a quantidade de cadeiras',
-            'quantidade_custom.required_if' => 'Informe uma quantidade personalizada'
+        $response = Http::withToken($token)->post('http://localhost:3030/api/reservas', [
+            'data' => $request->data,
+            'hora' => $request->hora,
+            'quantidade_cadeiras' => $request->quantidade_cadeiras === 'mais' ? $request->quantidade_custom : $request->quantidade_cadeiras,
         ]);
 
-        $created = $this->reserva->create([
-            'user_id' => $user->id,
-            'data' => $request->input('data'),
-            'hora' => $request->input('hora'),
-            'quantidade_cadeiras' => $request->input('quantidade_cadeiras') === 'mais' ? $request->input('quantidade_custom') : $request->input('quantidade_cadeiras'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-
-        if (!$created) {
-            return redirect()->route('users.show', ['user' => $user->id])->with('error', 'Erro ao fazer reserva.');
+        if ($response->successful()) {
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
         }
 
-        return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Reserva efetuada com sucesso.');
+        return redirect()->route('users.show', ['user' => $user->id])->with('error', $response['message']);
     }
 
     /**
@@ -84,7 +71,7 @@ class ReservasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id) : View
+    public function edit(string $id): View
     {
         $reserva = $this->reserva->find($id);
         return view('pages.reservas.edit', ['reserva' => $reserva]);
@@ -93,48 +80,36 @@ class ReservasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id) : RedirectResponse
+    public function update(Request $request, string $id): RedirectResponse
     {
         $user = Auth::user();
+        $reserva = $this->reserva->find($id);
+        $token = session('api_token');
+        $dados = $request->except('_method, _token', 'quantidade_custom');
 
-        $quantidade = $request->input('quantidade_cadeiras') === 'mais' ? $request->input('quantidade_custom') : $request->input('quantidade_cadeiras');
+        $response = Http::withToken($token)->put('http://localhost:3030/api/reservas/' . $reserva->id, $dados);
 
-        $dados = $request->except('_token', '_method', 'quantidade_custom');
-        $dados['quantidade_cadeiras'] = $quantidade;
-
-        $request->validate([
-            'data' => 'required',
-            'hora' => 'required',
-            'quantidade_cadeiras' => 'required',
-            'quantidade_custom' => 'required_if:quantidade_cadeiras,mais'
-        ], [
-            'data.required' => 'Informe uma data',
-            'hora.required' => 'Informe o horário da reserva',
-            'quantidade_cadeiras.required' => 'Informe a quantidade de cadeiras',
-            'quantidade_custom.required_if' => 'Informe uma quantidade personalizada'
-        ]);
-
-        $updated = $this->reserva->where('id', $id)->update($dados);
-
-        if (!$updated) {
-            redirect()->back()->with('error', 'Erro ao alterar reserva');
+        if ($response->successful()) {
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
         }
 
-        return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Reserva alterada com sucesso');
+        return redirect()->back()->with('error', $response['message']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id) : RedirectResponse
+    public function destroy(string $id): RedirectResponse
     {
         $user = Auth::user();
-        $deleted = $this->reserva->where('id', $id)->delete();
+        $reserva = $this->reserva->find($id);
+        $token = session('api_token');
+        $response = Http::withToken($token)->delete('http://localhost:3030/api/reservas/' . $reserva->id);
 
-        if (!$deleted) {
-            return redirect()->back()->with('error', 'Erro ao deletar reserva');
+        if ($response->successful()) {
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
         }
 
-        return redirect()->route('users.show', ['user' => $user->id])->with('success', 'Reserva apagada com sucesso.');
+        return redirect()->back()->with('error', $response['message']);
     }
 }

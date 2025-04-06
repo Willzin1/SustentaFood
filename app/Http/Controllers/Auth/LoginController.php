@@ -52,7 +52,7 @@ class LoginController extends Controller
             return redirect()->route('users.show', ['user' => $user->id]);
         }
 
-        return redirect()->back()->with('error', $response->json('error'));
+        return redirect()->back()->with('error', $response['error']);
     }
 
     /**
@@ -69,7 +69,7 @@ class LoginController extends Controller
                 session()->forget('api_token');
                 Auth::logout();
 
-                return redirect()->route('login')->with('success', 'Você saiu com sucesso!');
+                return redirect()->route('login')->with('success', $response['message']);
             }
 
             return redirect()->back()->with('error', 'Erro ao tentar realizar logout na API');

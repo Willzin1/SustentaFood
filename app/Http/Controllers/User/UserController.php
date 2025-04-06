@@ -76,7 +76,7 @@ class UserController extends Controller
         ]);
 
         if($response->successful()) {
-            return redirect()->route('users.show', ['user' => $user->id]);
+            return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
         }
 
         return redirect()->back()->with('error', $response->json('error'));
@@ -93,9 +93,9 @@ class UserController extends Controller
         $response = Http::withToken($token)->delete('http://localhost:3030/api/users/' . $user->id);
 
         if($response->successful()) {
-            return redirect()->route('login');
+            return redirect()->route('login')->with('success', $response['message']);
         }
 
-        return redirect()->back()->with('error', 'Erro ao deletar');
+        return redirect()->back()->with('error', $response['message']);
     }
 }
