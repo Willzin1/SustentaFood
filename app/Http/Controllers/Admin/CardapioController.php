@@ -7,6 +7,7 @@ use App\Models\Prato;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CardapioController extends Controller
 {
@@ -19,9 +20,19 @@ class CardapioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $pratos = Prato::paginate(5);
+        $token = session('api_token');
+        $response = Http::withToken($token)->get('http://localhost:3030/api/cardapio', [
+            'page' => $request->get('page')
+        ]);
+
+        $pratos = $response->json();
+
+        if ($request->get('page') > $pratos['last_page']) {
+            return view('errors.page404');
+        }
+
         return view('pages.admin.cardapio.index', compact('pratos'));
     }
 
@@ -38,36 +49,18 @@ class CardapioController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'required|string|max:255',
-            'imagem' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'categoria' => 'required|in:Entradas,Prato principal,Sobremesas,Cardapio infantil,Bebidas',
-        ],[
-            'nome.required' => 'Nome do prato é obrigatório',
-            'nome.max' => 'Máximo de :max caracteres',
-            'descricao.required' => 'Descrição do prato é obrigatório',
-            'descricao.max' => 'Máximo de 255 caracteres',
-            'imagem.image' => 'Somente fotos são válidas',
-            'imagem.mimes' => 'Somente formatos jpeg, png, jpg, gif',
-            'imagem.max' => 'Tamanho máximo aceito :max KB',
-            'categoria.required' => 'Selecione uma categoria',
-            'categoria.in' => 'Categoria não encontrada'
-        ]);
-
-        $created = $this->prato->create([
+        $token = session('api_token');
+        $response = Http::withToken($token)->asMultipart()->post('http://localhost:3030/api/cardapio', [
             'nome' => $request->nome,
             'descricao' => $request->descricao,
-            'categoria' => $request->categoria
+            'categoria' => $request->categoria,
         ]);
 
-        if ($request->hasFile('imagem')) {
-            $path = $request->file('imagem')->store('pratos', 'public');
-            $created->imagem = $path;
-            $created->save();
+        if ($response->successful()) {
+            return redirect()->route('admin.cardapio.index')->with('success', $response ['message']);
         }
 
-        return redirect()->route('admin.cardapio.index')->with('success', 'Prato adicionado!');
+        return redirect()->back()->with('error', $response['message']);
     }
 
     /**
@@ -83,46 +76,33 @@ class CardapioController extends Controller
      */
     public function update(Request $request, String $id): RedirectResponse
     {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'required|string|max:255',
-            'imagem' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'categoria' => 'required|in:Entradas,Prato principal,Sobremesas,Cardapio infantil,Bebidas',
-        ],[
-            'nome.required' => 'Nome do prato é obrigatório',
-            'nome.max' => 'Máximo de :max caracteres',
-            'descricao.required' => 'Descrição do prato é obrigatório',
-            'descricao.max' => 'Máximo de 255 caracteres',
-            'imagem.image' => 'Somente fotos são válidas',
-            'imagem.mimes' => 'Somente formatos jpeg, png, jpg, gif',
-            'imagem.max' => 'Tamanho máximo aceito :max KB'
+        $token = session('api_token');
+        $response = Http::withToken($token)->put("http://localhost:3030/api/cardapio/{$id}", [
+            'nome' => $request->name,
+            'descricao' => $request->descricao,
+            'categoria' => $request->categoria
         ]);
 
-        $prato = $this->prato->find($id);
-
-        $updated = $prato->update($request->except('_token', '_method', 'imagem'));
-        $hasImage = $request->hasFile('imagem');
-
-        if ($hasImage) {
-            $path = $request->file('imagem')->store('pratos', 'public');
-            $prato->imagem = $path;
-            $prato->save();
+        if($response->successful()) {
+            return redirect()->route('admin.cardapio.index')->with('success', $response['message']);
         }
 
-        if(!$updated) {
-            return redirect()->back()->with('error', 'Erro ao atualizar prato');
-        }
-
-        return redirect()->route('admin.cardapio.index')->with('success', 'Prato atualizado!');
+        return redirect()->back()->with('error', $response['message']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Prato $prato): RedirectResponse
+    public function destroy(String $id): RedirectResponse
     {
-        $prato->delete();
-        return redirect()->back()->with('success', 'Prato removido!');
+        $token = session('api_token');
+        $response = Http::withToken($token)->delete("Http://localhost:3030/api/cardapio/{$id}");
+
+        if ($response->successful()) {
+            return redirect()->route('admin.cardapio.index')->with('success', $response['message']);
+        }
+
+        return redirect()->back()->with('error', $response['message']);
     }
 
 }

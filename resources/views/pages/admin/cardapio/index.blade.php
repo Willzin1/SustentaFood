@@ -32,15 +32,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pratos as $prato)
+                    @foreach ($pratos['data'] as $prato)
                         <tr>
-                            <td><img src="{{ asset($prato->imagem ? 'storage/' . $prato->imagem : 'assets/images/default-prato.png') }}" width="50"></td>
-                            <td>{{ $prato->nome }}</td>
-                            <td>{{ $prato->descricao }}</td>
-                            <td>{{ ucfirst($prato->categoria) }}</td>
+                            <td><img src="{{ asset($prato['imagem'] ? 'storage/' . $prato['imagem'] : 'assets/images/default-prato.png') }}" width="50"></td>
+                            <td>{{ $prato['nome'] }}</td>
+                            <td>{{ $prato['descricao'] }}</td>
+                            <td>{{ ucfirst($prato['categoria']) }}</td>
                             <td>
-                                <a href="{{ route('admin.cardapio.edit', ['prato' => $prato->id]) }}" class="btn btn-warning">Editar</a>
-                                <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato->id]) }}" method="POST">
+                                <a href="{{ route('admin.cardapio.edit', ['prato' => $prato['id']]) }}" class="btn btn-warning">Editar</a>
+                                <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato['id']]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger">Excluir</button>
@@ -50,9 +50,8 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="pagination">
-                {{ $pratos->links() }}
-            </div>
+            <x-pagination :links="$pratos['links']" :currentPage="$pratos['current_page']"
+            :lastPage="$pratos['last_page']" base-url="{{ route('admin.cardapio.index') }}" />
         </section>
     </div>
 @endsection
