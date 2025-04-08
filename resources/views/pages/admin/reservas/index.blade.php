@@ -16,7 +16,7 @@
             @endif
             <h2>Todas as Reservas</h2>
             <div class="reservas-tabela">
-                @if(empty($reservas))
+                @if(empty($reservas['data']))
                     <p>Não há reservas registradas.</p>
                 @else
                     <table>
@@ -42,10 +42,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <x-pagination :links="$reservas['links']" :currentPage="$reservas['current_page']"
+                    :lastPage="$reservas['last_page']" base-url="{{ route('admin.reservas.index') }}" />
                 @endif
             </div>
-            <x-pagination :links="$reservas['links']" :currentPage="$reservas['current_page']"
-            :lastPage="$reservas['last_page']" base-url="{{ route('admin.reservas.index') }}" />
         </section>
     </div>
 @endsection

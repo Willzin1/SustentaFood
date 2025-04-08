@@ -9,7 +9,7 @@
             <div id="dishes">
                 @foreach($pratos->where('categoria', $categoria) as $prato)
                     <div class="dish">
-                        <img src="{{ asset($prato->imagem ? 'storage/' . $prato->imagem : 'assets/images/default-prato.png') }}" class="dish-image" alt="{{ $prato->nome }}">
+                        <img src="http://localhost:3030/storage/{{ $prato['imagem'] }}" class="dish-image" alt="{{ $prato['nome'] }}">
                         <h3 class="dish-title">{{ $prato->nome }}</h3>
                         <span class="dish-description">{{ $prato->descricao }}</span>
                     </div>
