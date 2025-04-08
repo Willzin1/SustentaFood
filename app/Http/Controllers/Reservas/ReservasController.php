@@ -7,7 +7,6 @@ use App\Models\Reserva;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class ReservasController extends Controller
@@ -39,13 +38,7 @@ class ReservasController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $user = Auth::user();
-        $reservasAtual = $this->reserva->where('user_id', $user->id)->count();
         $token = session('api_token');
-
-        if ($reservasAtual >= 4) {
-            return redirect()->back()->with('error', 'Você já atingiu o limite de 4 reservas.');
-        }
 
         $response = Http::withToken($token)->post('http://localhost:3030/api/reservas', [
             'data' => $request->data,
@@ -53,11 +46,13 @@ class ReservasController extends Controller
             'quantidade_cadeiras' => $request->quantidade_cadeiras === 'mais' ? $request->quantidade_custom : $request->quantidade_cadeiras,
         ]);
 
+        $user = $response->json();
+
         if ($response->successful()) {
-            return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
+            return redirect()->route('users.show', ['user' => $user['reserva']['user_id']])->with('success', $response['message']);
         }
 
-        return redirect()->route('users.show', ['user' => $user->id])->with('error', $response['message']);
+        return redirect()->back()->with('error', $response['message']);
     }
 
     /**
@@ -82,15 +77,15 @@ class ReservasController extends Controller
      */
     public function update(Request $request, string $id): RedirectResponse
     {
-        $user = Auth::user();
-        $reserva = $this->reserva->find($id);
         $token = session('api_token');
         $dados = $request->except(['_method', '_token', 'quantidade_custom']);
 
-        $response = Http::withToken($token)->put('http://localhost:3030/api/reservas/' . $reserva->id, $dados);
+        $response = Http::withToken($token)->put("http://localhost:3030/api/reservas/{$id}", $dados);
+
+        $user = $response->json();
 
         if ($response->successful()) {
-            return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
+            return redirect()->route('users.show', ['user' => $user['reserva']['user_id']])->with('success', $response['message']);
         }
 
         return redirect()->back()->with('error', $response['message']);
@@ -101,13 +96,13 @@ class ReservasController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        $user = Auth::user();
-        $reserva = $this->reserva->find($id);
         $token = session('api_token');
-        $response = Http::withToken($token)->delete('http://localhost:3030/api/reservas/' . $reserva->id);
+        $response = Http::withToken($token)->delete("http://localhost:3030/api/reservas/{$id}");
+
+        $user = $response->json();
 
         if ($response->successful()) {
-            return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
+            return redirect()->route('users.show', ['user' => $user['user']['user_id']])->with('success', $response['message']);
         }
 
         return redirect()->back()->with('error', $response['message']);
