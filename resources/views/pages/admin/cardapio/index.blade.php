@@ -34,7 +34,7 @@
                 <tbody>
                     @foreach ($pratos['data'] as $prato)
                         <tr>
-                            <td><img src="{{ asset($prato['imagem'] ? 'storage/' . $prato['imagem'] : 'assets/images/default-prato.png') }}" width="50"></td>
+                            <td><img src="http://localhost:3030/storage/{{ $prato['imagem'] }}" alt="{{ $prato['nome'] }}" width="50"></td>
                             <td>{{ $prato['nome'] }}</td>
                             <td>{{ $prato['descricao'] }}</td>
                             <td>{{ ucfirst($prato['categoria']) }}</td>

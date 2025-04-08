@@ -50,14 +50,36 @@ class CardapioController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $token = session('api_token');
-        $response = Http::withToken($token)->asMultipart()->post('http://localhost:3030/api/cardapio', [
-            'nome' => $request->nome,
-            'descricao' => $request->descricao,
-            'categoria' => $request->categoria,
-        ]);
+
+        $multipart = [
+            [
+                'name' => 'nome',
+                'contents' => $request->nome,
+            ],
+            [
+                'name' => 'descricao',
+                'contents' => $request->descricao,
+            ],
+            [
+                'name' => 'categoria',
+                'contents' => $request->categoria,
+            ],
+        ];
+
+        if ($request->hasFile('imagem')) {
+            $file = $request->file('imagem');
+            $multipart[] = [
+                'name' => 'imagem',
+                'filename' => $file->getClientOriginalName(),
+                'Mime-Type' => $file->getMimeType(),
+                'contents' => fopen($file->getRealPath(), 'r'),
+            ];
+        }
+
+        $response = Http::withToken($token)->asMultipart()->post('http://localhost:3030/api/cardapio', $multipart);
 
         if ($response->successful()) {
-            return redirect()->route('admin.cardapio.index')->with('success', $response ['message']);
+            return redirect()->route('admin.cardapio.index')->with('success', $response['message']);
         }
 
         return redirect()->back()->with('error', $response['message']);
@@ -77,11 +99,37 @@ class CardapioController extends Controller
     public function update(Request $request, String $id): RedirectResponse
     {
         $token = session('api_token');
-        $response = Http::withToken($token)->put("http://localhost:3030/api/cardapio/{$id}", [
-            'nome' => $request->name,
-            'descricao' => $request->descricao,
-            'categoria' => $request->categoria
-        ]);
+
+        $multipart = [
+            [
+                'name' => '_method',
+                'contents' => 'PUT',
+            ],
+            [
+                'name' => 'nome',
+                'contents' => $request->nome,
+            ],
+            [
+                'name' => 'descricao',
+                'contents' => $request->descricao,
+            ],
+            [
+                'name' => 'categoria',
+                'contents' => $request->categoria,
+            ],
+        ];
+
+        if ($request->hasFile('imagem')) {
+            $file = $request->file('imagem');
+            $multipart[] = [
+                'name' => 'imagem',
+                'filename' => $file->getClientOriginalName(),
+                'Mime-Type' => $file->getMimeType(),
+                'contents' => fopen($file->getRealPath(), 'r'),
+            ];
+        }
+
+        $response = Http::withToken($token)->asMultipart()->post("http://localhost:3030/api/cardapio/{$id}", $multipart);
 
         if($response->successful()) {
             return redirect()->route('admin.cardapio.index')->with('success', $response['message']);
