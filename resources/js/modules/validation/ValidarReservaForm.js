@@ -1,29 +1,28 @@
 import Error from './../utils/Error';
-import validaReserva from './reservaValidator';
+import inputCustom from '../reservas/customInput';
 
 class ValidarReservaForm {
     constructor() {
         this.formulario = document.querySelector('.reserva-form');
-        this.validaRes = validaReserva;
 
         if (!this.formulario) return;
 
         this.init();
     }
 
-
     init() {
         this.formulario.addEventListener('submit', event => {
             this.handleSubmit(event);
         });
+
+        inputCustom(this.formulario);
     }
 
     handleSubmit(event) {
         event.preventDefault();
         const camposValidos = this.isFieldValid();
-        const validaRes = this.validaRes();
 
-        if(camposValidos && validaRes) {
+        if(camposValidos) {
             this.formulario.submit();
         }
     }
@@ -49,6 +48,10 @@ class ValidarReservaForm {
 
                 if(field.classList.contains('horaRes')) {
                     if(!this.isHoraValid(field)) valid = false;
+                }
+
+                if(field.classList.contains('quantidade_cadeiras')) {
+                    if(!this.isQuantityValid(field)) valid = false;
                 }
             }
         }
@@ -78,6 +81,36 @@ class ValidarReservaForm {
 
         return valid;
     }
+
+    isQuantityValid(field) {
+        const input = field.value;
+        const customInput = document.querySelector('#custom_assentos');
+        let quantity;
+        let valid = true;
+
+        if (input === 'mais') {
+            quantity = customInput.value;
+
+            if (!quantity || quantity <= 0) {
+                Error.criaErro(customInput, 'Informe a quantidade de pessoas.');
+                valid = false;
+            }
+
+            if (quantity > 12) {
+                Error.criaErro(customInput, 'Reservas acima de 12 devem ser feitas diretamente com o restaurante.');
+                valid = false;
+            }
+        } else {
+            quantity = input;
+            if (!quantity) {
+                Error.criaErro(field, 'Selecione a quantidade de assentos.');
+                valid = false;
+            }
+        }
+
+        return valid;
+    }
+
 }
 
 export default new ValidarReservaForm();

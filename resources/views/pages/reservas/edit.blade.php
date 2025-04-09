@@ -34,7 +34,7 @@
 
             <div class="grupo-formulario-reserva">
                 <label for="quantidade_cadeiras">Quantidade de Assentos:</label>
-                <select id="quantidade_cadeiras" name="quantidade_cadeiras">
+                <select id="quantidade_cadeiras" class="validar quantidade_cadeiras" name="quantidade_cadeiras">
                     <option value="{{ $reserva->quantidade_cadeiras }}">{{ $reserva->quantidade_cadeiras }}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -60,7 +60,7 @@
                 @csrf
                 <button type="submit" id="button-reserva" class="shadow__btn btn-red">Excluir reserva</button>
             </form>
-            <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">
+            <a href="{{ route('users.show', ['user' => $reserva->user->id]) }}">
                 <button type="button" id="button-reserva" class="shadow__btn">Voltar ao perfil</button>
             </a>
         </div>

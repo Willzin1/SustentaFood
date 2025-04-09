@@ -33,7 +33,7 @@
 
             <div class="grupo-formulario-reserva">
                 <label for="quantidade_cadeiras">Quantidade de Assentos:</label>
-                <select id="quantidade_cadeiras" name="quantidade_cadeiras">
+                <select id="quantidade_cadeiras" class="validar quantidade_cadeiras" name="quantidade_cadeiras">
                     <option value="" disabled selected>Selecione a quantidade de assentos</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
