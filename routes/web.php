@@ -14,21 +14,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
+// Rota para visualização do cardapio (User)
 Route::controller(CardapioController::class)->group(function() {
     Route::get('/cardapio', 'index')->name('cardapio.index');
 });
 
+// Rotas para criação de um user
 Route::controller(RegisterController::class)->prefix('/register')->middleware('guest')->group(function() {
     Route::get('/', 'create')->name('register.create');
     Route::post('/', 'store')->name('register.store');
 });
 
+// Rotas para a autenticação de um user
 Route::controller(LoginController::class)->group(function() {
     Route::get('/login', 'create')->name('login')->middleware('guest');
     Route::post('/login', 'store')->name('login.store')->middleware('guest');
-    Route::post('/logout', 'destroy')->name('login.destroy');
+    Route::post('/logout', 'destroy')->name('login.destroy')->middleware('auth');
 });
 
+// Rotas para CRUD de reservas e CRUD de user. Somente users logados podem acessar.
 Route::middleware('auth')->group(function() {
     Route::controller(UserController::class)->prefix('/perfil')->middleware('check.userId')->group(function() {
         Route::get('/{user}', 'show')->name('users.show');
@@ -47,7 +51,7 @@ Route::middleware('auth')->group(function() {
 });
 
 
-// ROTAS DO ADMINISTRADOR
+// Rotas do administrador
 Route::middleware('auth', 'check.role')->group(function() {
     Route::controller(AdminController::class)->group(function() {
         Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
@@ -75,4 +79,7 @@ Route::middleware('auth', 'check.role')->group(function() {
 
 });
 
-
+// Rota de fallback para redirecionar caso a página não exista.
+Route::fallback(function () {
+    return response()->view('errors.page404', [], 404);
+});
