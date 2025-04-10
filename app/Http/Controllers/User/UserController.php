@@ -48,6 +48,11 @@ class UserController extends Controller
 
         if ($response->successful()) {
             $user = $response->json();
+
+            if ($user['role'] == 'admin') {
+                return view('errors.page404');
+            }
+
             $reservas = Http::withToken($token)->get("http://localhost:3030/api/reservas?user_id={$id}")->json();
 
             return view('pages.users.dashboard', ['user' => $user, 'reservas' => $reservas['data']]);
@@ -66,6 +71,10 @@ class UserController extends Controller
 
         if ($response->successful()) {
             $user = $response->json();
+
+            if ($user['role'] == 'admin') {
+                return view('errors.page404');
+            }
 
             return view('pages.users.edit', ['user' => $user]);
         }

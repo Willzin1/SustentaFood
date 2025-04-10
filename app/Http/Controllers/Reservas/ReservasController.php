@@ -64,11 +64,9 @@ class ReservasController extends Controller
         $token = session('api_token');
         $response = Http::withToken($token)->get("http://localhost:3030/api/reservas/{$id}");
 
-
-        // dd($response->status());
-
         if ($response->successful()) {
             $reserva = $response->json();
+
             return view('pages.reservas.edit', compact('reserva'));
         }
 
