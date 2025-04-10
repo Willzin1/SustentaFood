@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,12 +10,6 @@ use Illuminate\Support\Facades\Http;
 
 class RegisterController extends Controller
 {
-    public readonly User $user;
-    public function __construct()
-    {
-        $this->user = new User;
-    }
-
     /**
      * Show the form for creating a new resource.
      */

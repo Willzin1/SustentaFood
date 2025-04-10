@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Prato;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,12 +10,6 @@ use Illuminate\Support\Facades\Http;
 
 class CardapioController extends Controller
 {
-    public readonly Prato $prato;
-    public function __construct()
-    {
-        $this->prato = new Prato;
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -88,9 +81,19 @@ class CardapioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Prato $prato): View
+    public function edit(string $id)
     {
-        return view('pages.admin.cardapio.edit', compact('prato'));
+        $token = session('api_token');
+
+        $response = Http::withToken($token)->get("http://localhost:3030/api/cardapio/{$id}");
+
+        if ($response->successful()) {
+            $prato = $response->json();
+
+            return view('pages.admin.cardapio.edit', compact('prato'));
+        }
+
+        return view('errors.page404');
     }
 
     /**

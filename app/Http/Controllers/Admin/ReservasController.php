@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Reserva;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,12 +10,6 @@ use Illuminate\Support\Facades\Http;
 
 class ReservasController extends Controller
 {
-    public readonly Reserva $reserva;
-    public function __construct()
-    {
-        $this->reserva = new Reserva;
-    }
-
     /**
      * Display a listing of the resource.
      */
@@ -43,14 +36,20 @@ class ReservasController extends Controller
         ]);
     }
 
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(String $id): View
     {
-        $reserva = Reserva::with('user')->findOrFail($id);
-        return view('pages.admin.reservas.show', ['reserva' => $reserva]);
+        $token = session('api_token');
+        $response = Http::withToken($token)->get("http://localhost:3030/api/reservas/{$id}");
+
+        if ($response->successful()) {
+            $reserva = $response->json();
+            return view('pages.admin.reservas.show', compact('reserva'));
+        }
+
+        return view('errors.page404');
     }
 
     /**

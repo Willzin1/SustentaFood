@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 @extends('templates.master')
 @section('content')
     <div class="container-reserva">
@@ -11,12 +12,12 @@
             </div>
         @endif
         <h1>Editar reserva</h1>
-        <form action="{{ route('reservas.update', ['reserva' => $reserva->id]) }}" class="reserva-form" method="POST">
+        <form action="{{ route('reservas.update', ['reserva' => $reserva['id']]) }}" class="reserva-form" method="POST">
             <input type="hidden" name="_method" value="PUT">
             @csrf
             <div class="grupo-formulario-reserva">
                 <label for="data">Data:</label>
-                <input type="text" id="data" name="data" class="validar" placeholder="Selecione a data da reserva" value="{{ $reserva->data }}">
+                <input type="text" id="data" name="data" class="validar" placeholder="Selecione a data da reserva" value="{{ Carbon::parse($reserva['data'])->format('d/m/Y') }}">
                 @error('data')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
@@ -25,7 +26,7 @@
             <div class="grupo-formulario-reserva">
                 <label for="hora">Hora:</label>
                 <select id="hora" name="hora">
-                    <option value="{{  $reserva->hora }}">{{  $reserva->hora->format('H:i') }}</option>
+                    <option value="{{  $reserva['hora'] }}">{{  Carbon::parse($reserva['hora'])->format('H:i') }}</option>
                 </select>
                 @error('hora')
                     <p class="msg-erro">{{ $message }}</p>
@@ -35,7 +36,7 @@
             <div class="grupo-formulario-reserva">
                 <label for="quantidade_cadeiras">Quantidade de Assentos:</label>
                 <select id="quantidade_cadeiras" class="validar quantidade_cadeiras" name="quantidade_cadeiras">
-                    <option value="{{ $reserva->quantidade_cadeiras }}">{{ $reserva->quantidade_cadeiras }}</option>
+                    <option value="{{ $reserva['quantidade_cadeiras'] }}">{{ $reserva['quantidade_cadeiras'] }}</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -43,7 +44,7 @@
                     <option value="5">5</option>
                     <option value="mais">+ Mais</option>
                 </select>
-                <input type="number" id="custom_assentos" name="quantidade_custom" class="hidden" placeholder="Quantidade personalizada" min="5" value="{{ $reserva->quantidade_cadeiras }}">
+                <input type="number" id="custom_assentos" name="quantidade_custom" class="hidden" placeholder="Quantidade personalizada" min="5" value="{{ $reserva['quantidade_cadeiras'] }}">
                 @error('quantidade_custom')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
@@ -55,12 +56,12 @@
         </form>
 
         <div class="button-container">
-            <form action="{{ route('reservas.destroy', ['reserva' => $reserva->id]) }}" method="POST">
+            <form action="{{ route('reservas.destroy', ['reserva' => $reserva['id']]) }}" method="POST">
                 @method('DELETE')
                 @csrf
                 <button type="submit" id="button-reserva" class="shadow__btn btn-red">Excluir reserva</button>
             </form>
-            <a href="{{ route('users.show', ['user' => $reserva->user->id]) }}">
+            <a href="{{ route('users.show', ['user' => $reserva['user_id']]) }}">
                 <button type="button" id="button-reserva" class="shadow__btn">Voltar ao perfil</button>
             </a>
         </div>

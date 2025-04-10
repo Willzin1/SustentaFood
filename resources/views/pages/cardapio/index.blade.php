@@ -10,8 +10,8 @@
                 @foreach($pratos->where('categoria', $categoria) as $prato)
                     <div class="dish">
                         <img src="http://localhost:3030/storage/{{ $prato['imagem'] }}" class="dish-image" alt="{{ $prato['nome'] }}">
-                        <h3 class="dish-title">{{ $prato->nome }}</h3>
-                        <span class="dish-description">{{ $prato->descricao }}</span>
+                        <h3 class="dish-title">{{ $prato['nome'] }}</h3>
+                        <span class="dish-description">{{ $prato['descricao'] }}</span>
                     </div>
                 @endforeach
             </div>

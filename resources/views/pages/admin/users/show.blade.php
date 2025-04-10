@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($reservas as $reserva)
+                            @foreach($reservas['data'] as $reserva)
                                 <tr>
                                     <td>{{ $reserva['id'] }}</td>
                                     <td>{{ date('d-m-Y', strtotime($reserva['data'])) }}</td>

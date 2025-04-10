@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Cardapio;
 
 use App\Http\Controllers\Controller;
-use App\Models\Prato;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class CardapioController extends Controller
 {
@@ -14,7 +13,16 @@ class CardapioController extends Controller
      */
     public function index(): View
     {
-        $pratos = Prato::all();
-        return view('pages.cardapio.index', compact('pratos'));
+        $token = session('api_token');
+        $response =  Http::withToken($token)->get('http://localhost:3030/api/cardapio');
+
+        if ($response->successful()) {
+            $prato = $response->json();
+            $pratos = collect($prato['data']);
+
+            return view('pages.cardapio.index', compact('pratos'));
+        }
+
+        return view('errors.page404');
     }
 }

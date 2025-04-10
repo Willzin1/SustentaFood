@@ -58,8 +58,17 @@ class UserController extends Controller
      */
     public function edit(string $id): View
     {
-        $user = $this->user->find($id);
-        return view('pages.users.edit', ['user' => $user]);
+        $token = session('api_token');
+
+        $response = Http::withToken($token)->get("http://localhost:3030/api/users/{$id}");
+
+        if ($response->successful()) {
+            $user = $response->json();
+
+            return view('pages.users.edit', ['user' => $user]);
+        }
+
+        return view('errors.page404');
     }
 
     /**

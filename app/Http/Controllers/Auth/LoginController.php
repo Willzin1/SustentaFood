@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,12 +11,6 @@ use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
-    public readonly User $user;
-    public function __construct()
-    {
-        $this->user = new User;
-    }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -38,18 +31,17 @@ class LoginController extends Controller
 
         if($response->successful()) {
             $data = $response->json();
-            $userId = $data['user']['id'];
+            $user = $data['user'];
 
             session(['api_token' => $data['token']]);
 
-            $user = $this->user->find($userId);
-            Auth::loginUsingId($user->id);
+            Auth::loginUsingId($user['id']);
 
-            if ($user->role == 'admin') {
+            if ($user['role'] == 'admin') {
                 return redirect()->route('admin.dashboard');
             }
 
-            return redirect()->route('users.show', ['user' => $user->id]);
+            return redirect()->route('users.show', ['user' => $user['id']]);
         }
 
         return redirect()->back()->with('error', $response['message']);
@@ -76,6 +68,7 @@ class LoginController extends Controller
         }
 
         Auth::logout();
+
         return redirect()->back()->with('error', 'Não há token');
     }
 }
