@@ -17,7 +17,7 @@
             @csrf
             <div class="grupo-formulario-reserva">
                 <label for="data">Data:</label>
-                <input type="text" id="data" name="data" class="validar" placeholder="Selecione a data da reserva" value="{{ Carbon::parse($reserva['data'])->format('d/m/Y') }}">
+                <input type="text" id="data" name="data" class="validar" placeholder="Selecione a data da reserva" value="{{ $reserva['data'] }}">
                 @error('data')
                     <p class="msg-erro">{{ $message }}</p>
                 @enderror
