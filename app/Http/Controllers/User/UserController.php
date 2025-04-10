@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -11,16 +10,10 @@ use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
-    public readonly User $user;
-    public function __construct()
-    {
-        $this->user = new User();
-    }
-
     // /**
     //  * Show the form for creating a new resource.
     //  */
-    // public function create() : View
+    // public function create(): View
     // {
     //     return view('pages.users.create');
     // }
@@ -38,19 +31,28 @@ class UserController extends Controller
     //        ]);
 
     //     if ($response->successful()) {
-    //         return redirect()->route('login')->with('success', $response->json()['message']);
+    //         return redirect()->route('login')->with('success', $response['message']);
     //     }
 
-    //     return redirect()->back()->withInput()->withErrors(['error' => $response->json()['errors']]);
+    //     return redirect()->back()->withInput()->withErrors(['error' => $response['errors']]);
     // }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id): View
+    public function show(string $id)
     {
-        $user = $this->user->find($id);
-        return view('pages.users.dashboard', ['user' => $user, 'reservas' => $user->reservas]);
+        $token = session('api_token');
+
+        $response = Http::withToken($token)->get("http://localhost:3030/api/users/{$id}");
+
+        if ($response->successful()) {
+            $user = $response->json();
+            $reservas = Http::withToken($token)->get("http://localhost:3030/api/reservas?user_id={$id}")->json();
+
+            return view('pages.users.dashboard', ['user' => $user, 'reservas' => $reservas['data']]);
+        }
+        return redirect()->back()->with('error', 'Erro');
     }
 
     /**
@@ -76,16 +78,15 @@ class UserController extends Controller
      */
     public function update(Request $request, String $id): RedirectResponse
     {
-        $user = $this->user->find($id);
         $token = session('api_token');
 
-        $response = Http::withToken($token)->put('http://localhost:3030/api/users/' . $user->id, [
+        $response = Http::withToken($token)->put("http://localhost:3030/api/users/{$id}", [
             'name' => $request->name,
             'phone' => $request->phone
         ]);
 
         if($response->successful()) {
-            return redirect()->route('users.show', ['user' => $user->id])->with('success', $response['message']);
+            return redirect()->route('users.show', ['user' => $id])->with('success', $response['message']);
         }
 
         return redirect()->back()->with('error', $response['message']);
@@ -96,10 +97,9 @@ class UserController extends Controller
      */
     public function destroy(string $id): RedirectResponse
     {
-        $user = $this->user->find($id);
         $token = session('api_token');
 
-        $response = Http::withToken($token)->delete('http://localhost:3030/api/users/' . $user->id);
+        $response = Http::withToken($token)->delete("http://localhost:3030/api/users/{$id}");
 
         if($response->successful()) {
             return redirect()->route('login')->with('success', $response['message']);
