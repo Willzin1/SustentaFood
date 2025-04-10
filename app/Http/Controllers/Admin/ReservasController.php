@@ -39,7 +39,7 @@ class ReservasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(String $id): View
+    public function edit(String $id)
     {
         $token = session('api_token');
         $response = Http::withToken($token)->get("http://localhost:3030/api/reservas/{$id}");
@@ -49,7 +49,7 @@ class ReservasController extends Controller
             return view('pages.admin.reservas.show', compact('reserva'));
         }
 
-        return view('errors.page404');
+        return redirect()->back()->with('error', $response['message']);
     }
 
     /**

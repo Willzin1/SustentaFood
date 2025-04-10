@@ -44,9 +44,9 @@ Route::middleware('auth')->group(function() {
     Route::controller(ReservasController::class)->prefix('/reservas')->group(function() {
         Route::get('/', 'create')->name('reservas.create');
         Route::post('/', 'store')->name('reservas.store');
-        Route::get('/{reserva}/edit', 'edit')->name('reservas.edit')->middleware('check.reservaId');
-        Route::put('/{reserva}', 'update')->name('reservas.update')->middleware('check.reservaId');
-        Route::delete('/{reserva}', 'destroy')->name('reservas.destroy')->middleware('check.reservaId');
+        Route::get('/{reserva}/edit', 'edit')->name('reservas.edit');
+        Route::put('/{reserva}', 'update')->name('reservas.update');
+        Route::delete('/{reserva}', 'destroy')->name('reservas.destroy');
     });
 });
 

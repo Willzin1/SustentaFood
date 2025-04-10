@@ -3,6 +3,16 @@
     <div class="containerGerente">
         @include('includes.aside')
 
+        @if(session()->has('success'))
+            <div class="alert-custom alert-success-custom">
+                <p>{{ session('success') }}</p>
+            </div>
+        @elseif(session()->has('error'))
+            <div class="alert-custom alert-danger-custom">
+                <p>{{ session('error') }}</p>
+            </div>
+        @endif
+
         <div class="container-reservas">
             <h2>Informações do Cliente</h2>
             <p><strong>Nome:</strong> {{ $reserva['user']['name'] }}</p>
