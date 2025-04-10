@@ -16,7 +16,6 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-
         $user = Auth::user();
 
         if($user->role != 'admin') {

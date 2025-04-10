@@ -9,7 +9,7 @@
             <p><strong>Email:</strong> {{ $reserva['user']['email'] }}</p>
             <p><strong>Telefone:</strong> {{ $reserva['user']['phone'] }}</p>
 
-            <form action="{{ route('admin.reserva.update', ['reserva' => $reserva['id']]) }}" method="POST">
+            <form action="{{ route('admin.reserva.update', ['reserva' => $reserva['id']]) }}" class="reserva-form" method="POST">
                 <input type="hidden" name="_method" value="PUT">
                 @csrf
                 <div class="grupo-formulario-reserva">
@@ -32,7 +32,7 @@
 
                 <div class="grupo-formulario-reserva">
                     <label for="quantidade_cadeiras">Quantidade de Assentos:</label>
-                    <select id="quantidade_cadeiras" name="quantidade_cadeiras">
+                    <select id="quantidade_cadeiras" class="validar quantidade_cadeiras" name="quantidade_cadeiras">
                         <option value="{{ $reserva['quantidade_cadeiras'] }}">{{ $reserva['quantidade_cadeiras'] }}</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
