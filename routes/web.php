@@ -72,7 +72,6 @@ Route::middleware('auth', 'check.role')->group(function() {
         Route::get('/admin/cardapio/', 'index')->name('admin.cardapio.index');
         Route::get('/admin/cardapio/create', 'create')->name('admin.cardapio.create');
         Route::post('/admin/cardapio/', 'store')->name('admin.cardapio.store');
-        // Route::get('/admin/cardapio/', 'show')->name('admin.cardapio.show');
         Route::get('/admin/cardapio/{prato}/edit', 'edit')->name('admin.cardapio.edit');
         Route::put('/admin/cardapio/{prato}', 'update')->name('admin.cardapio.update');
         Route::delete('/admin/cardapio/{prato}', 'destroy')->name('admin.cardapio.destroy');

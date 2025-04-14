@@ -1,4 +1,4 @@
-export default function fetchSearch() {
+export default function resetSearchInput() {
 
     const clearFiltersBtn = document.querySelector('.clearFilters');
 
@@ -10,3 +10,5 @@ export default function fetchSearch() {
         filterSelect.selectedIndex = 0;
     });
 }
+
+resetSearchInput();
