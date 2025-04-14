@@ -6,11 +6,13 @@ import scrollButtons from './components/scrollButtons';
 import './modules/validation/ValidaUserFormulario';
 import './modules/validation/ValidarReservaForm';
 import './modules/validation/ValidaPratoForm';
+import fetchSearch from './modules/fetchReservations';
 
 function init() {
     scrollButtons();
     horas();
     data();
+    fetchSearch();
 
 }
 

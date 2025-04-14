@@ -16,6 +16,21 @@
             @endif
             <h2>Todas as Reservas</h2>
             <div class="reservas-tabela">
+
+                <form action="{{ route('admin.reservas.index') }}" method="get">
+                    @csrf
+                    <select name="filter" id="filter" class="filterSelect">
+                        <option value="ID" {{ request('filter') == 'ID' ? 'selected' : '' }}>ID</option>
+                        <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
+                        <option value="Data" {{ request('filter') == 'Data' ? 'selected' : '' }}>Data</option>
+                        <option value="Hora" {{ request('filter') == 'Hora' ? 'selected' : '' }}>Hora</option>
+                        <option value="Quantidade" {{ request('filter') == 'Quantidade' ? 'selected' : '' }}>Quantidade</option>
+                    </select>
+                    <input type="search" name="search" class="search" placeholder="Busque uma reserva (ex: ID, Nome cliente, Data, Hora)" value="{{ request('search') }}">
+                    <button type="button" class="btn btn-secondary clearFilters">Limpar filtros</button>
+                    <button class="btn btn-danger">Buscar</button>
+                </form>
+
                 @if(empty($reservas['data']))
                     <p>Não há reservas registradas.</p>
                 @else
@@ -32,9 +47,9 @@
                         <tbody>
                             @foreach($reservas['data'] as $reserva)
                                 <tr>
-                                    <td>{{ $reserva['user']['id'] }}</td>
+                                    <td>{{ $reserva['id'] }}</td>
                                     <td><a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}">{{ $reserva['user']['name'] }}</a></td>
-                                    <td>{{ date('d-m-Y', strtotime($reserva['data'])) }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($reserva['data'])) }}</td>
                                     <td>{{ date('H:i', strtotime($reserva['hora'])) }}</td>
                                     <td>{{ $reserva['quantidade_cadeiras'] }}</td>
                                     <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar reserva</a></td>

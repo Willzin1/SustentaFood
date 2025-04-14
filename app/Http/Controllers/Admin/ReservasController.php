@@ -19,10 +19,12 @@ class ReservasController extends Controller
 
         $response = Http::withToken($token)->get('http://localhost:3030/api/reservas', [
             'page' => $request->get('page'),
+            'search' => $request->get('search'),
+            'filter' => $request->get('filter')
         ]);
 
         if ($response->failed()) {
-            abort(500, 'Erro ao buscar reservas da API.');
+            return view('errors.page404');
         }
 
         $reservas = $response->json();

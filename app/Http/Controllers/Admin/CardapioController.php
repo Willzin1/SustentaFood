@@ -17,7 +17,9 @@ class CardapioController extends Controller
     {
         $token = session('api_token');
         $response = Http::withToken($token)->get('http://localhost:3030/api/cardapio', [
-            'page' => $request->get('page')
+            'page' => $request->get('page'),
+            'search' => $request->get('search'),
+            'filter' => $request->get('filter')
         ]);
 
         $pratos = $response->json();
