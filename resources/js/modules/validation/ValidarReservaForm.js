@@ -1,5 +1,5 @@
 import Error from './../utils/Error';
-import inputCustom from '../reservas/customInput';
+import inputCustom from '../../components/customInput';
 
 class ValidarReservaForm {
     constructor() {
