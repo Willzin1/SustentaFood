@@ -25,7 +25,7 @@
                 @csrf
                 <select name="filter" id="filter" class="filterSelect">
                     <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
-                    <option value="Descricao" {{ request('filter') == 'Descricao' ? 'selected' : '' }}>Descricao</option>
+                    <option value="Descricao" {{ request('filter') == 'Descricao' ? 'selected' : '' }}>Descrição</option>
                     <option value="Categoria" {{ request('filter') == 'Categoria' ? 'selected' : '' }}>Categoria</option>
                 </select>
                 <input type="search" name="search" class="search" placeholder="Busque um prato (ex: Nome, Descrição ou Categoria)" value="{{ request('search') }}">

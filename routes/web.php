@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('/{user}', 'destroy')->name('users.destroy');
     });
 
-    Route::controller(ReservasController::class)->prefix('/reservas')->group(function() {
+    Route::controller(ReservasController::class)->prefix('/reservas')->middleware('isAdmin')->group(function() {
         Route::get('/', 'create')->name('reservas.create');
         Route::post('/', 'store')->name('reservas.store');
         Route::get('/{reserva}/edit', 'edit')->name('reservas.edit');
