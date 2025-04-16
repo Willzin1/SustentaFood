@@ -13,7 +13,7 @@ Sustenta Food | Admin
             <h2>Informações do Cliente</h2>
             <p><strong>Nome:</strong> {{ $user['name'] }}</p>
             <p><strong>Email:</strong> {{ $user['email'] }}</p>
-            <p><strong>Telefone:</strong> {{ $user['phone'] }}</p>
+            <p class="phoneUser">{{ $user['phone'] }}</p>
 
             <h3>Reservas do Cliente</h3>
             <div class="reservas-tabela">

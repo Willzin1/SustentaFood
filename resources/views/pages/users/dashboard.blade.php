@@ -24,7 +24,7 @@ Sustenta Food | Perfil
             <div class="profile-info">
                 <h3>{{ $user['name'] }}</h3>
                 <p><strong>Email: </strong>{{ $user['email'] }}</p>
-                <p><strong>Telefone: </strong> {{ $user['phone'] }} </p>
+                <p class="phoneUser">{{ $user['phone'] }} </p>
                 <!-- <p><strong>Localização:</strong> São Paulo, SP</p>-->
                 <!-- Botão para editar perfil -->
                 <a href="{{ route('users.edit', $user['id']) }}"><button class="profile-button" id="edit-profile-btn">Editar Perfil</button></a>

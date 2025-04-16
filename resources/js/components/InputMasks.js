@@ -1,14 +1,14 @@
-class Masks {
+class InputMasks {
 
     constructor() {
         this.tel = document.querySelector('.telefone');
 
         if (!this.tel) return;
 
-        this.phoneFormatted(this.tel);
+        this.phoneMask(this.tel);
     }
 
-    phoneFormatted(phoneInput) {
+    phoneMask(phoneInput) {
         phoneInput.addEventListener('input', () => {
             let phone = phoneInput.value.replace(/\D/g, '');
 
@@ -31,4 +31,4 @@ class Masks {
     }
 }
 
-export default new Masks;
+export default new InputMasks;
