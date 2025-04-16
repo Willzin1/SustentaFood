@@ -1,4 +1,9 @@
 @extends('templates.master')
+
+@section('title')
+Sustenta Food
+@endsection
+
 @section('content')
     <main id="content">
         <section id="home">

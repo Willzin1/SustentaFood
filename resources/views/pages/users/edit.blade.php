@@ -1,4 +1,9 @@
 @extends('templates.master')
+
+@section('title')
+Sustenta Food | Editar perfil
+@endsection
+
 @section('content')
     <div id="menu">
         <div class="login-container">

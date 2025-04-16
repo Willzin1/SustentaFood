@@ -1,5 +1,9 @@
 @extends('templates.master')
 
+@section('title')
+Sustenta Food | Admin
+@endsection
+
 @section('content')
     <div class="containerGerente">
 

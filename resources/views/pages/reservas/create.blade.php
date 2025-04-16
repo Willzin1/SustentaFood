@@ -1,4 +1,9 @@
 @extends('templates.master')
+
+@section('title')
+Sustenta Food | Faça sua reserva
+@endsection
+
 @section('content')
     <div class="container-reserva">
         @if(session()->has('success'))

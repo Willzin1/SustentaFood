@@ -1,4 +1,9 @@
 @extends('templates.master')
+
+@section('title')
+Sustenta Food | Entrar
+@endsection
+
 @section('content')
 <div id="menu">
     <div class="login-container">

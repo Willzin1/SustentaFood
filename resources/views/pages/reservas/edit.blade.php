@@ -1,5 +1,10 @@
 @php use Carbon\Carbon; @endphp
 @extends('templates.master')
+
+@section('title')
+Sustenta Food | Edite sua reserva
+@endsection
+
 @section('content')
     <div class="container-reserva">
         @if(session()->has('success'))

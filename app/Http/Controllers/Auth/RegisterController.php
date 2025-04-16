@@ -23,10 +23,12 @@ class RegisterController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $phone = preg_replace('/\D/', '', $request->phone);
+
         $response = Http::post('http://localhost:3030/api/users/', [
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phone' => $phone,
             'password' => $request->password
            ]);
 

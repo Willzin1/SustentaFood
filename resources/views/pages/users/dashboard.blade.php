@@ -1,4 +1,9 @@
 @extends('templates.master')
+
+@section('title')
+Sustenta Food | Perfil
+@endsection
+
 @section('content')
     <section id="profile">
         @if(session()->has('success'))

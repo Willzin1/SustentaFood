@@ -89,9 +89,11 @@ class UserController extends Controller
     {
         $token = session('api_token');
 
+        $phone = preg_replace('/\D/', '', $request->phone);
+
         $response = Http::withToken($token)->put("http://localhost:3030/api/users/{$id}", [
             'name' => $request->name,
-            'phone' => $request->phone
+            'phone' => $phone
         ]);
 
         if($response->successful()) {

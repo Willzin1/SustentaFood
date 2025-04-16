@@ -1,5 +1,9 @@
 @extends('templates.master')
 
+@section('title')
+Sustenta Food | Cardápio
+@endsection
+
 @section('content')
     <section id="menu">
         <h2 class="section-title">Cardápio</h2>

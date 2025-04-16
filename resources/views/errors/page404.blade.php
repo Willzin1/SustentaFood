@@ -1,4 +1,9 @@
 @extends('templates.master')
+
+@section('title')
+Sustenta Food
+@endsection
+
 @section('content')
     <section id="menu">
             <h1>404 - Página não encontrada</h1>
