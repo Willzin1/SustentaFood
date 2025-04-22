@@ -25,7 +25,7 @@ Sustenta Food | Editar perfil
                 </div>
                 <div class="grupo-formulario">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" name="phone" class="validar telefone" id="telefone" value="{{ $user['phone'] }}">
+                    <input type="tel" name="phone" class="validar telefone phoneUser" maxlength="15" id="telefone" value="{{ $user['phone'] }}">
                     @error('phone')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror

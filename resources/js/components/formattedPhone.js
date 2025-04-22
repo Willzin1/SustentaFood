@@ -1,15 +1,21 @@
 export default function formattedPhone() {
-    const phoneUser = document.querySelector('.phoneUser');
+    const elementTagName = document.querySelector('.phoneUser');
 
-    if (!phoneUser) return;
+    if (!elementTagName) return;
 
-    const text = phoneUser.textContent.replace(/\D/g, '');
-    const formattedPhone = text.replace(
-        /^(\d{2})(\d{5})(\d{4})$/,
-        '($1) $2-$3'
-    )
+    formatPhone(elementTagName);
+}
 
-    phoneUser.innerHTML = `<strong>Telefone: </strong>${formattedPhone}`;
+// THIS FUNCTION WILL WORK IN THE SAME WAY AS InputMasks Function, BUT THIS ONE WILL WORK ON
+// DIFFERENT ELEMENTS TYPES, SUCH AS 'p' OR 'div', SHOULD WE KEEP IT?
+const formatPhone = (element) => {
+
+    if (element.tagName === 'P') {
+        const textPhone = element.textContent.replace(/\D/g, '');
+        const textPhoneFormatted = textPhone.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+
+        return element.innerHTML = `<strong>Telefone: </strong>${textPhoneFormatted}`;;
+    };
 }
 
 formattedPhone();

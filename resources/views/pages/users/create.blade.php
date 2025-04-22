@@ -44,7 +44,7 @@ Sustenta Food | Registre-se
                 </div>
                 <div class="grupo-formulario">
                     <label for="telefone">Telefone:</label>
-                    <input type="tel" name="phone" class="validar telefone" id="telefone" placeholder="Tel: 0000-0000" value="{{ old('phone') }}">
+                    <input type="tel" name="phone" class="validar telefone" maxlength="15" id="telefone" placeholder="Tel: (00) 00000-0000" value="{{ old('phone') }}">
                     @error('phone')
                         <p class="msg-erro">{{ $message }}</p>
                     @enderror
