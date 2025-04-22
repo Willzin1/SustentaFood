@@ -33,8 +33,10 @@ class ReservasController extends Controller
     {
         $token = session('api_token');
 
+        $date = preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $request->data);
+
         $response = Http::withToken($token)->post('http://localhost:3030/api/reservas', [
-            'data' => $request->data,
+            'data' => $date,
             'hora' => $request->hora,
             'quantidade_cadeiras' => $request->quantidade_cadeiras === 'mais' ? $request->quantidade_custom : $request->quantidade_cadeiras,
         ]);

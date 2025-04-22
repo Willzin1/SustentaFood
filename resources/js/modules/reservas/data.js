@@ -9,6 +9,7 @@ export default function() {
                 return date.getDay() === 1; // Desabilita segundas-feiras
             }
         ],
-        minDate: "today"
+        minDate: "today",
+        dateFormat: "d/m/Y"
     });
 }

@@ -49,8 +49,8 @@ Sustenta Food | Perfil
             <div class="reservations">
                 @foreach($reservas as $reserva)
                     <div class="reservation-card">
-                        <p><strong>Data:</strong> {{ date('d-m-Y', strtotime($reserva['data'])) }}</p>
-                        <p><strong>Hora:</strong> {{ date('H:i', strtotime($reserva['hora'])) }}</p>
+                        <p class="reserDate"><strong>Data:</strong> {{ $reserva['data'] }}</p>
+                        <p class="reserTime"><strong>Hora:</strong> {{ date('H:i', strtotime($reserva['hora'])) }}</p>
                         <p><strong>Quantidade cadeiras:</strong> {{ $reserva['quantidade_cadeiras'] }}</p>
                         <a href="{{ route('reservas.edit', ['reserva' => $reserva['id']]) }}" class="button-link">Editar reserva</a>
                     </div>
