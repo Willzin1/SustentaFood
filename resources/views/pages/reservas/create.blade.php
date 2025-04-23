@@ -21,9 +21,6 @@ Sustenta Food | Faça sua reserva
             <div class="grupo-formulario-reserva">
                 <label for="data">Data:</label>
                 <input type="text" id="data" name="data" class="validar dataRes" placeholder="Selecione a data da reserva" value="{{ old('data') }}">
-                @error('data')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
             </div>
 
             <div class="grupo-formulario-reserva">
@@ -31,9 +28,6 @@ Sustenta Food | Faça sua reserva
                 <select id="hora" name="hora">
                     <option value="" disabled selected>Selecione a Hora</option>
                 </select>
-                @error('hora')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
             </div>
 
             <div class="grupo-formulario-reserva">
@@ -48,12 +42,6 @@ Sustenta Food | Faça sua reserva
                     <option value="mais">+ Mais</option>
                 </select>
                 <input type="number" id="custom_assentos" name="quantidade_custom" class="hidden" placeholder="Quantidade personalizada" min="5">
-                @error('quantidade_cadeiras')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
-                @error('quantidade_custom')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
             </div>
 
             <div class="button-container">

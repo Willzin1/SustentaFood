@@ -20,9 +20,26 @@ export const formattedReserDate = () => {
 
         const date = new Date(dateText);
         const dateFormatted = date.toLocaleDateString('pt-br');
+
         element.innerHTML = `<strong>Data:</strong> ${dateFormatted}`;
-    })
+    });
 }
 
+export const formattedReserTime = () => {
+    const elementTag = document.querySelector('.reserTime');
+
+    if (!elementTag || !elementTag.options) return;
+
+    const selectValue = elementTag.options[0].value;
+    const timeDate = new Date(selectValue);
+
+    elementTag.options[0].textContent = timeDate.toLocaleTimeString('pt-BR', {
+        hour12: false,
+        hour: "2-digit",
+        minute: '2-digit'
+    });
+}
+
+formattedReserTime();
 formattedReserDate();
 InputPhoneMask();

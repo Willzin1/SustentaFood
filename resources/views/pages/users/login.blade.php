@@ -23,17 +23,11 @@ Sustenta Food | Entrar
             <div class="grupo-formulario">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" class="validar email" placeholder="Digite seu e-mail" value="{{ old('email') }}">
-                @error('email')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
             </div>
 
             <div class="grupo-formulario">
                 <label for="senha">Senha:</label>
                 <input type="password" id="senha" name="password" class="validar senha" placeholder="Digite sua senha">
-                @error('password')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
             </div>
 
             <button type="submit" class="shadow__btn">Entrar</button>

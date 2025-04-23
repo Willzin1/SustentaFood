@@ -26,15 +26,9 @@ Sustenta Food | Admin
 
             <label for="nome">Nome do Prato</label>
             <input type="text" name="nome" class="validar nome" id="nome" value="{{ old('nome') }}">
-            @error('nome')
-                <p class="msg-erro">{{ $message }}</p>
-            @enderror
 
             <label for="descricao">Descrição</label>
             <textarea name="descricao" class="validar descricao" id="descricao">{{ old('descricao') }}</textarea>
-            @error('descricao')
-                <p class="msg-erro">{{ $message }}</p>
-            @enderror
 
             <label for="categoria">Categoria</label>
             <select name="categoria" class="validar categoria" id="categoria">
@@ -44,15 +38,9 @@ Sustenta Food | Admin
                 <option value="Cardapio infantil">Cardápio Infantil</option>
                 <option value="Bebidas">Bebidas</option>
             </select>
-            @error('categoria')
-                <p class="msg-erro">{{ $message }}</p>
-            @enderror
 
             <label for="imagem">Imagem</label>
             <input type="file" name="imagem" class="validar imagem" id="imagem" accept="image/*">
-            @error('imagem')
-                <p class="msg-erro">{{ $message }}</p>
-            @enderror
 
             <button type="submit">Adicionar Prato</button>
         </form>

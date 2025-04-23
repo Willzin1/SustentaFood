@@ -8,6 +8,7 @@ export default function mostrarInputCustomizado(form) {
 
         if (quantidadeCadeirasSelect.value === 'mais') {
             customInput.classList.remove('hidden');  // Torna o input visível
+            customInput.removeAttribute('disabled');
             // quantidadeCadeirasSelect.classList.add('hidden');
             customInput.setAttribute("name", "quantidade_cadeiras"); // Permite que o valor seja enviado no formulário
             quantidadeCadeirasSelect.removeAttribute("name"); // Remove o nome do select para evitar duplicidade

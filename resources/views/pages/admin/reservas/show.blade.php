@@ -30,9 +30,6 @@ Sustenta Food | Admin
                 <div class="grupo-formulario-reserva">
                     <label for="data">Data:</label>
                     <input type="text" id="data" name="data" placeholder="Selecione a data da reserva" value="{{ date('d-m-Y', strtotime($reserva['data'])) }}">
-                    @error('data')
-                        <p class="msg-erro">{{ $message }}</p>
-                    @enderror
                 </div>
 
                 <div class="grupo-formulario-reserva">
@@ -40,9 +37,6 @@ Sustenta Food | Admin
                     <select id="hora" name="hora">
                         <option value="{{  $reserva['hora'] }}">{{ date('H:i', strtotime($reserva['hora'])) }}</option>
                     </select>
-                    @error('hora')
-                        <p class="msg-erro">{{ $message }}</p>
-                    @enderror
                 </div>
 
                 <div class="grupo-formulario-reserva">
@@ -57,9 +51,6 @@ Sustenta Food | Admin
                         <option value="mais">+ Mais</option>
                     </select>
                     <input type="number" id="custom_assentos" name="quantidade_custom" class="hidden" placeholder="Quantidade personalizada" min="5" value="{{ $reserva['quantidade_cadeiras'] }}">
-                    @error('quantidade_custom')
-                        <p class="msg-erro">{{ $message }}</p>
-                    @enderror
                 </div>
 
                 <div class="button-container">

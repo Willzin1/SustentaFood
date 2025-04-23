@@ -1,4 +1,3 @@
-@php use Carbon\Carbon; @endphp
 @extends('templates.master')
 
 @section('title')
@@ -23,19 +22,13 @@ Sustenta Food | Edite sua reserva
             <div class="grupo-formulario-reserva">
                 <label for="data">Data:</label>
                 <input type="text" id="data" name="data" class="validar" placeholder="Selecione a data da reserva" value="{{ $reserva['data'] }}">
-                @error('data')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
             </div>
 
             <div class="grupo-formulario-reserva">
                 <label for="hora">Hora:</label>
-                <select id="hora" name="hora">
-                    <option value="{{  $reserva['hora'] }}">{{  Carbon::parse($reserva['hora'])->format('H:i') }}</option>
+                <select id="hora" name="hora" class="reserTime">
+                    <option value="{{  $reserva['hora'] }}">{{ $reserva['hora'] }}</option>
                 </select>
-                @error('hora')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
             </div>
 
             <div class="grupo-formulario-reserva">
@@ -49,10 +42,7 @@ Sustenta Food | Edite sua reserva
                     <option value="5">5</option>
                     <option value="mais">+ Mais</option>
                 </select>
-                <input type="number" id="custom_assentos" name="quantidade_custom" class="hidden" placeholder="Quantidade personalizada" min="5" value="{{ $reserva['quantidade_cadeiras'] }}">
-                @error('quantidade_custom')
-                    <p class="msg-erro">{{ $message }}</p>
-                @enderror
+                <input type="number" id="custom_assentos" name="quantidade_custom" class="hidden" placeholder="Quantidade personalizada" min="5" value="{{ $reserva['quantidade_cadeiras'] }}" disabled>
             </div>
 
             <div class="button-container">

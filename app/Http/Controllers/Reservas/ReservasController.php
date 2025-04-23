@@ -81,9 +81,16 @@ class ReservasController extends Controller
     public function update(Request $request, string $id): RedirectResponse
     {
         $token = session('api_token');
-        $dados = $request->except(['_method', '_token', 'quantidade_custom']);
 
-        $response = Http::withToken($token)->put("http://localhost:3030/api/reservas/{$id}", $dados);
+        $date = preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $request->data);
+        $time = preg_replace('/^.*T(\d{2}:\d{2}):.*$/', '$1', $request->hora);
+
+        $response = Http::withToken($token)->put("http://localhost:3030/api/reservas/{$id}", [
+            'data' => $date,
+            'hora' => $time,
+            'quantidade_cadeiras' => $request->quantidade_cadeiras === 'mais' ? $request->quantidade_custom : $request->quantidade_cadeiras,
+        ]);
+        // dd($request->hora);
 
         $user = $response->json();
 
