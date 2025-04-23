@@ -1,6 +1,5 @@
 @extends('templates.master')
 
-
 @section('title')
 Sustenta Food | Admin
 @endsection
@@ -34,7 +33,7 @@ Sustenta Food | Admin
                                 <tr>
                                     <td>{{ $reserva['id'] }}</td>
                                     <td>{{ date('d-m-Y', strtotime($reserva['data'])) }}</td>
-                                    <td>{{ date('H:i', strtotime($reserva['hora'])) }}</td>
+                                    <td>{{ $reserva['hora'] }}</td>
                                     <td>{{ $reserva['quantidade_cadeiras'] }}</td>
                                     <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar</a></td>
                                 </tr>

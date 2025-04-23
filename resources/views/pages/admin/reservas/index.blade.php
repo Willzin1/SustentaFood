@@ -54,7 +54,7 @@ Sustenta Food | Admin
                                     <td>{{ $reserva['id'] }}</td>
                                     <td><a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}">{{ $reserva['user']['name'] }}</a></td>
                                     <td>{{ date('d/m/Y', strtotime($reserva['data'])) }}</td>
-                                    <td>{{ date('H:i', strtotime($reserva['hora'])) }}</td>
+                                    <td>{{ $reserva['hora'] }}</td>
                                     <td>{{ $reserva['quantidade_cadeiras'] }}</td>
                                     <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar reserva</a></td>
                                 </tr>
