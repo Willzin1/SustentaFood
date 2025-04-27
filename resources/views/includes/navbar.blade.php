@@ -1,4 +1,3 @@
-<!-- Onde irá ficar a NAVBAR -->
 <header>
     <nav id="navbar">
         <a href="{{ route('index') }}"><i class="fa-solid fa-leaf" id="nav_logo"><br>SUSTENTA<BR>FOOD</i></a>
@@ -10,14 +9,14 @@
             <li class="nav-item">
                 <a href="{{ route('cardapio.index') }}">Cardápio</a>
             </li>
-            @if(Auth::user())
-                @if(Auth::user()->role == 'admin')
+            @if(session()->has('api_token'))
+                @if(session('user_role') == 'admin')
                     <li class="nav-item">
                         <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">Perfil</a>
+                        <a href="{{ route('users.show', ['user' => session('user_id')]) }}">Perfil</a>
                     </li>
                 @endif
             @else
@@ -27,7 +26,7 @@
             @endif
         </ul>
 
-        @if(Auth::user() && Auth::user()->role == 'admin')
+        @if(session()->has('api_token') && session('user_role') == 'admin')
             <form action="{{ route('login.destroy') }}" method="POST">
                 @csrf
                 <button type="submit" class="profile-button btn-red">Sair</button>
@@ -51,14 +50,14 @@
             <li class="nav-item">
                 <a href="{{ route('cardapio.index') }}">Cardápio</a>
             </li>
-            @if(Auth::user())
-                @if(Auth::user()->role == 'admin')
+            @if(session()->has('api_token'))
+                @if(session('user_role') == 'admin')
                     <li class="nav-item">
                         <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">Perfil</a>
+                        <a href="{{ route('users.show', ['user' => session('user_id')]) }}">Perfil</a>
                     </li>
                 @endif
             @else

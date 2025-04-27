@@ -9,7 +9,7 @@ Sustenta Food | Admin
         @include('includes.aside')
 
         <section>
-            <p>{{ Auth::user()->name }}</p>
+            <p>{{ session('user_name') }}</p>
         </section>
     </div>
 @endsection

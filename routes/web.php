@@ -20,21 +20,21 @@ Route::controller(CardapioController::class)->group(function() {
 });
 
 // Rotas para criação de um user
-Route::controller(RegisterController::class)->prefix('/register')->middleware('guest')->group(function() {
+Route::controller(RegisterController::class)->prefix('/register')->middleware('isGuest')->group(function() {
     Route::get('/', 'create')->name('register.create');
     Route::post('/', 'store')->name('register.store');
 });
 
 // Rotas para a autenticação de um user
 Route::controller(LoginController::class)->group(function() {
-    Route::get('/login', 'create')->name('login')->middleware('guest');
-    Route::post('/login', 'store')->name('login.store')->middleware('guest');
-    Route::post('/logout', 'destroy')->name('login.destroy')->middleware('auth');
+    Route::get('/login', 'create')->name('login')->middleware('isGuest');
+    Route::post('/login', 'store')->name('login.store')->middleware('isGuest');
+    Route::post('/logout', 'destroy')->name('login.destroy')->middleware('checkApiToken');
 });
 
 // Rotas para CRUD de reservas e CRUD de user. Somente users logados podem acessar.
-Route::middleware('auth')->group(function() {
-    Route::controller(UserController::class)->prefix('/perfil')->middleware('check.userId')->group(function() {
+Route::middleware('checkApiToken')->group(function() {
+    Route::controller(UserController::class)->prefix('/perfil')->middleware('checkUser')->group(function() {
         Route::get('/{user}', 'show')->name('users.show');
         Route::get('/{user}/edit', 'edit')->name('users.edit');
         Route::put('/{user}', 'update')->name('users.update');
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function() {
 
 
 // Rotas do administrador
-Route::middleware('auth', 'check.role')->group(function() {
+Route::middleware('checkApiToken', 'check.role')->group(function() {
     Route::controller(AdminController::class)->group(function() {
         Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
     });

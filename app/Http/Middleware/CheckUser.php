@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckUser
@@ -16,10 +15,11 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
+        $userId = session('user_id');
+
         $idURL = $request->route('user');
 
-        if(!$user || $user->id != $idURL) {
+        if (!$userId || $userId != $idURL) {
             return response()->view('errors.page404');
         }
 

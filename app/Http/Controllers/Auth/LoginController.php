@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
@@ -33,9 +32,12 @@ class LoginController extends Controller
             $data = $response->json();
             $user = $data['user'];
 
-            session(['api_token' => $data['token']]);
-
-            Auth::loginUsingId($user['id']);
+            session([
+                'api_token' => $data['token'],
+                'user_id' => $user['id'],
+                'user_role' => $user['role'],
+                'user_name' => $user['name']
+            ]);
 
             if ($user['role'] == 'admin') {
                 return redirect()->route('admin.dashboard');
@@ -58,16 +60,13 @@ class LoginController extends Controller
             $response = Http::withToken($token)->delete('http://localhost:3030/api/logout');
 
             if ($response->successful()) {
-                session()->forget('api_token');
-                Auth::logout();
+                session()->forget('api_token', 'user_id', 'user_role', 'user_name');
 
                 return redirect()->route('login')->with('success', $response['message']);
             }
 
             return redirect()->back()->with('error', 'Erro ao tentar realizar logout na API');
         }
-
-        Auth::logout();
 
         return redirect()->back()->with('error', 'Não há token');
     }

@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckRole
@@ -16,9 +15,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
+        $userRole = session('user_role');
 
-        if($user->role != 'admin') {
+        if($userRole != 'admin') {
             return response()->view('errors.page404');
         }
 

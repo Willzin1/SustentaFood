@@ -46,7 +46,7 @@ Sustenta Food | Faça sua reserva
 
             <div class="button-container">
                 <button type="submit" id="button-reserva" class="shadow__btn">Reservar</button>
-                <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">
+                <a href="{{ route('users.show', ['user' => session('user_id')]) }}">
                     <button type="button" id="button-reserva" class="shadow__btn">Voltar ao perfil</button>
                 </a>
             </div>

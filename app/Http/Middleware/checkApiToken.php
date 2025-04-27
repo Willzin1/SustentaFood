@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsAdmin
+class checkApiToken
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,10 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $userRole = session('user_role');
-
-        if($userRole == 'admin') {
-            return response()->view('errors.page404');
+        if (! session()->has('api_token')) {
+            return redirect()->route('login')->with('error', 'Faça login para acessar.');
         }
+
         return $next($request);
     }
 }
