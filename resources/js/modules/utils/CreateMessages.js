@@ -1,5 +1,5 @@
-class Erro {
-    static criaErro(campo, mensagem) {
+class CreateMessages {
+    static errorMessage(campo, mensagem) {
         const div = document.createElement('div');
         div.innerHTML = mensagem;
         div.classList.add('text-danger');
@@ -7,4 +7,4 @@ class Erro {
     }
 }
 
-export default Erro;
+export default CreateMessages;

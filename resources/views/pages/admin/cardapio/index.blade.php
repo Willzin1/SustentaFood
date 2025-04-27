@@ -25,8 +25,7 @@ Sustenta Food | Admin
             <div class="reservas-tabela">
             <a href="{{ route('admin.cardapio.create') }}" class="btn btn-primary">Adicionar Prato</a>
 
-            <form action="{{ route('admin.cardapio.index') }}" method="get">
-                @csrf
+            <div>
                 <select name="filter" id="filter" class="filterSelect">
                     <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
                     <option value="Descricao" {{ request('filter') == 'Descricao' ? 'selected' : '' }}>Descrição</option>
@@ -34,8 +33,8 @@ Sustenta Food | Admin
                 </select>
                 <input type="search" name="search" class="search" placeholder="Busque um prato (ex: Nome, Descrição ou Categoria)" value="{{ request('search') }}">
                 <button type="button" class="btn btn-secondary clearFilters">Limpar filtros</button>
-                <button class="btn btn-danger">Buscar</button>
-            </form>
+                <button class="btn btn-danger btnBuscaDish">Buscar</button>
+            </div>
 
             @if(empty($pratos['data']))
                 <p>Não há pratos registrados.</p>

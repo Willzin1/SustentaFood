@@ -1,6 +1,6 @@
 import { isEmail, isMobilePhone } from 'validator';
 
-import Error from '../utils/Error';
+import CreateMessages from '../utils/CreateMessages';
 
 class ValidaUserFormulario {
     constructor() {
@@ -32,7 +32,7 @@ class ValidaUserFormulario {
 
         if(senha.length < 6 || senha.length > 20) {
             valid = false;
-            Error.criaErro(campo, 'Senha precisa conter entre 6 a 20 caracteres');
+            CreateMessages.errorMessage(campo, 'Senha precisa conter entre 6 a 20 caracteres');
         }
 
         return valid;
@@ -45,14 +45,14 @@ class ValidaUserFormulario {
 
         if(senha.length < 6 || senha.length > 20) {
             valid = false;
-            Error.criaErro(campo, 'Senha precisa conter entre 6 a 20 caracteres');
+            CreateMessages.errorMessage(campo, 'Senha precisa conter entre 6 a 20 caracteres');
             return;
         }
 
         if(senha !== senhaRepetida.value) {
             valid = false;
-            Error.criaErro(campo, 'Senhas não coincidem');
-            Error.criaErro(senhaRepetida, 'Senha não coincidem');
+            CreateMessages.errorMessage(campo, 'Senhas não coincidem');
+            CreateMessages.errorMessage(senhaRepetida, 'Senha não coincidem');
         }
 
         return valid;
@@ -69,7 +69,7 @@ class ValidaUserFormulario {
             let label = campo.previousElementSibling.innerHTML;
 
             if(!campo.value) {
-                Error.criaErro(campo, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
+                CreateMessages.errorMessage(campo, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
                 valid = false;
             } else {
 
@@ -104,13 +104,13 @@ class ValidaUserFormulario {
         let valid = true;
 
         if(nomeUser.length < 3 || nomeUser.length > 255) {
-            Error.criaErro(campo, 'Nome deve conter entre 3 e 255 caracteres.');
+            CreateMessages.errorMessage(campo, 'Nome deve conter entre 3 e 255 caracteres.');
             valid = false;
             return valid;
         };
 
         if(!/^[a-zA-Zà-úÀ-Ú\s]+$/.test(nomeUser)) {
-            Error.criaErro(campo, 'Nome deve conter apenas letras.');
+            CreateMessages.errorMessage(campo, 'Nome deve conter apenas letras.');
             valid = false;
             return valid;
         }
@@ -123,7 +123,7 @@ class ValidaUserFormulario {
         let valid = true;
 
         if(!isEmail(email)) {
-            Error.criaErro(campo, 'Insira um e-mail válido');
+            CreateMessages.errorMessage(campo, 'Insira um e-mail válido');
             valid = false;
         }
 
@@ -135,7 +135,7 @@ class ValidaUserFormulario {
         let valid = true;
 
         if(!isMobilePhone(tel, 'pt-BR')) {
-            Error.criaErro(campo, 'Insira um telefone válido');
+            CreateMessages.errorMessage(campo, 'Insira um telefone válido');
             valid = false;
         }
 

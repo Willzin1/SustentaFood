@@ -1,4 +1,4 @@
-import Error from './../utils/Error';
+import CreateMessages from '../utils/CreateMessages';
 import inputCustom from '../../components/customInput';
 
 class ValidarReservaForm {
@@ -38,7 +38,7 @@ class ValidarReservaForm {
             let label = field.previousElementSibling.innerHTML;
 
             if(!field.value) {
-                Error.criaErro(field, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
+                CreateMessages.errorMessage(field, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
                 valid = false;
 
             } else {
@@ -92,18 +92,18 @@ class ValidarReservaForm {
             quantity = customInput.value;
 
             if (!quantity || quantity <= 0) {
-                Error.criaErro(customInput, 'Informe a quantidade de pessoas.');
+                CreateMessages.errorMessage(customInput, 'Informe a quantidade de pessoas.');
                 valid = false;
             }
 
             if (quantity > 12) {
-                Error.criaErro(customInput, 'Reservas acima de 12 devem ser feitas diretamente com o restaurante.');
+                CreateMessages.errorMessage(customInput, 'Reservas acima de 12 devem ser feitas diretamente com o restaurante.');
                 valid = false;
             }
         } else {
             quantity = input;
             if (!quantity) {
-                Error.criaErro(field, 'Selecione a quantidade de assentos.');
+                CreateMessages.errorMessage(field, 'Selecione a quantidade de assentos.');
                 valid = false;
             }
         }

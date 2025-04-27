@@ -19,10 +19,9 @@ Sustenta Food | Admin
                 </div>
             @endif
             <h2>Todas as Reservas</h2>
-            <div class="reservas-tabela">
 
-                <form action="{{ route('admin.reservas.index') }}" method="get">
-                    @csrf
+            <div class="reservas-tabela">
+                <div class="searcBarDiv">
                     <select name="filter" id="filter" class="filterSelect">
                         <option value="ID" {{ request('filter') == 'ID' ? 'selected' : '' }}>ID</option>
                         <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
@@ -30,15 +29,17 @@ Sustenta Food | Admin
                         <option value="Hora" {{ request('filter') == 'Hora' ? 'selected' : '' }}>Hora</option>
                         <option value="Quantidade" {{ request('filter') == 'Quantidade' ? 'selected' : '' }}>Quantidade</option>
                     </select>
+
                     <input type="search" name="search" class="search" placeholder="Busque uma reserva (ex: ID, Nome cliente, Data, Hora)" value="{{ request('search') }}">
+
                     <button type="button" class="btn btn-secondary clearFilters">Limpar filtros</button>
-                    <button class="btn btn-danger">Buscar</button>
-                </form>
+                    <button class="btn btn-danger btnBusca">Buscar</button>
+                </div class="searcBarDiv">
 
                 @if(empty($reservas['data']))
                     <p>Não há reservas registradas.</p>
                 @else
-                    <table>
+                    <table class="table-reservations">
                         <thead>
                             <tr>
                                 <th>ID reserva</th>

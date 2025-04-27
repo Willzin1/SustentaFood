@@ -1,4 +1,5 @@
 import IMask from "imask";
+import formatDate from "../modules/utils/formatDate";
 
 export const InputPhoneMask = () => {
     const phoneInput = document.querySelector('.telefone');
@@ -17,11 +18,7 @@ export const formattedReserDate = () => {
 
     elementTagName.forEach((element) => {
         const dateText = element.textContent.replace('Data: ', '');
-
-        const date = new Date(dateText);
-        const dateFormatted = date.toLocaleDateString('pt-br');
-
-        element.innerHTML = `<strong>Data:</strong> ${dateFormatted}`;
+        element.innerHTML = `<strong>Data:</strong> ${formatDate(dateText)}`;
     });
 }
 

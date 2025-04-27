@@ -1,4 +1,4 @@
-import Error from '../utils/Error';
+import CreateMessages from '../utils/CreateMessages';
 
 class ValidaPratoForm {
     constructor() {
@@ -35,7 +35,7 @@ class ValidaPratoForm {
             let label = field.previousElementSibling.innerHTML;
 
             if(!field.value) {
-                Error.criaErro(field, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
+                CreateMessages.errorMessage(field, `Campo "${label.replace(':', '').toLocaleLowerCase()}" não pode estar em branco.`);
                 valid = false;
             } else {
                 if(field.classList.contains('nome')) {
@@ -64,13 +64,13 @@ class ValidaPratoForm {
         let valid = true;
 
         if (pratoNome.length < 3 || pratoNome.length > 100) {
-            Error.criaErro(field, 'Deve conter entre 3 a 100 caracteres');
+            CreateMessages.errorMessage(field, 'Deve conter entre 3 a 100 caracteres');
             valid = false;
             return;
         }
 
         if(!/^[a-zA-Zà-úÀ-ÚçÇ\s\-,]+$/.test(pratoNome)) {
-            Error.criaErro(field, 'Deve conter apenas letras');
+            CreateMessages.errorMessage(field, 'Deve conter apenas letras');
             valid = false;
         }
 
@@ -82,13 +82,13 @@ class ValidaPratoForm {
         let valid = true;
 
         if (pratoDesc.length < 3 || pratoDesc.length > 100) {
-            Error.criaErro(field, 'Deve conter entre 3 a 100 caracteres');
+            CreateMessages.errorMessage(field, 'Deve conter entre 3 a 100 caracteres');
             valid = false;
             return;
         }
 
         if(!/^[a-zA-Zà-úÀ-ÚçÇ\s\-,]+$/.test(pratoDesc)) {
-            Error.criaErro(field, 'Deve conter apenas letras');
+            CreateMessages.errorMessage(field, 'Deve conter apenas letras');
             valid = false;
         }
 
@@ -102,7 +102,7 @@ class ValidaPratoForm {
 
         if(!categorias.includes(categoria)) {
             valid = false;
-            Error.criaErro(field, 'Categoria não existe');
+            CreateMessages.errorMessage(field, 'Categoria não existe');
         }
 
         return valid;
