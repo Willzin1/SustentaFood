@@ -1,3 +1,4 @@
+import IMask from 'imask';
 import createLoadingDiv from '../modules/utils/createLoadingDiv';
 import formatDate from '../modules/utils/formatDate';
 
@@ -10,6 +11,10 @@ export function searchReservations() {
         let search = document.querySelector('input[name="search"]').value;
         let filter = document.querySelector('select[name="filter"]').value;
         const loadingDiv = createLoadingDiv(document.querySelector('.containerGerente'), 'Buscando reservas...');
+
+        if (filter === 'Data' && search) {
+            search = formatDateToApi(search);
+        }
 
         try{
             const response = await axios.get('http://localhost:3030/api/reservas', {
@@ -52,6 +57,7 @@ export function searchDishes() {
         }
     });
 }
+
 function changeTable(data, type) {
     let tbody = document.querySelector('tbody');
     tbody.innerHTML = '';
@@ -100,3 +106,7 @@ function changeTable(data, type) {
     });
 }
 
+function formatDateToApi(date) {
+    const [day, month, year] = date.split('/');
+    return `${year}-${month}-${day}`;
+}

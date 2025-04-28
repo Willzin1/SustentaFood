@@ -113,6 +113,7 @@ class UserController extends Controller
         $response = Http::withToken($token)->delete("http://localhost:3030/api/users/{$id}");
 
         if($response->successful()) {
+            session()->forget('api_token', 'user_id', 'user_role', 'user_name');
             return redirect()->route('login')->with('success', $response['message']);
         }
 
