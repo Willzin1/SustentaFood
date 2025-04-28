@@ -1,4 +1,3 @@
-import IMask from 'imask';
 import createLoadingDiv from '../modules/utils/createLoadingDiv';
 import formatDate from '../modules/utils/formatDate';
 
@@ -22,6 +21,8 @@ export function searchReservations() {
                 withCredentials: true
             });
 
+            if (response.data.data.length <= 0) return;
+
             changeTable(response.data.data, 'reservas');
         }catch (e){
             alert('Erro inesperado, tente novamente!');
@@ -40,7 +41,7 @@ export function searchDishes() {
     searchBtn.addEventListener('click', async () => {
         let search = document.querySelector('input[name="search"]').value;
         let filter = document.querySelector('select[name="filter"]').value;
-        const loadingDiv = createLoadingDiv(document.querySelector('.containerGerente'), 'Buscando reservas...');
+        const loadingDiv = createLoadingDiv(document.querySelector('.containerGerente'), 'Buscando pratos...');
 
         try{
             const response = await axios.get('http://localhost:3030/api/cardapio', {
@@ -48,10 +49,12 @@ export function searchDishes() {
                 withCredentials: true
             });
 
+            if (response.data.data.length <= 0) return;
+
             changeTable(response.data.data, 'pratos');
         }catch (e){
             alert('Erro inesperado, tente novamente!');
-            console.log(e)
+            console.log(response)
         }finally{
             loadingDiv.remove();
         }
