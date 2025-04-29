@@ -32,6 +32,11 @@ Route::controller(LoginController::class)->group(function() {
     Route::post('/logout', 'destroy')->name('login.destroy')->middleware('checkApiToken');
 });
 
+Route::controller(ReservasController::class)->prefix('/reservas')->group(function() {
+    Route::get('/', 'create')->name('reservas.create');
+    Route::post('/', 'store')->name('reservas.store');
+});
+
 // Rotas para CRUD de reservas e CRUD de user. Somente users logados podem acessar.
 Route::middleware('checkApiToken')->group(function() {
     Route::controller(UserController::class)->prefix('/perfil')->middleware('checkUser')->group(function() {
@@ -42,8 +47,8 @@ Route::middleware('checkApiToken')->group(function() {
     });
 
     Route::controller(ReservasController::class)->prefix('/reservas')->middleware('isAdmin')->group(function() {
-        Route::get('/', 'create')->name('reservas.create');
-        Route::post('/', 'store')->name('reservas.store');
+        // Route::get('/', 'create')->name('reservas.create');
+        // Route::post('/', 'store')->name('reservas.store');
         Route::get('/{reserva}/edit', 'edit')->name('reservas.edit');
         Route::put('/{reserva}', 'update')->name('reservas.update');
         Route::delete('/{reserva}', 'destroy')->name('reservas.destroy');
