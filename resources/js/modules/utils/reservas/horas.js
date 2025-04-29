@@ -1,4 +1,4 @@
-export default function() {
+export default (function() {
     const horaInput = document.getElementById('hora');
 
     if (!horaInput) return;
@@ -15,4 +15,4 @@ export default function() {
             horaInput.appendChild(option);
         // }
     }
-}
+})();

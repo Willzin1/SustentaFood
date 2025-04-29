@@ -1,7 +1,7 @@
 import flatpickr from "flatpickr";
 import { Portuguese } from "flatpickr/dist/l10n/pt.js";
 
-export default function() {
+export default (function() {
     flatpickr("#data", {
         locale: Portuguese,
         disable: [
@@ -12,4 +12,4 @@ export default function() {
         minDate: "today",
         dateFormat: "d/m/Y"
     });
-}
+})();

@@ -21,12 +21,9 @@ export function searchReservations() {
                 withCredentials: true
             });
 
-            if (response.data.data.length <= 0) return;
-
             changeTable(response.data.data, 'reservas');
         }catch (e){
             alert('Erro inesperado, tente novamente!');
-            console.log(e)
         }finally{
             loadingDiv.remove();
         }
@@ -54,7 +51,6 @@ export function searchDishes() {
             changeTable(response.data.data, 'pratos');
         }catch (e){
             alert('Erro inesperado, tente novamente!');
-            console.log(response)
         }finally{
             loadingDiv.remove();
         }
@@ -63,6 +59,9 @@ export function searchDishes() {
 
 function changeTable(data, type) {
     let tbody = document.querySelector('tbody');
+
+    if (!tbody) return;
+
     tbody.innerHTML = '';
 
     if (!data || data.length === 0) {
