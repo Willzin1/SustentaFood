@@ -11,14 +11,6 @@ use Illuminate\Support\Facades\Http;
 class ReservasController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create(): View
@@ -32,12 +24,25 @@ class ReservasController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $token = session('api_token');
+        $date = preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $request->data);
+        $phone = preg_replace('/\D/', '', $request->phone);
 
          if (! $token) {
-            dd('Não há token');
-         }
+            $response = Http::post('http://localhost:3030/api/reservas/notLoggedUser', [
+                'data' => $date,
+                'hora' => $request->hora,
+                'quantidade_cadeiras' => $request->quantidade_cadeiras === 'mais' ? $request->quantidade_custom : $request->quantidade_cadeiras,
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $phone
+            ]);
 
-        $date = preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $request->data);
+            if ($response->successful()) {
+                return redirect()->back()->with('success', $response['message']);
+            }
+
+            return redirect()->back()->with('error', $response['message']);
+         }
 
         $response = Http::withToken($token)->post('http://localhost:3030/api/reservas', [
             'data' => $date,
@@ -52,14 +57,6 @@ class ReservasController extends Controller
         }
 
         return redirect()->back()->with('error', $response['message']);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -94,7 +91,6 @@ class ReservasController extends Controller
             'hora' => $time,
             'quantidade_cadeiras' => $request->quantidade_cadeiras === 'mais' ? $request->quantidade_custom : $request->quantidade_cadeiras,
         ]);
-        // dd($request->hora);
 
         $user = $response->json();
 

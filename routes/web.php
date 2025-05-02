@@ -37,8 +37,9 @@ Route::controller(ReservasController::class)->prefix('/reservas')->group(functio
     Route::post('/', 'store')->name('reservas.store');
 });
 
-// Rotas para CRUD de reservas e CRUD de user. Somente users logados podem acessar.
+// Rotas privadas
 Route::middleware('checkApiToken')->group(function() {
+    // Rotas para CRUD de reservas e CRUD de user. Somente users logados podem acessar.
     Route::controller(UserController::class)->prefix('/perfil')->middleware('checkUser')->group(function() {
         Route::get('/{user}', 'show')->name('users.show');
         Route::get('/{user}/edit', 'edit')->name('users.edit');
@@ -53,35 +54,33 @@ Route::middleware('checkApiToken')->group(function() {
         Route::put('/{reserva}', 'update')->name('reservas.update');
         Route::delete('/{reserva}', 'destroy')->name('reservas.destroy');
     });
-});
 
+    // Rotas do administrador
+    Route::middleware('check.role')->group(function() {
+        Route::controller(AdminController::class)->group(function() {
+            Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+        });
 
-// Rotas do administrador
-Route::middleware('checkApiToken', 'check.role')->group(function() {
-    Route::controller(AdminController::class)->group(function() {
-        Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+        Route::controller(AdminReserva::class)->group(function() {
+            Route::get('/admin/reservas', 'index')->name('admin.reservas.index');
+            Route::get('/admin/reservas/{reserva}/edit', 'edit')->name('admin.reserva.edit');
+            Route::put('/admin/reservas/{reserva}', 'update')->name('admin.reserva.update');
+            Route::delete('/admin/reservas/{reserva}', 'destroy')->name('admin.reserva.destroy');
+        });
+
+        Route::controller(AdminUser::class)->group(function() {
+            Route::get('/admin/users/{user}', 'show')->name('admin.user');
+        });
+
+        Route::controller(AdminCardapio::class)->group(function() {
+            Route::get('/admin/cardapio/', 'index')->name('admin.cardapio.index');
+            Route::get('/admin/cardapio/create', 'create')->name('admin.cardapio.create');
+            Route::post('/admin/cardapio/', 'store')->name('admin.cardapio.store');
+            Route::get('/admin/cardapio/{prato}/edit', 'edit')->name('admin.cardapio.edit');
+            Route::put('/admin/cardapio/{prato}', 'update')->name('admin.cardapio.update');
+            Route::delete('/admin/cardapio/{prato}', 'destroy')->name('admin.cardapio.destroy');
+        });
     });
-
-    Route::controller(AdminReserva::class)->group(function() {
-        Route::get('/admin/reservas', 'index')->name('admin.reservas.index');
-        Route::get('/admin/reservas/{reserva}/edit', 'edit')->name('admin.reserva.edit');
-        Route::put('/admin/reservas/{reserva}', 'update')->name('admin.reserva.update');
-        Route::delete('/admin/reservas/{reserva}', 'destroy')->name('admin.reserva.destroy');
-    });
-
-    Route::controller(AdminUser::class)->group(function() {
-        Route::get('/admin/users/{user}', 'show')->name('admin.user');
-    });
-
-    Route::controller(AdminCardapio::class)->group(function() {
-        Route::get('/admin/cardapio/', 'index')->name('admin.cardapio.index');
-        Route::get('/admin/cardapio/create', 'create')->name('admin.cardapio.create');
-        Route::post('/admin/cardapio/', 'store')->name('admin.cardapio.store');
-        Route::get('/admin/cardapio/{prato}/edit', 'edit')->name('admin.cardapio.edit');
-        Route::put('/admin/cardapio/{prato}', 'update')->name('admin.cardapio.update');
-        Route::delete('/admin/cardapio/{prato}', 'destroy')->name('admin.cardapio.destroy');
-    });
-
 });
 
 // Rota de fallback para redirecionar caso a página não exista.
