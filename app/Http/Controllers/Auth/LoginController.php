@@ -28,7 +28,7 @@ class LoginController extends Controller
             'password' => $request->password
         ]);
 
-        if($response->successful()) {
+        if ($response->successful()) {
             $data = $response->json();
             $user = $data['user'];
 

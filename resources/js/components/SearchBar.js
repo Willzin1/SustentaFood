@@ -15,16 +15,17 @@ export function searchReservations() {
             search = formatDateToApi(search);
         }
 
-        try{
+        try {
             const response = await axios.get('http://localhost:3030/api/reservas', {
                 params: { search, filter },
                 withCredentials: true
             });
 
             changeTable(response.data.data, 'reservas');
-        }catch (e){
+        } catch (e) {
             alert('Erro inesperado, tente novamente!');
-        }finally{
+            console.log(e);
+        } finally {
             loadingDiv.remove();
         }
     });
@@ -40,7 +41,7 @@ export function searchDishes() {
         let filter = document.querySelector('select[name="filter"]').value;
         const loadingDiv = createLoadingDiv(document.querySelector('.containerGerente'), 'Buscando pratos...');
 
-        try{
+        try {
             const response = await axios.get('http://localhost:3030/api/cardapio', {
                 params: { search, filter },
                 withCredentials: true
@@ -49,9 +50,9 @@ export function searchDishes() {
             if (response.data.data.length <= 0) return;
 
             changeTable(response.data.data, 'pratos');
-        }catch (e){
+        } catch (e) {
             alert('Erro inesperado, tente novamente!');
-        }finally{
+        } finally {
             loadingDiv.remove();
         }
     });
@@ -81,7 +82,7 @@ function changeTable(data, type) {
         if (type === 'reservas') {
             row.innerHTML = `
                 <td>${item.id}</td>
-                <td><a href="/admin/users/${item.user.id}">${item.user.name}</a></td>
+                ${item.user ? `<td><a href="/admin/users/${item.user.id}">${item.user.name}</a></td>` : `<td>${item.name}</td>`}
                 <td>${formatDate(item.data)}</td>
                 <td>${item.hora}</td>
                 <td>${item.quantidade_cadeiras}</td>

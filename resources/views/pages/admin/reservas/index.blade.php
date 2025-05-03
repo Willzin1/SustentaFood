@@ -53,7 +53,13 @@ Sustenta Food | Admin
                             @foreach($reservas['data'] as $reserva)
                                 <tr>
                                     <td>{{ $reserva['id'] }}</td>
-                                    <td><a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}">{{ $reserva['user']['name'] }}</a></td>
+                                    <td>
+                                        @if(isset($reserva['user']))
+                                            <a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}">{{ $reserva['name'] }}</a>
+                                        @else
+                                            {{ $reserva['name'] }}
+                                        @endif
+                                    </td>
                                     <td>{{ date('d/m/Y', strtotime($reserva['data'])) }}</td>
                                     <td>{{ $reserva['hora'] }}</td>
                                     <td>{{ $reserva['quantidade_cadeiras'] }}</td>

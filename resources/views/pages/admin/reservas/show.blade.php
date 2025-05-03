@@ -20,9 +20,9 @@ Sustenta Food | Admin
 
         <div class="container-reservas">
             <h2>Informações do Cliente</h2>
-            <p><strong>Nome:</strong> {{ $reserva['user']['name'] }}</p>
-            <p><strong>Email:</strong> {{ $reserva['user']['email'] }}</p>
-            <p class="phoneUser"><strong>Telefone:</strong> {{ $reserva['user']['phone'] }}</p>
+            <p><strong>Nome:</strong> {{ $reserva['name'] }}</p>
+            <p><strong>Email:</strong> {{ $reserva['email'] }}</p>
+            <p class="phoneUser"><strong>Telefone:</strong> {{ $reserva['phone'] }}</p>
 
             <form action="{{ route('admin.reserva.update', ['reserva' => $reserva['id']]) }}" class="reserva-form" method="POST">
                 <input type="hidden" name="_method" value="PUT">
