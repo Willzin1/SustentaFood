@@ -12,6 +12,11 @@ use App\Http\Controllers\Reservas\ReservasController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
+// Falta privar essa rota, porém como fazer?
+Route::get('/verify', function () {
+   return view('utils.verify-thankyou');
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Rota para visualização do cardapio (User)

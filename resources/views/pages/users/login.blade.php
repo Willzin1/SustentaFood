@@ -15,7 +15,9 @@ Sustenta Food | Entrar
             </div>
 
         @elseif(session()->has('error'))
-            <p class="text-danger">{{ session('error') }}</p>
+            <div class="alert-custom alert-danger-custom">
+                <p>{{ session('error') }}</p>
+            </div>
         @endif
 
         <form action="{{ route('login.store') }}" class="formulario login-form" method="POST">

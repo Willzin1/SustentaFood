@@ -33,7 +33,7 @@ class RegisterController extends Controller
            ]);
 
         if ($response->successful()) {
-            return redirect()->route('login')->with('success', $response['message']);
+            return redirect()->route('login')->with('success', 'Conta criada com sucesso! Por favor verifique seu e-mail');
         }
 
         return redirect()->back()->withInput()->withErrors(['error' => $response['errors']]);
