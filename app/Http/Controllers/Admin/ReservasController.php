@@ -17,7 +17,7 @@ class ReservasController extends Controller
     {
         $token = session('api_token');
 
-        $response = Http::withToken($token)->get('http://localhost:3030/api/reservas', [
+        $response = Http::withToken($token)->get(env('API_URL') . 'reservas', [
             'page' => $request->get('page'),
             'search' => $request->get('search'),
             'filter' => $request->get('filter')
@@ -44,7 +44,7 @@ class ReservasController extends Controller
     public function edit(String $id)
     {
         $token = session('api_token');
-        $response = Http::withToken($token)->get("http://localhost:3030/api/reservas/{$id}");
+        $response = Http::withToken($token)->get(env('API_URL') . "reservas/{$id}");
 
         if ($response->successful()) {
             $reserva = $response->json();
@@ -64,7 +64,7 @@ class ReservasController extends Controller
         $date = preg_replace('/^(\d{2})\/(\d{2})\/(\d{4})$/', '$3-$2-$1', $request->data);
         $time = preg_replace('/^.*T(\d{2}:\d{2}):.*$/', '$1', $request->hora);
 
-        $response = Http::withToken($token)->put("http://localhost:3030/api/reservas/{$id}", [
+        $response = Http::withToken($token)->put(env('API_URL') . "reservas/{$id}", [
             'data' => $date,
             'hora' => $time,
             'quantidade_cadeiras' => $request->quantidade_cadeiras === 'mais' ? $request->quantidade_custom : $request->quantidade_cadeiras,
@@ -83,7 +83,7 @@ class ReservasController extends Controller
     public function destroy(string $id): RedirectResponse
     {
         $token = session('api_token');
-        $response = Http::withToken($token)->delete("http://localhost:3030/api/reservas/{$id}");
+        $response = Http::withToken($token)->delete(env('API_URL') . "reservas/{$id}");
 
         if ($response->successful()) {
             return redirect()->route('admin.reservas.index')->with('success', $response['message']);

@@ -16,7 +16,7 @@ class CardapioController extends Controller
     public function index(Request $request): View
     {
         $token = session('api_token');
-        $response = Http::withToken($token)->get('http://localhost:3030/api/cardapio', [
+        $response = Http::withToken($token)->get(env('API_URL') . 'cardapio', [
             'page' => $request->get('page'),
             'search' => $request->get('search'),
             'filter' => $request->get('filter')
@@ -71,7 +71,7 @@ class CardapioController extends Controller
             ];
         }
 
-        $response = Http::withToken($token)->asMultipart()->post('http://localhost:3030/api/cardapio', $multipart);
+        $response = Http::withToken($token)->asMultipart()->post(env('API_URL') . 'cardapio', $multipart);
 
         if ($response->successful()) {
             return redirect()->route('admin.cardapio.index')->with('success', $response['message']);
@@ -87,7 +87,7 @@ class CardapioController extends Controller
     {
         $token = session('api_token');
 
-        $response = Http::withToken($token)->get("http://localhost:3030/api/cardapio/{$id}");
+        $response = Http::withToken($token)->get(env('API_URL') . "cardapio/{$id}");
 
         if ($response->successful()) {
             $prato = $response->json();
@@ -134,7 +134,7 @@ class CardapioController extends Controller
             ];
         }
 
-        $response = Http::withToken($token)->asMultipart()->post("http://localhost:3030/api/cardapio/{$id}", $multipart);
+        $response = Http::withToken($token)->asMultipart()->post(env('API_URL') . "cardapio/{$id}", $multipart);
 
         if($response->successful()) {
             return redirect()->route('admin.cardapio.index')->with('success', $response['message']);
@@ -149,7 +149,7 @@ class CardapioController extends Controller
     public function destroy(String $id): RedirectResponse
     {
         $token = session('api_token');
-        $response = Http::withToken($token)->delete("Http://localhost:3030/api/cardapio/{$id}");
+        $response = Http::withToken($token)->delete(env('API_URL') . "cardapio/{$id}");
 
         if ($response->successful()) {
             return redirect()->route('admin.cardapio.index')->with('success', $response['message']);

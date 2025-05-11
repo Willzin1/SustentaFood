@@ -25,7 +25,7 @@ class RegisterController extends Controller
     {
         $phone = preg_replace('/\D/', '', $request->phone);
 
-        $response = Http::post('http://localhost:3030/api/users/', [
+        $response = Http::post(env('API_URL') . 'users', [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $phone,

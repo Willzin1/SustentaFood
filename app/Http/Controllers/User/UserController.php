@@ -44,7 +44,7 @@ class UserController extends Controller
     {
         $token = session('api_token');
 
-        $response = Http::withToken($token)->get("http://localhost:3030/api/users/{$id}");
+        $response = Http::withToken($token)->get(env('API_URL') . "users/{$id}");
 
         if ($response->successful()) {
             $user = $response->json();
@@ -53,7 +53,7 @@ class UserController extends Controller
                 return view('errors.page404');
             }
 
-            $reservas = Http::withToken($token)->get("http://localhost:3030/api/reservas?user_id={$id}")->json();
+            $reservas = Http::withToken($token)->get(env('API_URL') . "reservas?user_id={$id}")->json();
 
             return view('pages.users.dashboard', ['user' => $user, 'reservas' => $reservas['data']]);
         }
@@ -67,7 +67,7 @@ class UserController extends Controller
     {
         $token = session('api_token');
 
-        $response = Http::withToken($token)->get("http://localhost:3030/api/users/{$id}");
+        $response = Http::withToken($token)->get(env('API_URL') . "users/{$id}");
 
         if ($response->successful()) {
             $user = $response->json();
@@ -91,7 +91,7 @@ class UserController extends Controller
 
         $phone = preg_replace('/\D/', '', $request->phone);
 
-        $response = Http::withToken($token)->put("http://localhost:3030/api/users/{$id}", [
+        $response = Http::withToken($token)->put(env('API_URL') . "users/{$id}", [
             'name' => $request->name,
             'phone' => $phone
         ]);
@@ -110,7 +110,7 @@ class UserController extends Controller
     {
         $token = session('api_token');
 
-        $response = Http::withToken($token)->delete("http://localhost:3030/api/users/{$id}");
+        $response = Http::withToken($token)->delete(env('API_URL') . "users/{$id}");
 
         if ($response->successful()) {
             session()->forget('api_token', 'user_id', 'user_role', 'user_name');

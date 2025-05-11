@@ -14,7 +14,7 @@ class CardapioController extends Controller
     public function index(): View
     {
         $token = session('api_token');
-        $response =  Http::withToken($token)->get('http://localhost:3030/api/cardapio');
+        $response =  Http::withToken($token)->get(env('API_URL') . 'cardapio');
 
         if ($response->successful()) {
             $prato = $response->json();

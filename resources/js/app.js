@@ -10,13 +10,15 @@ import'./modules/utils/resetSearchInput';
 import './components/formattedPhone';
 import scrollButtons from './components/scrollButtons';
 import { searchReservations, searchDishes } from './components/SearchBar';
+import relatorioReservas from './components/RelatorioReservas';
 
 function init() {
     scrollButtons();
     searchReservations();
     searchDishes();
+    relatorioReservas();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     init();
 });

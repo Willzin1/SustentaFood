@@ -23,7 +23,7 @@ class LoginController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $response = Http::post('http://localhost:3030/api/login/', [
+        $response = Http::post(env('API_URL') . 'login/', [
             'email' => $request->email,
             'password' => $request->password
         ]);
@@ -57,7 +57,7 @@ class LoginController extends Controller
         $token = session('api_token');
 
         if ($token) {
-            $response = Http::withToken($token)->delete('http://localhost:3030/api/logout');
+            $response = Http::withToken($token)->delete(env('API_URL') . 'logout');
 
             if ($response->successful()) {
                 session()->forget('api_token', 'user_id', 'user_role', 'user_name');

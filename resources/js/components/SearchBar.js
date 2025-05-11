@@ -16,7 +16,7 @@ export function searchReservations() {
         }
 
         try {
-            const response = await axios.get('http://localhost:3030/api/reservas', {
+            const response = await axios.get('http://20.186.89.170/api/reservas', {
                 params: { search, filter },
                 withCredentials: true
             });
@@ -42,7 +42,7 @@ export function searchDishes() {
         const loadingDiv = createLoadingDiv(document.querySelector('.containerGerente'), 'Buscando pratos...');
 
         try {
-            const response = await axios.get('http://localhost:3030/api/cardapio', {
+            const response = await axios.get('http://20.186.89.170/api/cardapio', {
                 params: { search, filter },
                 withCredentials: true
             });
@@ -90,7 +90,7 @@ function changeTable(data, type) {
             `;
         } else if (type === 'pratos') {
             row.innerHTML = `
-                <td><img src="http://localhost:3030/storage/${item.imagem}" alt="${item.nome}" width="50"></td>
+                <td><img src="http://20.186.89.170/storage/${item.imagem}" alt="${item.nome}" width="50"></td>
                 <td>${item.nome}</td>
                 <td>${item.descricao}</td>
                 <td>${item.categoria}</td>

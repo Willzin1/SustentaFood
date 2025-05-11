@@ -14,14 +14,14 @@ class UserController extends Controller
     public function show(String $id): View
     {
         $token = session('api_token');
-        $response = Http::withToken($token)->get("http://localhost:3030/api/users/{$id}");
+        $response = Http::withToken($token)->get(env('API_URL') . "users/{$id}");
 
         if ($response->failed()) {
             abort(404, 'Erro inesperado.');
         }
 
         $user = $response->json();
-        $reservas = Http::withToken($token)->get("http://localhost:3030/api/reservas?user_id={$id}")->json();
+        $reservas = Http::withToken($token)->get(env('API_URL') . "reservas?user_id={$id}")->json();
 
         return view('pages.admin.users.show', [
             'user' => $user,
