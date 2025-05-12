@@ -19,5 +19,4 @@ export default function mostrarInputCustomizado(form) {
             quantidadeCadeirasSelect.setAttribute("name", "quantidade_cadeiras"); // Restaura o nome do select
         }
     });
-
 }

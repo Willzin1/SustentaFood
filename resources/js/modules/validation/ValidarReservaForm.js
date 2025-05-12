@@ -1,5 +1,5 @@
 import CreateMessages from '../utils/CreateMessages';
-import inputCustom from '../../components/customInput';
+import inputCustom from '../utils/customInput';
 
 class ValidarReservaForm {
     constructor() {
