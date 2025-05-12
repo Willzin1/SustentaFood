@@ -1,5 +1,6 @@
 import createLoadingDiv from '../modules/utils/createLoadingDiv';
 import formatDate from '../modules/utils/formatDate';
+import { token } from '../global/globalVariables';
 
 export function searchReservations() {
     let searchBtn = document.querySelector('.btnBusca');
@@ -17,6 +18,9 @@ export function searchReservations() {
 
         try {
             const response = await axios.get('http://20.186.89.170/api/reservas', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
                 params: { search, filter },
                 withCredentials: true
             });
@@ -43,11 +47,14 @@ export function searchDishes() {
 
         try {
             const response = await axios.get('http://20.186.89.170/api/cardapio', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
                 params: { search, filter },
                 withCredentials: true
             });
 
-            if (response.data.data.length <= 0) return;
+            if (response.data.data.length <= 0) alert('Nenhum prato encontrado!');
 
             changeTable(response.data.data, 'pratos');
         } catch (e) {

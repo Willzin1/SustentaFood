@@ -1,3 +1,5 @@
+import { token } from "../global/globalVariables";
+
 export default async function relatorioReservas() {
     const diaDiv = document.getElementById('totalDia');
     const semanaDiv = document.getElementById('totalSemana');
@@ -7,10 +9,26 @@ export default async function relatorioReservas() {
 
     try {
         const [dia, semana, mes, grafico] = await Promise.all([
-            axios.get('http://20.186.89.170/api/relatorios/reservas/dia'),
-            axios.get('http://20.186.89.170/api/relatorios/reservas/semana'),
-            axios.get('http://20.186.89.170/api/relatorios/reservas/mes'),
-            axios.get('http://20.186.89.170/api/relatorios/reservas/diaSemana'),
+            axios.get('http://20.186.89.170/api/relatorios/reservas/dia', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
+            axios.get('http://20.186.89.170/api/relatorios/reservas/semana', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
+            axios.get('http://20.186.89.170/api/relatorios/reservas/mes', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
+            axios.get('http://20.186.89.170/api/relatorios/reservas/diaSemana', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }),
         ]);
 
         diaDiv.textContent = dia.data.total;
