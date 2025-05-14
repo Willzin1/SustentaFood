@@ -16,8 +16,19 @@ export function searchReservations() {
             search = formatDateToApi(search);
         }
 
+        const pathname = window.location.pathname;
+        let baseApiUrl = 'http://20.186.89.170/api/reservas'; // padrão: todas
+
+        if (pathname.includes('/reservas/dia')) {
+            baseApiUrl = 'http://20.186.89.170/api/relatorios/reservas/dia';
+        } else if (pathname.includes('/reservas/semana')) {
+            baseApiUrl = 'http://20.186.89.170/api/relatorios/reservas/semana';
+        } else if (pathname.includes('/reservas/mes')) {
+            baseApiUrl = 'http://20.186.89.170/api/relatorios/reservas/mes';
+        }
+
         try {
-            const response = await axios.get('http://20.186.89.170/api/reservas', {
+            const response = await axios.get(baseApiUrl , {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -25,7 +36,12 @@ export function searchReservations() {
                 withCredentials: true
             });
 
-            changeTable(response.data.data, 'reservas');
+            if ((response.data.data ? response.data.data : response.data.reservas.data.length) <= 0) {
+                alert('Nenhuma reserva encontrada!');
+                return;
+            }
+
+            changeTable((response.data.data ? response.data.data : response.data.reservas.data), 'reservas');
         } catch (e) {
             alert('Erro inesperado, tente novamente!');
             console.log(e);
@@ -54,7 +70,10 @@ export function searchDishes() {
                 withCredentials: true
             });
 
-            if (response.data.data.length <= 0) alert('Nenhum prato encontrado!');
+            if (response.data.data.length <= 0) {
+                alert('Nenhum prato encontrado!');
+                return
+            }
 
             changeTable(response.data.data, 'pratos');
         } catch (e) {
@@ -73,13 +92,14 @@ function changeTable(data, type) {
     tbody.innerHTML = '';
 
     if (!data || data.length === 0) {
-        let row = document.createElement('tr');
-        let cell = document.createElement('td');
-        cell.colSpan = type === 'reservas' ? 6 : 5; // 6 colunas pra reservas, 5 pra pratos
-        cell.textContent = type === 'reservas' ? 'Nenhuma reserva encontrada.' : 'Nenhum prato encontrado.';
-        cell.style.textAlign = 'center';
-        row.appendChild(cell);
-        tbody.appendChild(row);
+        // let row = document.createElement('tr');
+        // let cell = document.createElement('td');
+        // cell.colSpan = type === 'reservas' ? 6 : 5; // 6 colunas pra reservas, 5 pra pratos
+        // cell.textContent = type === 'reservas' ? 'Nenhuma reserva encontrada.' : 'Nenhum prato encontrado.';
+        // cell.style.textAlign = 'center';
+        // row.appendChild(cell);
+        // tbody.appendChild(row);
+
         return;
     }
 

@@ -18,7 +18,8 @@ Sustenta Food | Admin
                     <p>{{ session('error') }}</p>
                 </div>
             @endif
-            <h2>Todas as Reservas</h2>
+
+            <h2>{{ $titulo ?? 'Todas as Reservas' }}</h2>
 
             <div class="reservas-tabela">
                 <div class="searcBarDiv">

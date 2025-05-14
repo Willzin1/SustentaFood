@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ReservasController as AdminReserva;
 use App\Http\Controllers\Admin\UserController as AdminUser;
 use App\Http\Controllers\Admin\CardapioController as AdminCardapio;
+use App\Http\Controllers\Admin\RelatorioReservasController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Cardapio\CardapioController;
@@ -84,6 +85,12 @@ Route::middleware('checkApiToken')->group(function() {
             Route::get('/admin/cardapio/{prato}/edit', 'edit')->name('admin.cardapio.edit');
             Route::put('/admin/cardapio/{prato}', 'update')->name('admin.cardapio.update');
             Route::delete('/admin/cardapio/{prato}', 'destroy')->name('admin.cardapio.destroy');
+        });
+
+        Route::controller(RelatorioReservasController::class)->group(function() {
+            Route::get('/relatorios/reservas/dia', 'getTodayReservations')->name('admin.reservas.dia');
+            Route::get('/relatorios/reservas/semana', 'getWeekReservations')->name('admin.reservas.semana');
+            Route::get('/relatorios/reservas/mes', 'getMonthReservations')->name('admin.reservas.mes');
         });
     });
 });
