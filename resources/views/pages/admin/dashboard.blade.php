@@ -16,6 +16,7 @@ Sustenta Food | Admin
                         <div class="">
                             <h5 class="">Hoje</h5>
                             <p class="" id="totalDia">...</p>
+                            <small><a href="{{ route('admin.reservas.dia') }}">ver todas</a></small>
                         </div>
                     </div>
                 </div>
@@ -24,6 +25,7 @@ Sustenta Food | Admin
                         <div class="">
                             <h5 class="">Esta Semana</h5>
                             <p class="" id="totalSemana">...</p>
+                            <small><a href="{{ route('admin.reservas.semana') }}">ver todas</a></small>
                         </div>
                     </div>
                 </div>
@@ -32,6 +34,7 @@ Sustenta Food | Admin
                         <div class="">
                             <h5 class="">Este Mês</h5>
                             <p class="" id="totalMes">...</p>
+                            <small><a href="{{ route('admin.reservas.mes') }}">ver todas</a></small>
                         </div>
                     </div>
                 </div>

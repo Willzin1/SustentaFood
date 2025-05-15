@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+
 import './bootstrap';
 
 import './modules/utils/reservas/horas';

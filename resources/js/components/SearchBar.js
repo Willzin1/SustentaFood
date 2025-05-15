@@ -17,18 +17,9 @@ export function searchReservations() {
         }
 
         const pathname = window.location.pathname;
-        let baseApiUrl = 'http://20.186.89.170/api/reservas'; // padrão: todas
-
-        if (pathname.includes('/reservas/dia')) {
-            baseApiUrl = 'http://20.186.89.170/api/relatorios/reservas/dia';
-        } else if (pathname.includes('/reservas/semana')) {
-            baseApiUrl = 'http://20.186.89.170/api/relatorios/reservas/semana';
-        } else if (pathname.includes('/reservas/mes')) {
-            baseApiUrl = 'http://20.186.89.170/api/relatorios/reservas/mes';
-        }
 
         try {
-            const response = await axios.get(baseApiUrl , {
+            const response = await axios.get(getRightEndpoint(pathname) , {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -134,6 +125,25 @@ function changeTable(data, type) {
 
         tbody.appendChild(row);
     });
+}
+
+function getRightEndpoint(actualPath) {
+    let baseApiUrl = process.env.APP_URL;
+
+    const routes = {
+        '/reservas/dia': `${baseApiUrl}relatorios/reservas/dia`,
+        '/reservas/semana': `${baseApiUrl}relatorios/reservas/semana`,
+        '/reservas/mes': `${baseApiUrl}relatorios/reservas/mes`,
+    };
+
+    for (const path in routes) {
+        if (actualPath.includes(path)) {
+            baseApiUrl = routes[path];
+            break;
+        }
+    }
+
+    return baseApiUrl;
 }
 
 function formatDateToApi(date) {
