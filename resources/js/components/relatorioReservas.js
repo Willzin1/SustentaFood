@@ -1,4 +1,4 @@
-import { token } from "../global/globalVariables";
+import { token, urlApi } from "../global/globalVariables";
 
 export default async function relatorioReservas() {
     const diaDiv = document.getElementById('totalDia');
@@ -9,22 +9,22 @@ export default async function relatorioReservas() {
 
     try {
         const [dia, semana, mes, grafico] = await Promise.all([
-            axios.get('http://20.186.89.170/api/relatorios/reservas/dia', {
+            axios.get(`${urlApi}/relatorios/reservas/dia`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }),
-            axios.get('http://20.186.89.170/api/relatorios/reservas/semana', {
+            axios.get(`${urlApi}/relatorios/reservas/semana`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }),
-            axios.get('http://20.186.89.170/api/relatorios/reservas/mes', {
+            axios.get(`${urlApi}/relatorios/reservas/mes`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }),
-            axios.get('http://20.186.89.170/api/relatorios/reservas/diaSemana', {
+            axios.get(`${urlApi}/relatorios/reservas/diaSemana`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

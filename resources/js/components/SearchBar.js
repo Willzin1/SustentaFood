@@ -1,6 +1,6 @@
 import createLoadingDiv from '../modules/utils/createLoadingDiv';
 import formatDate from '../modules/utils/formatDate';
-import { token } from '../global/globalVariables';
+import { token, urlApi, urlStorageApi } from '../global/globalVariables';
 
 export function searchReservations() {
     let searchBtn = document.querySelector('.btnBusca');
@@ -53,7 +53,7 @@ export function searchDishes() {
         const loadingDiv = createLoadingDiv(document.querySelector('.containerGerente'), 'Buscando pratos...');
 
         try {
-            const response = await axios.get('http://20.186.89.170/api/cardapio', {
+            const response = await axios.get(`${urlApi}/cardapio`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -108,7 +108,7 @@ function changeTable(data, type) {
             `;
         } else if (type === 'pratos') {
             row.innerHTML = `
-                <td><img src="http://20.186.89.170/storage/${item.imagem}" alt="${item.nome}" width="50"></td>
+                <td><img src="${urlStorageApi}/${item.imagem}" alt="${item.nome}" width="50"></td>
                 <td>${item.nome}</td>
                 <td>${item.descricao}</td>
                 <td>${item.categoria}</td>
@@ -128,12 +128,13 @@ function changeTable(data, type) {
 }
 
 function getRightEndpoint(actualPath) {
-    let baseApiUrl = process.env.APP_URL;
+    let baseApiUrl = urlApi;
 
     const routes = {
-        '/reservas/dia': `${baseApiUrl}relatorios/reservas/dia`,
-        '/reservas/semana': `${baseApiUrl}relatorios/reservas/semana`,
-        '/reservas/mes': `${baseApiUrl}relatorios/reservas/mes`,
+        '/reservas': `${baseApiUrl}/reservas`,
+        '/reservas/dia': `${baseApiUrl}/relatorios/reservas/dia`,
+        '/reservas/semana': `${baseApiUrl}/relatorios/reservas/semana`,
+        '/reservas/mes': `${baseApiUrl}/relatorios/reservas/mes`,
     };
 
     for (const path in routes) {
