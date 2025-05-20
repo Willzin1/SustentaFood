@@ -41,7 +41,7 @@ Sustenta Food | Admin
             </div>
 
             <div class="">
-                <h5 class="">Reservas por Dia no Mês</h5>
+                <h5 class="">Reservas do mês</h5>
                 <canvas id="reservasChart" height="100"></canvas>
             </div>
         </div>

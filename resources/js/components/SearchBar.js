@@ -104,6 +104,7 @@ function changeTable(data, type) {
                 <td>${formatDate(item.data)}</td>
                 <td>${item.hora}</td>
                 <td>${item.quantidade_cadeiras}</td>
+                <td>${item.status}</td>
                 <td><a href="/admin/reservas/${item.id}/edit">Gerenciar reserva</a></td>
             `;
         } else if (type === 'pratos') {
