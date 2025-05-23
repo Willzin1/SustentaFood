@@ -121,7 +121,6 @@ Sustenta Food
                                 <i class="fa-solid fa-star"></i>
                                 <span>(10+)</span>
                             </div>
-
                         </div>
                         <div class="prato-back">
                             <div class="prato-details">
