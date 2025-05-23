@@ -1,5 +1,3 @@
-import dotenv from 'dotenv';
-
 import './bootstrap';
 
 import './modules/utils/reservas/horas';
@@ -12,7 +10,7 @@ import'./modules/utils/resetSearchInput';
 import './modules/utils/formattedPhone';
 import scrollButtons from './modules/utils/scrollButtons';
 import { searchReservations, searchDishes } from './components/SearchBar';
-import relatorioReservas from './components/RelatorioReservas';
+import relatorioReservas from './components/relatorioReservas';
 
 function init() {
     scrollButtons();
