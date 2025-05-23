@@ -26,6 +26,7 @@ Sustenta Food | Admin
                                 <th>Data reserva</th>
                                 <th>Hora reserva</th>
                                 <th>Quantidade pessoas</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -35,6 +36,7 @@ Sustenta Food | Admin
                                     <td>{{ date('d-m-Y', strtotime($reserva['data'])) }}</td>
                                     <td>{{ $reserva['hora'] }}</td>
                                     <td>{{ $reserva['quantidade_cadeiras'] }}</td>
+                                    <td>{{ $reserva['status'] }}</td>
                                     <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar</a></td>
                                 </tr>
                             @endforeach

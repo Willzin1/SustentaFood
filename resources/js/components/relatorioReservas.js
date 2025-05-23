@@ -1,62 +1,66 @@
 import { token, urlApi } from "../global/globalVariables";
 
-export default async function relatorioReservas() {
-    const diaDiv = document.getElementById('totalDia');
-    const semanaDiv = document.getElementById('totalSemana');
-    const mesDiv = document.getElementById('totalMes');
-
-    if (!diaDiv || !semanaDiv || !mesDiv) return;
-
+export default async function reservationsReports() {
     try {
+        const charts = document.querySelectorAll('.reservasChart');
+        if (!charts.length) return;
+
         const [dia, semana, mes] = await Promise.all([
-            axios.get(`${urlApi}/relatorios/reservas/dia`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }),
-            axios.get(`${urlApi}/relatorios/reservas/semana`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }),
-            axios.get(`${urlApi}/relatorios/reservas/mes`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }),
+            fetchReports('dia'),
+            fetchReports('semana'),
+            fetchReports('mes')
         ]);
 
-        diaDiv.textContent = dia.data.total;
-        semanaDiv.textContent = semana.data.total;
-        mesDiv.textContent = mes.data.total;
+        const reports = [
+            { data: dia, titulo: 'Reservas do Dia' },
+            { data: semana, titulo: 'Reservas da Semana' },
+            { data: mes, titulo: 'Reservas do Mês' }
+        ];
 
-        createGraph(mes.data.semanas);
+        reports.forEach((report, index) => {
+            if (charts[index]) {
+                createGraph(charts[index], report.data, report.titulo);
+            }
+        });
 
     } catch (error) {
         alert('Erro ao carregar dados das reservas');
-        console.log(error)
     }
 }
 
-function createGraph(data) {
-    const labels = data.map(item => item.periodo);
-    const valores = data.map(item => item.total);
+async function fetchReports(date) {
+    const res = await axios.get(`${urlApi}/relatorios/reservas/${date}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    return res.data;
+}
 
-    return new Chart(document.getElementById('reservasChart'), {
+function createGraph(canvas, data, title) {
+    const labels = ['Total', 'Confirmadas', 'Pendentes', 'Canceladas'];
+    const values = [data.total, data.confirmadas, data.pendentes, data.canceladas];
+
+    new Chart(canvas, {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Reservas por semana',
-                data: valores,
-                backgroundColor: '#4e73df'
+                label: 'Total',
+                data: values,   // azul        verde    amarelo     vermelho
+                backgroundColor: ['#4e73df', '#1cc88a', '#f6c23e', '#e74a3b']
             }]
         },
         options: {
             responsive: true,
+            plugins: {
+                legend: { display: false },
+                title: { display: true, text: title }
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: Math.ceil(Math.max(...values) / 5) || 1
+                    }
                 }
             }
         }

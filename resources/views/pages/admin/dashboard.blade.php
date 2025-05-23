@@ -9,40 +9,25 @@ Sustenta Food | Admin
         @include('includes.aside')
 
         <div class="container">
-            <h2 class="">Relatório de Reservas</h2>
+            <h2 class="">Gráfico de Reservas</h2>
             <div class="">
                 <div class="">
-                    <div class="">
-                        <div class="">
-                            <h5 class="">Hoje</h5>
-                            <p class="" id="totalDia">...</p>
-                            <small><a href="{{ route('admin.reservas.dia') }}">ver todas</a></small>
-                        </div>
-                    </div>
+                    <h5 class="">Hoje</h5>
+                    <canvas class="reservasChart" height="150"></canvas>
+                    <small><a href="{{ route('admin.reservas.dia') }}">Ver todas</a> | <a href="">Exportar</a></small>
                 </div>
-                <div class="">
-                    <div class="">
-                        <div class="">
-                            <h5 class="">Esta Semana</h5>
-                            <p class="" id="totalSemana">...</p>
-                            <small><a href="{{ route('admin.reservas.semana') }}">ver todas</a></small>
-                        </div>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="">
-                        <div class="">
-                            <h5 class="">Este Mês</h5>
-                            <p class="" id="totalMes">...</p>
-                            <small><a href="{{ route('admin.reservas.mes') }}">ver todas</a></small>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="">
-                <h5 class="">Reservas do mês</h5>
-                <canvas id="reservasChart" height="100"></canvas>
+                <div class="">
+                    <h5 class="">Esta Semana</h5>
+                    <canvas class="reservasChart" height="150"></canvas>
+                    <small><a href="{{ route('admin.reservas.semana') }}">ver todas</a> | <a href="">Exportar</a></small>
+                </div>
+
+                <div class="">
+                    <h5 class="">Este Mês</h5>
+                    <canvas class="reservasChart" height="150"></canvas>
+                    <small><a href="{{ route('admin.reservas.mes') }}">ver todas</a> | <a href="">Exportar</a></small>
+                </div>
             </div>
         </div>
     </div>
