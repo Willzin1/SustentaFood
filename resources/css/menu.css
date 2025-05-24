@@ -41,6 +41,15 @@
     right: -10px;
     top: -10px;
     border-radius: 0px 37.5px 0px 42.5px;
+    cursor: pointer;
+}
+
+.dish-heart i {
+    color: #ccc;
+}
+
+.dish-heart.active i {
+    color: #f72a2a;
 }
 
 .dish-description {
@@ -105,21 +114,6 @@
     box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.1);
     position: relative;
     overflow: hidden;
-}
-
-.dish-heart {
-    position: absolute;
-    background-color: var(--color-primary-6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.563rem;
-    color: var(--color-primary-1);
-    width: 70px;
-    height: 70px;
-    right: -10px;
-    top: -10px;
-    border-radius: 0px 37.5px 0px 42.5px;
 }
 
 .dish-description {
