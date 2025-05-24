@@ -11,16 +11,6 @@ Sustenta Food | Admin
     @include('includes.aside')
 
     <div class="container-reserva">
-        @if(session()->has('success'))
-            <div class="alert-custom alert-success-custom">
-                <p>{{ session('success') }}</p>
-            </div>
-        @elseif(session()->has('error'))
-            <div class="alert-custom alert-danger-custom">
-                <p>{{ session('error') }}</p>
-            </div>
-        @endif
-
         <h2>Editar Prato</h2>
 
         <form action="{{ route('admin.cardapio.update', ['prato' => $prato['id']]) }}" class="prato-form" method="POST" enctype="multipart/form-data">

@@ -9,16 +9,6 @@ Sustenta Food | Admin
         @include('includes.aside')
 
         <section id="reservas">
-            @if(session()->has('success'))
-                <div class="alert-custom alert-success-custom">
-                    <p>{{ session('success') }}</p>
-                </div>
-            @elseif(session()->has('error'))
-                <div class="alert-custom alert-danger-custom">
-                    <p>{{ session('error') }}</p>
-                </div>
-            @endif
-
             <h2>{{ $titulo ?? 'Todas as Reservas' }}</h2>
 
             <div class="reservas-tabela">

@@ -7,15 +7,6 @@ Sustenta Food | Registre-se
 @section('content')
     <div id="menu">
         <div class="login-container">
-            @if(session()->has('success'))
-                <div class="alert-custom alert-success-custom">
-                    <p>{{ session('success') }}</p>
-                </div>
-            @elseif(session()->has('error'))
-                <div class="alert-custom alert-danger-custom">
-                    <p>{{ session('error') }}</p>
-                </div>
-            @endif
             @if($errors->any())
                 <div class="alert-custom alert-danger-custom">
                     @foreach($errors->all() as $error)

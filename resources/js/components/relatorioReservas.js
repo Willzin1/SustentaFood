@@ -1,6 +1,9 @@
 import { token, urlApi } from "../global/globalVariables";
+import createLoadingDiv from "../modules/utils/createLoadingDiv";
 
 export default async function reservationsReports() {
+    const loadingDiv = createLoadingDiv(document.querySelector('.containerGerente'), 'Buscando pratos...');
+
     try {
         const charts = document.querySelectorAll('.reservasChart');
         if (!charts.length) return;
@@ -24,7 +27,9 @@ export default async function reservationsReports() {
         });
 
     } catch (error) {
-        alert('Erro ao carregar dados das reservas');
+        toastr.error('Erro ao carregar dados das reservas');
+    } finally {
+        loadingDiv.remove();
     }
 }
 
