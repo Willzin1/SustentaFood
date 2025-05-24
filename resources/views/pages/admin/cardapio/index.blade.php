@@ -11,16 +11,6 @@ Sustenta Food | Admin
 
         <section id="reservas">
 
-            @if(session()->has('success'))
-                <div class="alert-custom alert-success-custom">
-                    <p>{{ session('success') }}</p>
-                </div>
-            @elseif(session()->has('error'))
-                <div class="alert-custom alert-danger-custom">
-                    <p>{{ session('error') }}</p>
-                </div>
-            @endif
-
             <h2>Gerenciar Cardápio</h2>
             <div class="reservas-tabela">
             <a href="{{ route('admin.cardapio.create') }}" class="btn btn-primary">Adicionar Prato</a>

@@ -9,10 +9,6 @@ Sustenta Food | Editar perfil
         <div class="login-container">
             <h1>Editar usuário.</h1>
 
-            @if(session()->has('error'))
-                <p class="text-danger">{{ session('message') }}</p>
-            @endif
-
             <form action="{{ route('users.update', ['user' => $user['id']]) }}" class="formulario" method="post">
                 <input type="hidden" name="_method" value="PUT">
                 @csrf

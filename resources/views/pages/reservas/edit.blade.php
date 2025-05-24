@@ -6,15 +6,6 @@ Sustenta Food | Edite sua reserva
 
 @section('content')
     <div class="container-reserva">
-        @if(session()->has('success'))
-            <div class="alert-custom alert-success-custom">
-                <p>{{ session('success') }}</p>
-            </div>
-        @elseif(session()->has('error'))
-            <div class="alert-custom alert-danger-custom">
-                <p>{{ session('error') }}</p>
-            </div>
-        @endif
         <h1>Editar reserva</h1>
         <form action="{{ route('reservas.update', ['reserva' => $reserva['id']]) }}" class="reserva-form" method="POST">
             <input type="hidden" name="_method" value="PUT">

@@ -31,13 +31,13 @@ export function searchReservations() {
             const reservas = response.data.data ? response.data.data : response.data.reservas.data;
 
             if (reservas.length <= 0) {
-                alert('Nenhuma reserva encontrada!');
+                toastr.warning('Nenhuma reserva encontrada!');
                 return;
             }
 
             changeTable(reservas, 'reservas');
         } catch (e) {
-            alert('Erro inesperado, tente novamente!');
+            toastr.warning('Erro inesperado, tente novamente!');
             console.log(e);
         } finally {
             loadingDiv.remove();
@@ -65,13 +65,13 @@ export function searchDishes() {
             });
 
             if (response.data.data.length <= 0) {
-                alert('Nenhum prato encontrado!');
+                toastr.warning('Nenhum prato encontrado!');
                 return
             }
 
             changeTable(response.data.data, 'pratos');
         } catch (e) {
-            alert('Erro inesperado, tente novamente!');
+            toastr.error('Erro inesperado, tente novamente!');
         } finally {
             loadingDiv.remove();
         }

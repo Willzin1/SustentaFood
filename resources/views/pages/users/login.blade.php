@@ -8,18 +8,6 @@ Sustenta Food | Entrar
 <div id="menu">
     <div class="login-container">
         <h1>Faça seu login.</h1>
-
-        @if(session()->has('success'))
-            <div class="alert-custom alert-success-custom">
-                <p>{{ session('success') }}</p>
-            </div>
-
-        @elseif(session()->has('error'))
-            <div class="alert-custom alert-danger-custom">
-                <p>{{ session('error') }}</p>
-            </div>
-        @endif
-
         <form action="{{ route('login.store') }}" class="formulario login-form" method="POST">
             @csrf
             <div class="grupo-formulario">

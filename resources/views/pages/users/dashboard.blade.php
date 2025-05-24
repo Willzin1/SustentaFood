@@ -6,15 +6,6 @@ Sustenta Food | Perfil
 
 @section('content')
     <section id="profile">
-        @if(session()->has('success'))
-            <div class="alert-custom alert-success-custom">
-                <p>{{ session('success') }}</p>
-            </div>
-        @elseif(session()->has('error'))
-            <div class="alert-custom alert-danger-custom">
-                <p>{{ session('error') }}</p>
-            </div>
-        @endif
         <h2 class="section-title">Meu Perfil</h2>
         <div class="profile-container">
             <div class="profile-picture">
