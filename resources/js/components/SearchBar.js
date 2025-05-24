@@ -17,9 +17,10 @@ export function searchReservations() {
         }
 
         const pathname = window.location.pathname;
+        const endpoint = getRightEndpoint(pathname);
 
         try {
-            const response = await axios.get(getRightEndpoint(pathname) , {
+            const response = await axios.get(endpoint, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -27,12 +28,14 @@ export function searchReservations() {
                 withCredentials: true
             });
 
-            if ((response.data.data ? response.data.data : response.data.reservas.data.length) <= 0) {
+            const reservas = response.data.data ? response.data.data : response.data.reservas.data;
+
+            if (reservas.length <= 0) {
                 alert('Nenhuma reserva encontrada!');
                 return;
             }
 
-            changeTable((response.data.data ? response.data.data : response.data.reservas.data), 'reservas');
+            changeTable(reservas, 'reservas');
         } catch (e) {
             alert('Erro inesperado, tente novamente!');
             console.log(e);
@@ -131,21 +134,17 @@ function changeTable(data, type) {
 function getRightEndpoint(actualPath) {
     let baseApiUrl = urlApi;
 
-    const routes = {
-        '/reservas': `${baseApiUrl}/reservas`,
-        '/reservas/dia': `${baseApiUrl}/relatorios/reservas/dia`,
-        '/reservas/semana': `${baseApiUrl}/relatorios/reservas/semana`,
-        '/reservas/mes': `${baseApiUrl}/relatorios/reservas/mes`,
-    };
+    // Ordenar as rotas da mais específica para a menos específica
+    const routes = [
+        { path: '/reservas/dia', endpoint: `${baseApiUrl}/relatorios/reservas/dia` },
+        { path: '/reservas/semana', endpoint: `${baseApiUrl}/relatorios/reservas/semana` },
+        { path: '/reservas/mes', endpoint: `${baseApiUrl}/relatorios/reservas/mes` },
+        { path: '/reservas', endpoint: `${baseApiUrl}/reservas` }
+    ];
 
-    for (const path in routes) {
-        if (actualPath.includes(path)) {
-            baseApiUrl = routes[path];
-            break;
-        }
-    }
-
-    return baseApiUrl;
+    // Encontrar a primeira rota que corresponde ao caminho atual
+    const matchedRoute = routes.find(route => actualPath.includes(route.path));
+    return matchedRoute ? matchedRoute.endpoint : baseApiUrl;
 }
 
 function formatDateToApi(date) {
