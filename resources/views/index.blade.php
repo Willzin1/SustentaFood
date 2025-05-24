@@ -30,106 +30,48 @@ Sustenta Food
         </section>
         <section id="menu">
             <h2 class="section-title">Favoritos da Galera</h2>
-            <h3 class="section-subtitle">OS MAIS PEDIDOS</h3>
+            <!-- <h3 class="section-subtitle">OS MAIS PEDIDOS</h3> -->
             <div id="pratos">
-                <div class="prato">
-                    <div class="prato-inner">
-                        <div class="prato-front">
-                            <div class="prato-heart"><i class="fa-solid fa-heart"></i></div>
-                            <img src="{{ asset('assets/images/dish.png') }}" class="prato-image" alt="">
-                            <h3 class="prato-title">Bolo de Abacaxi</h3>
-                            <span class="prato-description">Experimente este irresistível bolo de abacaxi! Além de fofo e delicioso, é rico em vitamina C</span>
-                            <div class="prato-rate">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(100+)</span>
+                @if(isset($pratosFavoritos))
+                    @foreach($pratosFavoritos as $prato)
+                        <div class="prato">
+                            <div class="prato-inner">
+                                <div class="prato-front">
+                                    <img src="{{ env('API_URL_STORAGE') }}/{{ $prato['prato']['imagem'] }}" class="prato-image" alt="{{ $prato['prato']['nome'] }}">
+                                    <h3 class="prato-title">{{ $prato['prato']['nome'] }}</h3>
+                                    <span class="prato-description">{{ $prato['prato']['descricao'] }}</span>
+                                    <div class="prato-rate">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <span>({{ $prato['total_favoritos'] }})</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="prato-back">
-                            <div class="prato-details">
-                                <!-- <p>Descubra o sabor do aproveitamento total com nosso Bolo de Abacaxi, onde cada pedaço conta uma história de sustentabilidade. Utilizando as cascas do abacaxi, transformamos um ingrediente muitas vezes descartado em uma deliciosa base que exalta o frescor tropical.</p> -->
-                                <!-- <button class="btn-default"><h4>VOLTA</h4></button> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="prato">
-                    <div class="prato-inner">
-                        <div class="prato-front">
-                            <div class="prato-heart"><i class="fa-solid fa-heart"></i></div>
-                            <img src="{{ asset('assets/images/cremedepepino.png') }}" class="prato-image" alt="">
-                            <h3 class="prato-title">Creme de pepino e couve-flor</h3>
-                            <span class="prato-description">Nossa refrescante Sopa Fria de Pepino e Couve-Flor, uma combinação perfeita de sabores leves e aromáticos</span>
-                            <div class="prato-rate">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(50+)</span>
-                            </div>
-
-                        </div>
-                        <div class="prato-back">
-                            <div class="prato-details">
-                                <!-- <p>Uma sopa que celebra a leveza e a simplicidade dos ingredientes, perfeita para dias quentes e momentos de descontração</p> -->
-                                <!-- <button class="btn-default"><h4>VOLTA</h4></button> -->
+                    @endforeach
+                @else
+                    <div class="prato">
+                        <div class="prato-inner">
+                            <div class="prato-front">
+                                <div class="prato-heart"><i class="fa-solid fa-heart"></i></div>
+                                <img src="{{ asset('assets/images/dish.png') }}" class="prato-image" alt="">
+                                <h3 class="prato-title">Bolo de Abacaxi</h3>
+                                <span class="prato-description">Experimente este irresistível bolo de abacaxi! Além de fofo e delicioso, é rico em vitamina C</span>
+                                <div class="prato-rate">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span>(100+)</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="prato">
-                    <div class="prato-inner">
-                        <div class="prato-front">
-                            <div class="prato-heart"><i class="fa-solid fa-heart"></i></div>
-                            <img src="{{ asset('assets/images/dish3.png') }}" class="prato-image" alt="">
-                            <h3 class="prato-title">Espaguete com pesto e burrata</h3>
-                            <span class="prato-description">Uma refeição sem glúten, simples e saborosa</span>
-                            <div class="prato-rate">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(20+)</span>
-                            </div>
-
-                        </div>
-                        <div class="prato-back">
-                            <div class="prato-details">
-                                <!-- <p>Desperte os seus sentidos com este vibrante prato de Esparguete ao Pesto, onde a simplicidade encontra a sofisticação. O esparguete, cozido à perfeição, é envolto em um pesto aromático, complementado por tomates frescos e uma generosa porção de rúcula, que adiciona um toque de frescor e crocância</p> -->
-                                <!-- <button class="btn-default"><h4>VOLTA</h4></button> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="prato">
-                    <div class="prato-inner">
-                        <div class="prato-front">
-                            <div class="prato-heart"><i class="fa-solid fa-heart"></i></div>
-                            <img src="{{ asset('assets/images/dish4.png') }}" class="prato-image" alt="">
-                            <h3 class="prato-title">Pizza de frigideira com requeijão e legumes</h3>
-                            <span class="prato-description">Uma pizza sem glúten ideal para as crianças</span>
-                            <div class="prato-rate">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <span>(10+)</span>
-                            </div>
-                        </div>
-                        <div class="prato-back">
-                            <div class="prato-details">
-                                <!-- <p>Descubra a deliciosa harmonia de sabores da nossa Pizza de Legumes Grelhados! Começamos com uma base de massa perfeitamente dourada, pincelada com uma mistura aromática de azeite, orégãos, tomilho e alho, que proporciona um sabor irresistível.</p> -->
-                                <!-- <button class="btn-default"><h4>VOLTA</h4></button> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endif
             </div>
         </section>
         <section id="testimonials">

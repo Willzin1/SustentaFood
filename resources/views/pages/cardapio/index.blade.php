@@ -13,7 +13,14 @@ Sustenta Food | Cardápio
             <div id="dishes">
                 @foreach($pratos->where('categoria', $categoria) as $prato)
                     <div class="dish">
-                        <img src="http://20.186.89.170/storage/{{ $prato['imagem'] }}" class="dish-image" alt="{{ $prato['nome'] }}">
+                    @if(session()->has('api_token') && session('user_role') != 'admin')
+                        <div class="dish-heart" 
+                             onclick="toggleFavorite({{ $prato['id'] }})"
+                             data-prato-id="{{ $prato['id'] }}">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+                    @endif
+                        <img src="{{ env('API_URL_STORAGE') }}/{{ $prato['imagem'] }}" class="dish-image" alt="{{ $prato['nome'] }}">
                         <h3 class="dish-title">{{ $prato['nome'] }}</h3>
                         <span class="dish-description">{{ $prato['descricao'] }}</span>
                     </div>

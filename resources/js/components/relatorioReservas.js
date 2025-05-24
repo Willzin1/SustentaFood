@@ -2,11 +2,18 @@ import { token, urlApi } from "../global/globalVariables";
 import createLoadingDiv from "../modules/utils/createLoadingDiv";
 
 export default async function reservationsReports() {
-    const loadingDiv = createLoadingDiv(document.querySelector('.containerGerente'), 'Buscando pratos...');
+    const container = document.querySelector('.containerGerente');
+
+    if (!container) return;
+
+    const loadingDiv = createLoadingDiv(container, 'Buscando pratos...');
 
     try {
         const charts = document.querySelectorAll('.reservasChart');
-        if (!charts.length) return;
+        if (!charts.length) {
+            loadingDiv.remove();
+            return;
+        }
 
         const [dia, semana, mes] = await Promise.all([
             fetchReports('dia'),

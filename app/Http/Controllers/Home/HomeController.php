@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
@@ -12,6 +13,16 @@ class HomeController extends Controller
     */
     public function index(): View
     {
-        return view('index');
+        $token = session('api_token');
+        $response = Http::withToken($token)->get(env('API_URL') . 'favoritos/favoritados');
+        
+        if ($response->successful()) {
+            $responseData = $response->json();
+            $pratosFavoritos = $responseData['most_favorited'] ?? [];
+            $pratosFavoritos = array_slice($pratosFavoritos, 0, 4);
+            return view('index', compact('pratosFavoritos'));
+        }
+
+        return view('index', ['pratosFavoritos' => []]);
     }
 }

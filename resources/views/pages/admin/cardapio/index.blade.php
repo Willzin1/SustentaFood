@@ -42,7 +42,7 @@ Sustenta Food | Admin
                     <tbody>
                         @foreach ($pratos['data'] as $prato)
                             <tr>
-                                <td><img src="http://20.186.89.170/storage/{{ $prato['imagem'] }}" alt="{{ $prato['nome'] }}" width="50"></td>
+                                <td><img src="{{ env('API_URL_STORAGE') }}/{{ $prato['imagem'] }}" alt="{{ $prato['nome'] }}" width="50"></td>
                                 <td>{{ $prato['nome'] }}</td>
                                 <td>{{ $prato['descricao'] }}</td>
                                 <td>{{ ucfirst($prato['categoria']) }}</td>
