@@ -1,3 +1,16 @@
+/**
+ * Inicializa funcionalidades de scroll e animações da página.
+ * Inclui:
+ * - Controle do menu mobile
+ * - Sombra do header baseada no scroll
+ * - Navegação ativa baseada na seção visível
+ * - Animações de reveal dos elementos
+ * 
+ * @function initScrollAndAnimations
+ * @requires jQuery
+ * @requires ScrollReveal
+ * @returns {void}
+ */
 export default function() {
     $(document).ready(function() {
         $('#mobile_btn').on('click', function () {

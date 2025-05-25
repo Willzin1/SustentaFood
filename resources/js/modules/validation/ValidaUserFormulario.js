@@ -2,7 +2,21 @@ import { isEmail, isMobilePhone } from 'validator';
 
 import CreateMessages from '../utils/CreateMessages';
 
+/**
+ * Classe responsável pela validação de formulários de usuário.
+ * Implementa validações para login e registro de usuários.
+ * 
+ * @class ValidaUserFormulario
+ * @description Gerencia validações de campos como nome, email, telefone e senha,
+ * com regras específicas para cada tipo de campo e formulário (login/registro).
+ */
 class ValidaUserFormulario {
+    /**
+     * Inicializa o validador de formulário de usuário.
+     * Busca o formulário com a classe 'formulario' e inicializa os eventos.
+     * 
+     * @constructor
+     */
     constructor() {
         this.formulario = document.querySelector('.formulario');
 
@@ -11,12 +25,25 @@ class ValidaUserFormulario {
         this.eventos();
     }
 
+    /**
+     * Inicializa os eventos do formulário.
+     * 
+     * @method eventos
+     * @private
+     */
     eventos() {
         this.formulario.addEventListener('submit', event => {
             this.handleSubmit(event);
         });
     }
 
+    /**
+     * Manipula o evento de submit do formulário.
+     * 
+     * @method handleSubmit
+     * @param {Event} event - Evento de submit do formulário
+     * @private
+     */
     handleSubmit(event) {
         event.preventDefault();
         const camposValidos = this.camposSaoValidos();
@@ -26,6 +53,14 @@ class ValidaUserFormulario {
         }
     }
 
+    /**
+     * Valida o campo de senha no formulário de login.
+     * 
+     * @method handleLogin
+     * @param {HTMLElement} campo - Campo de input da senha
+     * @returns {boolean} Retorna true se a senha é válida, false caso contrário
+     * @private
+     */
     handleLogin(campo) {
         const senha = campo.value;
         let valid = true;
@@ -38,6 +73,15 @@ class ValidaUserFormulario {
         return valid;
     }
 
+    /**
+     * Valida os campos de senha no formulário de registro.
+     * Verifica se as senhas coincidem e atendem aos requisitos de tamanho.
+     * 
+     * @method handleRegister
+     * @param {HTMLElement} campo - Campo de input da senha
+     * @returns {boolean} Retorna true se as senhas são válidas, false caso contrário
+     * @private
+     */
     handleRegister(campo) {
         const senha = campo.value;
         const senhaRepetida = this.formulario.querySelector('.senhaRepetida');
@@ -58,6 +102,14 @@ class ValidaUserFormulario {
         return valid;
     }
 
+    /**
+     * Valida todos os campos do formulário.
+     * Remove mensagens de erro anteriores e aplica validações específicas para cada tipo de campo.
+     * 
+     * @method camposSaoValidos
+     * @returns {boolean} Retorna true se todos os campos são válidos, false caso contrário
+     * @private
+     */
     camposSaoValidos() {
         let valid = true;
 
@@ -99,6 +151,15 @@ class ValidaUserFormulario {
         return valid;
     }
 
+    /**
+     * Valida o nome do usuário.
+     * Verifica tamanho e se contém apenas letras.
+     * 
+     * @method validaUsuario
+     * @param {HTMLElement} campo - Campo de input do nome
+     * @returns {boolean} Retorna true se o nome é válido, false caso contrário
+     * @private
+     */
     validaUsuario(campo) {
         const nomeUser = campo.value;
         let valid = true;
@@ -118,6 +179,14 @@ class ValidaUserFormulario {
         return valid;
     }
 
+    /**
+     * Valida o email do usuário usando a biblioteca validator.
+     * 
+     * @method validaEmail
+     * @param {HTMLElement} campo - Campo de input do email
+     * @returns {boolean} Retorna true se o email é válido, false caso contrário
+     * @private
+     */
     validaEmail(campo) {
         const email = campo.value;
         let valid = true;
@@ -130,6 +199,15 @@ class ValidaUserFormulario {
         return valid;
     }
 
+    /**
+     * Valida o telefone do usuário usando a biblioteca validator.
+     * Verifica se está no formato brasileiro.
+     * 
+     * @method validaTelefone
+     * @param {HTMLElement} campo - Campo de input do telefone
+     * @returns {boolean} Retorna true se o telefone é válido, false caso contrário
+     * @private
+     */
     validaTelefone(campo) {
         const tel = campo.value;
         let valid = true;

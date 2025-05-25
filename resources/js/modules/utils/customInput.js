@@ -1,3 +1,16 @@
+/**
+ * Gerencia a exibição de um input customizado para quantidade de cadeiras.
+ * Quando o usuário seleciona a opção "mais" no select, exibe um input numérico
+ * para inserção manual da quantidade.
+ * 
+ * @function mostrarInputCustomizado
+ * @param {HTMLFormElement} form - Formulário que contém os campos de seleção
+ * @returns {void}
+ * 
+ * @example
+ * const form = document.querySelector('form');
+ * mostrarInputCustomizado(form);
+ */
 export default function mostrarInputCustomizado(form) {
 
     form.addEventListener('change', () => {

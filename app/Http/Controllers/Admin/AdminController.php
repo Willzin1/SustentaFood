@@ -14,4 +14,9 @@ class AdminController extends Controller
     {
         return view('pages.admin.dashboard');
     }
+
+    public function favoriteDishes(): View
+    {
+        return view('pages.admin.stats.favoriteDishes');
+    }
 }

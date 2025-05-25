@@ -65,6 +65,7 @@ Route::middleware('checkApiToken')->group(function() {
     Route::middleware('check.role')->group(function() {
         Route::controller(AdminController::class)->group(function() {
             Route::get('/admin/dashboard', 'dashboard')->name('admin.dashboard');
+            Route::get('/admin/stats/favorites', 'favoriteDishes')->name('admin.favoritos');
         });
 
         Route::controller(AdminReserva::class)->group(function() {

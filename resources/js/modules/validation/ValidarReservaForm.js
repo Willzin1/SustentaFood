@@ -1,7 +1,20 @@
 import CreateMessages from '../utils/CreateMessages';
 import inputCustom from '../utils/customInput';
 
+/**
+ * Classe responsável pela validação do formulário de reservas.
+ * 
+ * @class ValidarReservaForm
+ * @description Gerencia a validação de campos do formulário de reserva, incluindo data,
+ * hora e quantidade de assentos. Implementa validações específicas para cada tipo de campo.
+ */
 class ValidarReservaForm {
+    /**
+     * Inicializa o validador do formulário de reserva.
+     * Busca o formulário com a classe 'reserva-form' e inicializa os eventos.
+     * 
+     * @constructor
+     */
     constructor() {
         this.formulario = document.querySelector('.reserva-form');
 
@@ -10,6 +23,13 @@ class ValidarReservaForm {
         this.init();
     }
 
+    /**
+     * Inicializa os eventos do formulário.
+     * Adiciona o listener de submit e configura inputs customizados.
+     * 
+     * @method init
+     * @private
+     */
     init() {
         this.formulario.addEventListener('submit', event => {
             this.handleSubmit(event);
@@ -18,6 +38,14 @@ class ValidarReservaForm {
         inputCustom(this.formulario);
     }
 
+    /**
+     * Manipula o evento de submit do formulário.
+     * Previne o comportamento padrão e valida os campos antes de submeter.
+     * 
+     * @method handleSubmit
+     * @param {Event} event - Evento de submit do formulário
+     * @private
+     */
     handleSubmit(event) {
         event.preventDefault();
         const camposValidos = this.isFieldValid();
@@ -27,6 +55,14 @@ class ValidarReservaForm {
         }
     }
 
+    /**
+     * Valida todos os campos do formulário.
+     * Remove mensagens de erro anteriores e valida cada campo marcado com a classe 'validar'.
+     * 
+     * @method isFieldValid
+     * @returns {boolean} Retorna true se todos os campos são válidos, false caso contrário
+     * @private
+     */
     isFieldValid() {
         let valid = true;
 
@@ -59,6 +95,14 @@ class ValidarReservaForm {
         return valid;
     }
 
+    /**
+     * Valida o campo de data da reserva.
+     * 
+     * @method isDataValid
+     * @param {HTMLElement} field - Campo de input da data
+     * @returns {boolean} Retorna true se a data é válida, false caso contrário
+     * @private
+     */
     isDataValid(field) {
         const data = field.value;
         let valid = true;
@@ -71,6 +115,14 @@ class ValidarReservaForm {
         return valid;
     }
 
+    /**
+     * Valida o campo de hora da reserva.
+     * 
+     * @method isHoraValid
+     * @param {HTMLElement} field - Campo de input da hora
+     * @returns {boolean} Retorna true se a hora é válida, false caso contrário
+     * @private
+     */
     isHoraValid(field) {
         const hora = field.value;
         let valid = true;
@@ -82,6 +134,15 @@ class ValidarReservaForm {
         return valid;
     }
 
+    /**
+     * Valida a quantidade de assentos selecionada.
+     * Verifica se a quantidade está dentro dos limites permitidos (1-12 pessoas).
+     * 
+     * @method isQuantityValid
+     * @param {HTMLElement} field - Campo de seleção de quantidade de assentos
+     * @returns {boolean} Retorna true se a quantidade é válida, false caso contrário
+     * @private
+     */
     isQuantityValid(field) {
         const input = field.value;
         const customInput = document.querySelector('#custom_assentos');
