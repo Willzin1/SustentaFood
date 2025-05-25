@@ -1,12 +1,21 @@
 import { token, urlApi } from "../global/globalVariables";
 import createLoadingDiv from "../modules/utils/createLoadingDiv";
 
+/**
+ * Gera gráficos com dados de relatórios de reservas (diário, semanal e mensal).
+ *
+ * Esta função busca os dados de reservas a partir da API, separando por período (dia, semana e mês),
+ * e em seguida cria gráficos para exibir esses dados em elementos canvas da interface.
+ * Os gráficos são renderizados apenas se houver elementos com a classe `.reservasChart` presentes na página.
+ *
+ * @returns {Promise<void>} - Não retorna nada diretamente. Manipula o DOM ao renderizar gráficos.
+ */
 export default async function reservationsReports() {
     const container = document.querySelector('.containerGerente');
 
     if (!container) return;
 
-    const loadingDiv = createLoadingDiv(container, 'Buscando pratos...');
+    const loadingDiv = createLoadingDiv(container, 'Buscando reservas...');
 
     try {
         const charts = document.querySelectorAll('.reservasChart');
@@ -40,6 +49,12 @@ export default async function reservationsReports() {
     }
 }
 
+/**
+ *  Busca dados da resrva para um período específico.
+ *
+ * @param {string} date - Período desejado
+ * @returns {Promise<Object>} - Um objeto com os dados das reservas do período solicitado
+ */
 async function fetchReports(date) {
     const res = await axios.get(`${urlApi}/relatorios/reservas/${date}`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -47,6 +62,12 @@ async function fetchReports(date) {
     return res.data;
 }
 
+/**
+ *
+ * @param {HTMLCanvasElement} canvas - Elemento onde será renderizado o gráfico
+ * @param {Object} data - Dados da reserva (total, confirmadas, pendentes, canceladas)
+ * @param {string} title - Título a ser exibido no gráfico.
+ */
 function createGraph(canvas, data, title) {
     const labels = ['Total', 'Confirmadas', 'Pendentes', 'Canceladas'];
     const values = [data.total, data.confirmadas, data.pendentes, data.canceladas];

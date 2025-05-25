@@ -8,10 +8,12 @@ import './modules/validation/ValidarReservaForm';
 import './modules/validation/ValidaPratoForm';
 import'./modules/utils/resetSearchInput';
 import './modules/utils/formattedPhone';
+
 import scrollButtons from './modules/utils/scrollButtons';
 import { searchReservations, searchDishes } from './components/SearchBar';
 import relatorioReservas from './components/relatorioReservas';
 import initFavorite from './components/toggleFavorite';
+import favoriteDishes from './components/favoriteDishes';
 
 function init() {
     scrollButtons();
@@ -23,4 +25,5 @@ function init() {
 
 document.addEventListener("DOMContentLoaded", async () => {
     init();
+    favoriteDishes();
 });
