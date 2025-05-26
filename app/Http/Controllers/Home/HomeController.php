@@ -13,8 +13,7 @@ class HomeController extends Controller
     */
     public function index(): View
     {
-        $token = session('api_token');
-        $response = Http::withToken($token)->get(env('API_URL') . 'favoritos/favoritados');
+        $response = Http::get(env('API_URL') . 'favoritos/favoritados');
         
         if ($response->successful()) {
             $responseData = $response->json();

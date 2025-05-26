@@ -1,21 +1,20 @@
-import { jsPDF } from "jspdf";
-
 import { token, urlApi } from "../global/globalVariables";
 import createLoadingDiv from "../modules/utils/createLoadingDiv";
+import exportToPDF from './exportToPDF';
 
 /**
  * Busca e renderiza dados de pratos mais favoritados no dashboard do administrador.
- * 
+ *
  * Esta função principal:
  * 1. Busca dados da API de pratos favoritados
  * 2. Organiza os dados por categoria de pratos
  * 3. Configura os botões de exportação
  * 4. Renderiza os gráficos para cada categoria
- * 
+ *
  * @async
  * @function favoriteDishes
  * @returns {Promise<void>}
- * @throws {Error} Se houver erro na requisição à API
+ * @throws {Error} - Se houver erro na requisição à API
  */
 export default async function favoriteDishes() {
     const container = document.querySelector('.containerGerente');
@@ -147,89 +146,10 @@ function handleExportButton(dishesByCategory) {
 
     exportButtons.forEach(button => {
         const categoryTitle = button.closest('.stats-item').querySelector('h2').textContent.trim();
+
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            exportCategoryData(dishesByCategory[categoryTitle], categoryTitle);
+            exportToPDF(dishesByCategory[categoryTitle], categoryTitle);
         });
     });
-}
-
-/**
- * Gera e faz download de um arquivo PDF contendo relatório dos pratos favoritados.
- *
- * O PDF gerado inclui:
- * - Título do relatório
- * - Data e hora de geração
- * - Tabela com nome do prato, total de favoritos e descrição
- * - Total de pratos ao final do documento
- *
- * @function exportCategoryData
- * @param {Array<Object>} data - Dados dos pratos a serem incluídos no relatório
- * @param {Object} data[].prato - Informações do prato
- * @param {string} data[].prato.nome - Nome do prato
- * @param {string} data[].prato.descricao - Descrição do prato
- * @param {number} data[].total_favoritos - Quantidade de favoritos do prato
- * @param {string} categoryTitle - Título da categoria para o relatório
- */
-function exportCategoryData(data, categoryTitle) {
-    const doc = new jsPDF();
-
-    // Adiciona título
-    doc.setFontSize(16);
-    doc.text(`Relatório de ${categoryTitle} Mais Favoritados`, 15, 15);
-
-    // Adiciona data
-    doc.setFontSize(10);
-    doc.text(`Data do relatório: ${new Date().toLocaleDateString('pt-BR')}`, 15, 25);
-    doc.text(`Horário de impressão: ${new Date().toLocaleTimeString('pt-BR')}`, 15, 30);
-
-    // Adiciona cabeçalho da tabela
-    doc.setFontSize(12);
-    const headers = ['Nome do Prato', 'Total de Favoritos', 'Descrição'];
-    let y = 40;
-
-    // Estilização do cabeçalho
-    doc.setFont('helvetica', 'bold');
-    doc.text(headers[0], 15, y);
-    doc.text(headers[1], 100, y);
-    doc.text(headers[2], 140, y);
-
-    // Adiciona conteúdo
-    doc.setFont('helvetica', 'normal');
-    data.forEach((item, index) => {
-        y += 10;
-
-        if (y > 270) {
-            doc.addPage();
-            y = 20;
-        }
-
-        let nome = item.prato.nome;
-        let total = item.total_favoritos.toString();
-        let descricao = item.prato.descricao;
-
-        // Lida com descrição comprida
-        if (descricao.length > 30) {
-            descricao = descricao.substring(0, 27) + '...';
-        }
-        if (nome.length > 30) {
-            nome = nome.substring(0, 27) + '...';
-        }
-
-        doc.text(nome, 15, y);
-        doc.text(total, 100, y);
-        doc.text(descricao, 140, y);
-    });
-
-    // Adiciona footer com total de pratos
-    doc.setFont('helvetica', 'bold');
-    y += 20;
-    if (y > 270) {
-        doc.addPage();
-        y = 20;
-    }
-    doc.text(`Total de pratos: ${data.length}`, 15, y);
-
-    // Salva documento PDF
-    doc.save(`relatorio_${categoryTitle.toLowerCase().replace(/\s+/g, '_')}.pdf`);
 }
