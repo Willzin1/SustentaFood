@@ -1,5 +1,6 @@
 import { token, urlApi } from "../global/globalVariables";
 import createLoadingDiv from "../modules/utils/createLoadingDiv";
+import exportToPDF from "./exportToPDF";
 
 /**
  * Gera gráficos com dados de relatórios de reservas (diário, semanal e mensal).
@@ -42,6 +43,7 @@ export default async function reservationsReports() {
             }
         });
 
+        handleExportButton();
     } catch (error) {
         toastr.error('Erro ao carregar dados das reservas');
     } finally {
@@ -97,5 +99,43 @@ function createGraph(canvas, data, title) {
                 }
             }
         }
+    });
+}
+
+/**
+ * Responsável por lidar com os botões de exportar reservas
+ *
+ * @throws {Error} - Em caso de erro na requisição à API
+ */
+function handleExportButton() {
+    const exportButton = document.querySelectorAll('.export-button');
+
+    exportButton.forEach(async button => {
+        button.addEventListener('click', async (e) => {
+            e.preventDefault();
+
+            const title = button.closest('div').querySelector('h5').textContent.trim();
+
+            // Determine which period to fetch based on the title
+            let period;
+            if (title.includes('Hoje')) period = 'dia';
+            if (title.includes('Semana')) period = 'semana';
+            if (title.includes('Mês')) period = 'mes';
+
+            try {
+                const data = await fetchReports(period);
+
+                const formattedData = [
+                    `Total de Reservas: ${data.total}`,
+                    `Reservas Confirmadas: ${data.confirmadas}`,
+                    `Reservas Pendentes: ${data.pendentes}`,
+                    `Reservas Canceladas: ${data.canceladas}`
+                ];
+
+                exportToPDF(formattedData, `Relatório de Reservas - ${title}`);
+            } catch (error) {
+                toastr.error('Erro ao exportar relatório');
+            }
+        });
     });
 }

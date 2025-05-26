@@ -29,10 +29,10 @@ Sustenta Food
             </div>
         </section>
         <section id="menu">
-            <h2 class="section-title">Favoritos da Galera</h2>
+            <h2 class="section-title">{{ isset($pratosFavoritos) && !empty($pratosFavoritos) ? 'Favoritos da Galera' : 'Pratos de destaque' }}</h2>
             <!-- <h3 class="section-subtitle">OS MAIS PEDIDOS</h3> -->
             <div id="pratos">
-                @if(isset($pratosFavoritos))
+                @if(isset($pratosFavoritos) && !empty($pratosFavoritos))
                     @foreach($pratosFavoritos as $prato)
                         <div class="prato">
                             <div class="prato-inner">
@@ -56,7 +56,7 @@ Sustenta Food
                     <div class="prato">
                         <div class="prato-inner">
                             <div class="prato-front">
-                                <div class="prato-heart"><i class="fa-solid fa-heart"></i></div>
+                                <!-- <div class="prato-heart"><i class="fa-solid fa-heart"></i></div> -->
                                 <img src="{{ asset('assets/images/dish.png') }}" class="prato-image" alt="">
                                 <h3 class="prato-title">Bolo de Abacaxi</h3>
                                 <span class="prato-description">Experimente este irresistível bolo de abacaxi! Além de fofo e delicioso, é rico em vitamina C</span>

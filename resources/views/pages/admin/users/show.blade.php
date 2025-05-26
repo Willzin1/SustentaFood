@@ -19,7 +19,7 @@ Sustenta Food | Admin
                 @if(empty($reservas))
                     <p>Esse cliente não tem reservas.</p>
                 @else
-                    <table>
+                    <table id="reservasTable">
                         <thead>
                             <tr>
                                 <th>ID reserva</th>
@@ -42,6 +42,7 @@ Sustenta Food | Admin
                             @endforeach
                         </tbody>
                     </table>
+                    <button onclick="exportClientToPDF()">Exportar PDF</button>
                 @endif
             </div>
         </section>
