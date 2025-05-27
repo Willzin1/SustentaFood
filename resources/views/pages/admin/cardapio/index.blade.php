@@ -26,7 +26,7 @@ Sustenta Food | Admin
                 <button class="btn btn-danger btnBuscaDish">Buscar</button>
             </div>
 
-            @if(empty($pratos['data']))
+            @if(empty($paginate['data']))
                 <p>Não há pratos registrados.</p>
             @else
                 <table class="table">
@@ -40,7 +40,7 @@ Sustenta Food | Admin
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pratos['data'] as $prato)
+                        @foreach ($paginate['data'] as $prato)
                             <tr>
                                 <td><img src="{{ env('API_URL_STORAGE') }}/{{ $prato['imagem'] }}" alt="{{ $prato['nome'] }}" width="50"></td>
                                 <td>{{ $prato['nome'] }}</td>
@@ -58,8 +58,8 @@ Sustenta Food | Admin
                         @endforeach
                     </tbody>
                 </table>
-                <x-pagination :links="$pratos['links']" :currentPage="$pratos['current_page']"
-                :lastPage="$pratos['last_page']" base-url="{{ route('admin.cardapio.index') }}" />
+                <x-pagination :links="$paginate['links']" :currentPage="$paginate['current_page']"
+                :lastPage="$paginate['last_page']" base-url="{{ route('admin.cardapio.index') }}" />
             @endif
         </section>
     </div>

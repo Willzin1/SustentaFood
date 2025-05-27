@@ -11,16 +11,16 @@ class CardapioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
         $token = session('api_token');
         $response =  Http::withToken($token)->get(env('API_URL') . 'cardapio');
 
         if ($response->successful()) {
             $prato = $response->json();
-            $pratos = collect($prato['data']);
+            $pratos = collect($prato['pratos']);
 
-            return view('pages.cardapio.index', compact('pratos'));
+            return view('pages.cardapio.index', ['pratos' => $pratos]);
         }
 
         return view('errors.page404');

@@ -22,13 +22,16 @@ class CardapioController extends Controller
             'filter' => $request->get('filter')
         ]);
 
-        $pratos = $response->json();
+        $prato = $response->json();
+        $paginate = $prato['paginate'];
+        $pratos = collect($prato['pratos']);
 
-        if ($request->get('page') > $pratos['last_page']) {
+        // dd($paginate);
+        if ($request->get('page') > $paginate['last_page']) {
             return view('errors.page404');
         }
 
-        return view('pages.admin.cardapio.index', compact('pratos'));
+        return view('pages.admin.cardapio.index', ['pratos' => $pratos, 'paginate' => $paginate]);
     }
 
     /**
