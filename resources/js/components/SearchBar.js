@@ -82,12 +82,12 @@ export function searchDishes() {
                 withCredentials: true
             });
 
-            if (response.data.data.length <= 0) {
+            if (response.data.paginate.data.length <= 0) {
                 toastr.warning('Nenhum prato encontrado!');
                 return;
             }
 
-            changeTable(response.data.data, 'pratos');
+            changeTable(response.data.paginate.data, 'pratos');
         } catch (e) {
             toastr.error('Erro inesperado, tente novamente!');
             console.error(e);

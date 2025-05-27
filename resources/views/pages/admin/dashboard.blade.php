@@ -14,19 +14,19 @@ Sustenta Food | Admin
                 <div class="">
                     <h5 class="">Hoje</h5>
                     <canvas class="reservasChart" height="150"></canvas>
-                    <small><a href="{{ route('admin.reservas.dia') }}">Ver todas</a> | <a href="#" class="export-button">Exportar</a></small>
+                    <small><a href="{{ route('admin.reservas.dia') }}">Ver todas</a> | <button type="button" class="export-button">Exportar</button></small>
                 </div>
 
                 <div class="">
                     <h5 class="">Esta Semana</h5>
                     <canvas class="reservasChart" height="150"></canvas>
-                    <small><a href="{{ route('admin.reservas.semana') }}">ver todas</a> | <a href="#" class="export-button">Exportar</a></small>
+                    <small><a href="{{ route('admin.reservas.semana') }}">ver todas</a> | <button type="button" class="export-button">Exportar</button></small>
                 </div>
 
                 <div class="">
                     <h5 class="">Este Mês</h5>
                     <canvas class="reservasChart" height="150"></canvas>
-                    <small><a href="{{ route('admin.reservas.mes') }}">ver todas</a> | <a href="#" class="export-button">Exportar</a></small>
+                    <small><a href="{{ route('admin.reservas.mes') }}">ver todas</a> | <button type="button" class="export-button">Exportar</button></small>
                 </div>
             </div>
         </div>
