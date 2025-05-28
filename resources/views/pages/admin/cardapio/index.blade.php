@@ -5,15 +5,15 @@ Sustenta Food | Admin
 @endsection
 
 @section('content')
+<div class="dashboard-container">
+
+    @include('includes.aside')
     <div class="containerGerente">
-
-        @include('includes.aside')
-
         <section id="reservas">
 
             <h2>Gerenciar Cardápio</h2>
             <div class="reservas-tabela">
-            <a href="{{ route('admin.cardapio.create') }}" class="btn btn-primary">Adicionar Prato</a>
+            <a href="{{ route('admin.cardapio.create') }}" class="btn-link btn-link-dark">Adicionar Prato</a>
 
             <div>
                 <select name="filter" id="filter" class="filterSelect">
@@ -47,7 +47,7 @@ Sustenta Food | Admin
                                 <td>{{ $prato['descricao'] }}</td>
                                 <td>{{ ucfirst($prato['categoria']) }}</td>
                                 <td>
-                                    <a href="{{ route('admin.cardapio.edit', ['prato' => $prato['id']]) }}" class="btn btn-warning">Editar</a>
+                                    <a href="{{ route('admin.cardapio.edit', ['prato' => $prato['id']]) }}" class="btn-link btn-link-dark">Editar</a>
                                     <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato['id']]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -63,4 +63,5 @@ Sustenta Food | Admin
             @endif
         </section>
     </div>
+</div>
 @endsection

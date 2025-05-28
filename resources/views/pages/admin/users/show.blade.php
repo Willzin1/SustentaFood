@@ -5,11 +5,12 @@ Sustenta Food | Admin
 @endsection
 
 @section('content')
+<div class="dashboard-container">
+    @include('includes.aside')
     <div class="containerGerente">
-        @include('includes.aside')
-
-        <section id="user-info">
-            <h2>Informações do Cliente</h2>
+        <div class="container-reservas">
+            <section id="user-info">
+                <h2>Informações do Cliente</h2>
             <p><strong>Nome:</strong> {{ $user['name'] }}</p>
             <p><strong>Email:</strong> {{ $user['email'] }}</p>
             <p class="phoneUser">{{ $user['phone'] }}</p>
@@ -39,12 +40,14 @@ Sustenta Food | Admin
                                     <td>{{ $reserva['status'] }}</td>
                                     <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar</a></td>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <button onclick="exportClientToPDF()">Exportar PDF</button>
-                @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <button onclick="exportClientToPDF()">Exportar PDF</button>
+                        @endif
+                    </div>
+                </section>
             </div>
-        </section>
     </div>
+</div>
 @endsection

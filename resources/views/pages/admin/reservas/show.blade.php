@@ -5,9 +5,10 @@ Sustenta Food | Admin
 @endsection
 
 @section('content')
-    <div class="containerGerente">
-        @include('includes.aside')
+<div class="dashboard-container">
 
+    @include('includes.aside')
+    <div class="containerGerente">
         <div class="container-reservas">
             <h2>Informações do Cliente</h2>
             <p><strong>Nome:</strong> {{ $reserva['name'] }}</p>
@@ -51,13 +52,14 @@ Sustenta Food | Admin
             <form action="{{ route('admin.reserva.destroy', ['reserva' => $reserva['id']]) }}" method="post">
                 @method('DELETE')
                 @csrf
-                <div class="grupo-formulario"></div>
-                <button type="submit" class="shadow__btn btn-red">Apagar reserva</button>
+                <div class="button-container">
+
+                    <button type="submit" class="shadow__btn btn-red">Apagar reserva</button>
+                </div>
             </form>
 
-            <a href="{{ route('admin.dashboard') }}">
-                <button type="button" id="button-reserva" class="shadow__btn">Voltar</button>
-            </a>
+            <a href="{{ route('admin.dashboard') }}" class="btn-link btn-link-light">Voltar</a>
         </div>
     </div>
+</div>
 @endsection

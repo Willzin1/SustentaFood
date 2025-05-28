@@ -5,9 +5,9 @@ Sustenta Food | Admin
 @endsection
 
 @section('content')
+<div class="dashboard-container">
+    @include('includes.aside')
     <div class="containerGerente">
-        @include('includes.aside')
-
         <section id="reservas">
             <h2>{{ $titulo ?? 'Todas as Reservas' }}</h2>
 
@@ -67,4 +67,5 @@ Sustenta Food | Admin
             </div>
         </section>
     </div>
+</div>
 @endsection
