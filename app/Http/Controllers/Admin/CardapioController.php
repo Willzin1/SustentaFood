@@ -26,7 +26,6 @@ class CardapioController extends Controller
         $paginate = $prato['paginate'];
         $pratos = collect($prato['pratos']);
 
-        // dd($paginate);
         if ($request->get('page') > $paginate['last_page']) {
             return view('errors.page404');
         }

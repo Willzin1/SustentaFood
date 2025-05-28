@@ -4,7 +4,7 @@
 
     <div id="footer_items">
         <span class="copyright">
-            &copy 2024 Feira Tecnológica ETEC ZL
+            &copy 2025 Sustenta Food
         </span>
 
         <div class="social-media-buttons">

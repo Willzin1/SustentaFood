@@ -62,6 +62,7 @@ export default async function favoriteDishes() {
 
     } catch (error) {
         toastr.error('Erro ao buscar pratos');
+        console.log(error);
     } finally {
         loadingDiv.remove();
     }

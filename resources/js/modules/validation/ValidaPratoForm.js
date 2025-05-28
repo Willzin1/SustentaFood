@@ -2,7 +2,7 @@ import CreateMessages from '../utils/CreateMessages';
 
 /**
  * Classe responsável pela validação do formulário de pratos.
- * 
+ *
  * @class ValidaPratoForm
  * @description Gerencia validações de campos como nome, descrição, categoria e imagem
  * do prato, aplicando regras específicas para cada tipo de campo.
@@ -11,7 +11,7 @@ class ValidaPratoForm {
     /**
      * Inicializa o validador do formulário de pratos.
      * Busca o formulário com a classe 'prato-form' e inicializa os eventos.
-     * 
+     *
      * @constructor
      */
     constructor() {
@@ -24,7 +24,7 @@ class ValidaPratoForm {
 
     /**
      * Inicializa os eventos do formulário.
-     * 
+     *
      * @method init
      * @private
      */
@@ -36,7 +36,7 @@ class ValidaPratoForm {
 
     /**
      * Manipula o evento de submit do formulário.
-     * 
+     *
      * @method handleSubmit
      * @param {Event} event - Evento de submit do formulário
      * @private
@@ -53,7 +53,7 @@ class ValidaPratoForm {
     /**
      * Valida todos os campos do formulário.
      * Remove mensagens de erro anteriores e aplica validações específicas para cada tipo de campo.
-     * 
+     *
      * @method isFieldValid
      * @returns {boolean} Retorna true se todos os campos são válidos, false caso contrário
      * @private
@@ -96,7 +96,7 @@ class ValidaPratoForm {
     /**
      * Valida o nome do prato.
      * Verifica se o nome tem entre 3 e 100 caracteres e contém apenas letras.
-     * 
+     *
      * @method isNomeValid
      * @param {HTMLElement} field - Campo de input do nome
      * @returns {boolean} Retorna true se o nome é válido, false caso contrário
@@ -112,7 +112,7 @@ class ValidaPratoForm {
             return;
         }
 
-        if(!/^[a-zA-Zà-úÀ-ÚçÇ\s\-,]+$/.test(pratoNome)) {
+        if(!/^[a-zA-Zà-úÀ-ÚçÇ\s\-,.]+$/.test(pratoNome)) {
             CreateMessages.errorMessage(field, 'Deve conter apenas letras');
             valid = false;
         }
@@ -123,7 +123,7 @@ class ValidaPratoForm {
     /**
      * Valida a descrição do prato.
      * Verifica se a descrição tem entre 3 e 100 caracteres e contém apenas letras.
-     * 
+     *
      * @method isDescricaoValid
      * @param {HTMLElement} field - Campo de input da descrição
      * @returns {boolean} Retorna true se a descrição é válida, false caso contrário
@@ -139,7 +139,7 @@ class ValidaPratoForm {
             return;
         }
 
-        if(!/^[a-zA-Zà-úÀ-ÚçÇ\s\-,]+$/.test(pratoDesc)) {
+        if(!/^[a-zA-Zà-úÀ-ÚçÇ\s\-,.]+$/.test(pratoDesc)) {
             CreateMessages.errorMessage(field, 'Deve conter apenas letras');
             valid = false;
         }
@@ -150,7 +150,7 @@ class ValidaPratoForm {
     /**
      * Valida a categoria do prato.
      * Verifica se a categoria selecionada está entre as opções válidas.
-     * 
+     *
      * @method isCategoriaValid
      * @param {HTMLElement} field - Campo de seleção da categoria
      * @returns {boolean} Retorna true se a categoria é válida, false caso contrário
@@ -171,7 +171,7 @@ class ValidaPratoForm {
 
     /**
      * Valida o campo de imagem do prato.
-     * 
+     *
      * @method isImagemValid
      * @param {HTMLElement} field - Campo de upload de imagem
      * @returns {boolean} Retorna true se a imagem é válida, false caso contrário
