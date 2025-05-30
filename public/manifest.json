@@ -2,7 +2,7 @@
     "name": "Sustenta Food",
     "short_name": "SustentaFood",
     "description": "Aplicativo para reservas e cardápio do restaurante",
-    "start_url": "http://127.0.0.1:8000",
+    "start_url": "http://20.186.89.170:81",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
