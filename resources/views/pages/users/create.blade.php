@@ -17,7 +17,7 @@ Sustenta Food | Registre-se
 
             <h1>Crie sua conta</h1>
 
-            <form action="{{ route('register.store') }}" class="formulario register-form" method="post">
+            <form action="{{ route('user.store') }}" class="formulario register-form" method="post">
                 @csrf
                 <div class="grupo-formulario">
                     <label for="nome">Nome:</label>

@@ -24,7 +24,7 @@ Sustenta Food | Entrar
         </form>
 
         <div class="linha-separacao">
-            <p>Ainda não tem uma conta? <a href="{{ route('register.create') }}" class="link-login"><br>Cadastre-se</a></p>
+            <p>Ainda não tem uma conta? <a href="{{ route('user.create') }}" class="link-login"><br>Cadastre-se</a></p>
         </div>
     </div>
 </div>
