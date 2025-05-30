@@ -18,6 +18,10 @@ Route::get('/verify', function () {
    return view('utils.verify-thankyou');
 });
 
+Route::get('/confirmar-reserva', function () {
+    return view('utils.confirm-reservation');
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Rota para visualização do cardapio (User)
