@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\UserController as AdminUser;
 use App\Http\Controllers\Admin\CardapioController as AdminCardapio;
 use App\Http\Controllers\Admin\RelatorioReservasController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Cardapio\CardapioController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Reservas\ReservasController;
@@ -30,9 +29,9 @@ Route::controller(CardapioController::class)->group(function() {
 });
 
 // Rotas para criação de um user
-Route::controller(RegisterController::class)->prefix('/register')->middleware('isGuest')->group(function() {
-    Route::get('/', 'create')->name('register.create');
-    Route::post('/', 'store')->name('register.store');
+Route::controller(UserController::class)->prefix('/register')->middleware('isGuest')->group(function() {
+    Route::get('/', 'create')->name('user.create');
+    Route::post('/', 'store')->name('user.store');
 });
 
 // Rotas para a autenticação de um user

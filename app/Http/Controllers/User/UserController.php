@@ -10,32 +10,34 @@ use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
-    // /**
-    //  * Show the form for creating a new resource.
-    //  */
-    // public function create(): View
-    // {
-    //     return view('pages.users.create');
-    // }
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(): View
+    {
+        return view('pages.users.create');
+    }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  */
-    // public function store(Request $request): RedirectResponse
-    // {
-    //     $response = Http::post('http://localhost:3030/api/users/', [
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'phone' => $request->phone,
-    //         'password' => $request->password
-    //        ]);
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request): RedirectResponse
+    {
+        $phone = preg_replace('/\D/', '', $request->phone);
 
-    //     if ($response->successful()) {
-    //         return redirect()->route('login')->with('success', $response['message']);
-    //     }
+        $response = Http::post(env('API_URL') . 'users', [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $phone,
+            'password' => $request->password
+           ]);
 
-    //     return redirect()->back()->withInput()->withErrors(['error' => $response['errors']]);
-    // }
+        if ($response->successful()) {
+            return redirect()->route('login')->with(['success' => $response['message'], 'info' => 'Por favor, verifique seu e-mail para ativar sua conta.']);
+        }
+
+        return redirect()->back()->withInput()->withErrors(['error' => $response['errors']]);
+    }
 
     /**
      * Display the specified resource.
