@@ -58,7 +58,7 @@ Sustenta Food | Admin
                 </div>
             </form>
 
-            <a href="{{ route('admin.dashboard') }}" class="btn-link btn-link-light">Voltar</a>
+            <a href="{{ route('admin.reservas.index') }}" class="btn-link btn-link-light">Voltar</a>
         </div>
     </div>
 </div>

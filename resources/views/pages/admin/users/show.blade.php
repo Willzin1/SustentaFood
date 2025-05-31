@@ -38,12 +38,13 @@ Sustenta Food | Admin
                                     <td>{{ $reserva['hora'] }}</td>
                                     <td>{{ $reserva['quantidade_cadeiras'] }}</td>
                                     <td>{{ $reserva['status'] }}</td>
-                                    <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar</a></td>
+                                    <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}" class="btn-link btn-link-dark">Gerenciar</a></td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
                         <button onclick="exportClientToPDF()">Exportar PDF</button>
+                        <a href="{{ route('admin.reservas.index') }}" class="btn-link btn-link-dark">Voltar</a>
                         @endif
                     </div>
                 </section>

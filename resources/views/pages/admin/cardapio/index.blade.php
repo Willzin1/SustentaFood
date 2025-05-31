@@ -9,7 +9,8 @@ Sustenta Food | Admin
 
     @include('includes.aside')
     <div class="containerGerente">
-        <section id="reservas">
+        <div class="container-reservas">
+            <section id="reservas">
 
             <h2>Gerenciar Cardápio</h2>
             <div class="reservas-tabela">
@@ -36,7 +37,6 @@ Sustenta Food | Admin
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Categoria</th>
-                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +48,7 @@ Sustenta Food | Admin
                                 <td>{{ ucfirst($prato['categoria']) }}</td>
                                 <td>
                                     <a href="{{ route('admin.cardapio.edit', ['prato' => $prato['id']]) }}" class="btn-link btn-link-dark">Editar</a>
-                                    <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato['id']]) }}" method="POST">
+                                    <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato['id']]) }}" style="display:inline;" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger">Excluir</button>
@@ -59,9 +59,10 @@ Sustenta Food | Admin
                     </tbody>
                 </table>
                 <x-pagination :links="$paginate['links']" :currentPage="$paginate['current_page']"
-                :lastPage="$paginate['last_page']" base-url="{{ route('admin.cardapio.index') }}" />
-            @endif
-        </section>
+                    :lastPage="$paginate['last_page']" base-url="{{ route('admin.cardapio.index') }}" />
+                @endif
+            </section>
+        </div>
     </div>
 </div>
 @endsection

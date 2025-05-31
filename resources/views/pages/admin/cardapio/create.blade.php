@@ -10,8 +10,7 @@ Sustenta Food | Admin
 
     @include('includes.aside')
     <div class="containerGerente">
-
-        <div class="container-reserva">
+        <div class="container-reservas">
             <h2>Adicionar Prato</h2>
 
             <form action="{{ route('admin.cardapio.store') }}" class="prato-form" method="POST" enctype="multipart/form-data">
@@ -36,6 +35,7 @@ Sustenta Food | Admin
                 <input type="file" name="imagem" class="validar imagem" id="imagem" accept="image/*">
 
                 <button type="submit">Adicionar Prato</button>
+                <a href="{{ route('admin.cardapio.index') }}" class="btn-link btn-link-dark">Voltar</a>
             </form>
         </div>
     </div>
