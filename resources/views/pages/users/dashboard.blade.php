@@ -44,7 +44,11 @@ Sustenta Food | Perfil
                         <p class="reserTime"><strong>Hora:</strong> {{ date('H:i', strtotime($reserva['hora'])) }}</p>
                         <p><strong>Quantidade cadeiras:</strong> {{ $reserva['quantidade_cadeiras'] }}</p>
                         @if($reserva['status'] == 'confirmada')
-                            <p class="status confirmed">Reserva confirmada</p>
+                            <p class="confirmed-reservation">Reserva confirmada</p>
+                            <form action="{{ route('reservas.cancel', ['reserva' => $reserva['id']]) }}" method="post">
+                                @csrf
+                                <button type="submit" class="button-link">Cancelar reserva</button>
+                            </form>
                         @else
                             <a href="{{ route('reservas.edit', ['reserva' => $reserva['id']]) }}" class="button-link">Editar reserva</a>
                         @endif
@@ -55,4 +59,5 @@ Sustenta Food | Perfil
 
         <a href="{{ route('reservas.create') }}"><button class="profile-button btn-Res" id="make-reservation">Fazer Nova Reserva</button></a>
     </section>
+    </div>
 @endsection

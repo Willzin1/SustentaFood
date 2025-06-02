@@ -62,6 +62,7 @@ Route::middleware('checkApiToken')->group(function() {
         Route::get('/{reserva}/edit', 'edit')->name('reservas.edit');
         Route::put('/{reserva}', 'update')->name('reservas.update');
         Route::delete('/{reserva}', 'destroy')->name('reservas.destroy');
+        Route::post('/{reserva}/cancelar', 'cancel')->name('reservas.cancel');
     });
 
     // Rotas do administrador
@@ -76,6 +77,7 @@ Route::middleware('checkApiToken')->group(function() {
             Route::get('/admin/reservas/{reserva}/edit', 'edit')->name('admin.reserva.edit');
             Route::put('/admin/reservas/{reserva}', 'update')->name('admin.reserva.update');
             Route::delete('/admin/reservas/{reserva}', 'destroy')->name('admin.reserva.destroy');
+            Route::post('/admin/reservas/{reserva}/cancelar', 'cancel')->name('admin.reserva.cancel');
         });
 
         Route::controller(AdminUser::class)->group(function() {

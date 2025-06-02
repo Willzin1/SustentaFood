@@ -38,7 +38,7 @@ class ReservasController extends Controller
             ]);
 
             if ($response->successful()) {
-                return redirect()->back()->with('success', $response['message']);
+                return redirect()->back()->with(['success' => $response['message'], 'info' => 'Por favor, confirme a reserva no e-mail.']);
             }
 
             return redirect()->back()->with('error', $response['message']);
@@ -53,7 +53,7 @@ class ReservasController extends Controller
         $user = $response->json();
 
         if ($response->successful()) {
-            return redirect()->route('users.show', ['user' => $user['reserva']['user_id']])->with('success', $response['message']);
+            return redirect()->route('users.show', ['user' => $user['reserva']['user_id']])->with(['success' => $response['message'], 'info' => 'Por favor, confirme a reserva no e-mail.']);
         }
 
         return redirect()->back()->with('error', $response['message']);
@@ -95,7 +95,7 @@ class ReservasController extends Controller
         $user = $response->json();
 
         if ($response->successful()) {
-            return redirect()->route('users.show', ['user' => $user['reserva']['user_id']])->with('success', $response['message']);
+            return redirect()->route('users.show', ['user' => $user['reserva']['user_id']])->with(['success' => $response['message'], 'info' => 'Por favor, confirme a reserva no e-mail.']);
         }
 
         return redirect()->back()->with('error', $response['message']);
@@ -113,6 +113,18 @@ class ReservasController extends Controller
 
         if ($response->successful()) {
             return redirect()->route('users.show', ['user' => $user['user']['user_id']])->with('success', $response['message']);
+        }
+
+        return redirect()->back()->with('error', $response['message']);
+    }
+
+    public function cancel(string $id): RedirectResponse
+    {
+        $token = session('api_token');
+        $response = Http::withToken($token)->post(env('API_URL') . "reservas/{$id}/cancelar");
+
+        if ($response->successful()) {
+            return redirect()->back()->with('success', $response['message']);
         }
 
         return redirect()->back()->with('error', $response['message']);
