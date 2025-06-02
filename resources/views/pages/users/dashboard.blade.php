@@ -43,7 +43,11 @@ Sustenta Food | Perfil
                         <p class="reserDate"><strong>Data:</strong> {{ $reserva['data'] }}</p>
                         <p class="reserTime"><strong>Hora:</strong> {{ date('H:i', strtotime($reserva['hora'])) }}</p>
                         <p><strong>Quantidade cadeiras:</strong> {{ $reserva['quantidade_cadeiras'] }}</p>
-                        <a href="{{ route('reservas.edit', ['reserva' => $reserva['id']]) }}" class="button-link">Editar reserva</a>
+                        @if($reserva['status'] == 'confirmada')
+                            <p class="status confirmed">Reserva confirmada</p>
+                        @else
+                            <a href="{{ route('reservas.edit', ['reserva' => $reserva['id']]) }}" class="button-link">Editar reserva</a>
+                        @endif
                     </div>
                 @endforeach
             </div>
