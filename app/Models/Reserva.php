@@ -20,6 +20,7 @@ class Reserva extends Model
         'data',
         'hora',
         'quantidade_cadeiras',
+        'motivo_cancelamento'
     ];
 
     /**

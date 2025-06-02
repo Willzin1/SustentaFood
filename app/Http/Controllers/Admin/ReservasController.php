@@ -91,4 +91,18 @@ class ReservasController extends Controller
 
         return redirect()->back()->with('error', $response['message']);
     }
+
+    public function cancel(Request $request, string $id): RedirectResponse
+    {
+        $token = session('api_token');
+        $response = Http::withToken($token)->post(env('API_URL') . "reservas/{$id}/cancelar", [
+            'motivo_cancelamento' => $request->motivo_cancelamento
+        ]);
+
+        if ($response->successful()) {
+            return redirect()->route('admin.reservas.index')->with('success', $response['message']);
+        }
+
+        return redirect()->back()->with('error', $response['message']);
+    }
 }
