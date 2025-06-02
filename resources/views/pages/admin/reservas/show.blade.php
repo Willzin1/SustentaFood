@@ -49,11 +49,12 @@ Sustenta Food | Admin
                         <button type="submit" id="button-reserva" class="shadow__btn">Editar reserva</button>
                     </div>
                 @endif
+
+                @if($reserva['status'] == 'confirmada')
+                    <button type="button" class="button-link shadow__btn">Cancelar reserva</button>
+                @endif
             </form>
 
-            @if($reserva['status'] == 'confirmada')
-                <button type="submit" class="button-link shadow__btn">Cancelar reserva</button>
-            @endif
 
             <form action="{{ route('admin.reserva.destroy', ['reserva' => $reserva['id']]) }}" method="post">
                 @method('DELETE')
@@ -63,30 +64,9 @@ Sustenta Food | Admin
                 </div>
             </form>
 
-            <a href="{{ route('admin.reservas.index') }}" class="button-link btn-link btn-link-light">Voltar</a>
+            <a href="{{ route('admin.reservas.index') }}" class=" btn-link btn-link-light">Voltar</a>
         </div>
     </div>
+    @include('includes.modal')
 </div>
-
-    <!-- Modal de Cancelamento -->
-    <div id="cancelModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Cancelar Reserva</h2>
-            <form id="cancelForm" action="{{ route('admin.reserva.cancel', ['reserva' => $reserva['id']]) }}" method="post">
-                @csrf
-                <div class="form-group">
-                    <label for="motivo">Motivo do cancelamento:</label>
-                    <input type="text" id="motivo" name="motivo_cancelamento" required>
-                </div>
-                <!-- <div class="form-group">
-                    <label for="descricao">Descrição:</label>
-                    <textarea id="descricao" name="descricao" rows="4" required></textarea>
-                </div> -->
-                <div class="modal-buttons">
-                    <button type="submit" class="btn-confirm">Confirmar</button>
-                    <button type="button" class="btn-cancel">Cancelar</button>
-                </div>
-            </form>
-        </div>
 @endsection
