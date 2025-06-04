@@ -1,6 +1,61 @@
+/* ----------------------- */
+/* Header Reduzido         */
+/* ----------------------- */
+header {
+    height: 60px; /* Altura reduzida */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: var (--color-neutral-1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header img {
+    max-height: 40px; /* Reduz tamanho da logo */
+    height: auto;      /* Mantém proporção */
+    width: auto;       /* Evita distorção */
+}
+
+header nav a {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    color: var(--color-neutral-1);
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+header nav a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 4px;
+    background-color: var(--color-primary-3);
+    transition: width 0.3s ease;
+}
+
+/* header nav a:hover {
+    background-color: var(--color-primary-2);
+    color: var(--color-neutral-0);
+    transform: scale(1.05);
+} */
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+
+/* ----------------------- */
+/* Seção: HOME (Hero)     */
+/* ----------------------- */
+
 #home {
     display: flex;
-    min-height: calc(100vh - 91px);
+    min-height: calc(100vh - 60px); /* Ajustado para nova altura do header */
     position: relative;
 }
 
@@ -32,7 +87,7 @@
 
 #cta_buttons a {
     text-decoration: none;
-    color: var(--color-neutral-1);
+    color: var(--color-secundary-1);
 }
 
 #phone_button {
@@ -71,17 +126,19 @@
     border-radius: 40% 30% 0% 20%;
     top: 0;
     right: 0;
-    z-index: 0; /* Ajuste para que fique atrás do cabeçalho */
-    transition: opacity 0.5s ease; /* Para uma transição suave */
+    z-index: 0;
+    transition: opacity 0.5s ease;
 }
 
-/* Quando o cabeçalho estiver fixo, esconda a shape */
 header.fixed + .shape {
-    opacity: 0; /* Oculta a forma */
-    pointer-events: none; /* Impede interações */
+    opacity: 0;
+    pointer-events: none;
 }
 
-/* Ajustes para os pratos */
+/* ----------------------------- */
+/* Seção: Cards de Pratos       */
+/* ----------------------------- */
+
 #pratos {
     display: flex;
     flex-wrap: wrap;
@@ -91,8 +148,8 @@ header.fixed + .shape {
 .prato {
     perspective: 1000px;
     margin: 20px;
-    width: 500px;  /* Largura inicial do card */
-    height: 650px; /* Ajustando altura para garantir espaço para as estrelas */
+    width: 500px;
+    height: 650px;
     display: flex;
     transition: all 0.3s ease-in-out;
 }
@@ -121,12 +178,12 @@ header.fixed + .shape {
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
-    padding-bottom: 10px; /* Ajustando padding para garantir que as estrelas fiquem visíveis */
+    padding-bottom: 10px;
 }
 
 .prato-image {
     width: 100%;
-    height: 70%; /* Ajustando altura para manter proporção */
+    height: 70%;
     object-fit: cover;
 }
 
@@ -148,7 +205,44 @@ header.fixed + .shape {
     border-radius: 0px 37.5px 0px 42.5px;
 }
 
-/* Ajustes para a tela responsiva - Reduzindo os pratos */
+/*TESTEMUNHASS*/
+#testimonials {
+    padding: 40px 20px;
+    background-color: var(--color-neutral-0); /* ajuste se necessário */
+}
+
+#testimonials_content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#feedbacks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* duas colunas */
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.feedback {
+    display: flex;
+    gap: 16px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.feedback-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* ----------------------------- */
+/* Responsividade               */
+/* ----------------------------- */
+
 @media screen and (max-width: 1170px) {
     #home {
         min-height: 100%;
@@ -167,30 +261,61 @@ header.fixed + .shape {
         align-items: center;
     }
 
-    /* Ajustando os pratos na tela menor */
     .prato {
-        width: 350px;  /* Diminuindo a largura */
-        height: 500px; /* Diminuindo a altura */
+        width: 350px;
+        height: 500px;
     }
 }
 
+.reserva-desktop {
+        display: none !important;
+    }
+
 @media screen and (max-width: 768px) {
-    .prato {
-        width: 300px;  /* Reduzindo ainda mais a largura */
-        height: 450px; /* Ajustando a altura */
+    header {
+        height: auto;
+        padding: 10px 20px;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        justify-content: center; /* Centraliza horizontalmente os itens do header */
+    }
+
+    header img {
+        max-height: 50px;
+        margin: 0 auto; /* Centraliza a logo no header */
+        display: block;
+    }
+
+    header nav {
+        width: 100%;
+        display: flex;
+        justify-content: center; /* Centraliza os botões */
+        gap: 12px;
+    }
+
+    header nav a {
+        padding: 10px 16px;
+        font-size: 1rem;
+        text-align: center;
     }
 }
+
+
 
 @media screen and (max-width: 450px) {
     .prato {
-        width: 250px;  /* Reduzindo a largura para dispositivos muito pequenos */
-        height: 400px; /* Ajustando a altura para dispositivos muito pequenos */
+        width: 250px;
+        height: 400px;
     }
 }
 
-/* Estilo para as estrelas */
+/* ----------------------------- */
+/* Estilo das Estrelas          */
+/* ----------------------------- */
+
 .prato-rate i {
-    color: #FFD700; /* Cor amarela para as estrelas */
+    color: #FFD700;
     font-size: 1.2rem;
 }
 

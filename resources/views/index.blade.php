@@ -1,7 +1,7 @@
 @extends('templates.master')
 
 @section('title')
-Sustenta Food
+SustentaFood
 @endsection
 
 @section('content')
@@ -12,11 +12,11 @@ Sustenta Food
                 <h1 class="title">O sabor que vai de ponta a <span>ponta</span></h1>
                 <p class="description">Nossa proposta é oferecer uma experiência gastronômica consciente, aproveitando ingredientes de forma integral e sustentável</p>
                 <div id="cta_buttons">
-                    <a href="{{ route('cardapio.index') }}" class="btn-default">Ver cardápio</a>
-                    <a href="tel:+55555555555" id="phone_button">
-                        <button class="btn-default"><i class="fa-solid fa-phone"></i></button>
+<a href="{{ route('cardapio.index') }}" class="btn-default btn-cta">Ver cardápio</a>
+                    <!-- <a href="tel:+55555555555" id="phone_button">
+                        <i class="fa-solid fa-phone"></i>
                         (11) 94002-8922
-                    </a>
+                    </a> -->
                 </div>
                 <div class="social-media-buttons">
                     <a href=""><i class="fa-brands fa-whatsapp"></i></a>
@@ -28,6 +28,7 @@ Sustenta Food
                 <img src="{{ asset('assets/images/hero.png') }}" alt="">
             </div>
         </section>
+
         <section id="menu">
             <h2 class="section-title">{{ isset($pratosFavoritos) && !empty($pratosFavoritos) ? 'Favoritos da Galera' : 'Pratos de destaque' }}</h2>
             <!-- <h3 class="section-subtitle">OS MAIS PEDIDOS</h3> -->
@@ -74,8 +75,9 @@ Sustenta Food
                 @endif
             </div>
         </section>
-        <section id="testimonials">
-            <img src="{{ asset('assets/images/chef.png') }}" id="testimonial_chef" alt="">
+
+        <!-- <section id="testimonials">
+            <img src="{{ asset('assets/images/chef.png') }}" id="testimonial_chef" alt=""> -->
             <div id="testimonials_content">
                 <h2 class="section-title">Depoimentos</h2>
                 <h3 class="section-subtitle">O que os clientes falam sobre nós</h3>
@@ -111,7 +113,7 @@ Sustenta Food
                         </div>
                     </div>
                 </div>
-                <button class="btn-default"><a href="#top">VOLTAR AO TOPO</a></button>
+                <!-- <button class="btn-default"><a href="#top">VOLTAR AO TOPO</a></button> -->
             </div>
         </section>
     </main>
