@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'check.role' => \App\Http\Middleware\CheckRole::class,
             'isAdmin' => \App\Http\Middleware\IsAdmin::class,
             'checkApiToken' => \App\Http\Middleware\checkApiToken::class,
-            'isGuest' => \App\Http\Middleware\guestCustom::class
+            'isGuest' => \App\Http\Middleware\guestCustom::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -21,6 +21,14 @@ Route::get('/confirmar-reserva', function () {
     return view('utils.confirm-reservation');
 });
 
+Route::get('/confirmada-reserva', function () {
+    return view('utils.confirmed-reservation');
+});
+
+Route::get('/confirmado-email', function () {
+    return view('utils.confirmed-email');
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 // Rota para visualização do cardapio (User)
