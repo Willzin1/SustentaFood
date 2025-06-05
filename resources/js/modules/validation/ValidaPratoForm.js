@@ -171,15 +171,50 @@ class ValidaPratoForm {
 
     /**
      * Valida o campo de imagem do prato.
+     * Verifica se um arquivo foi selecionado, o tipo de arquivo e o tamanho (max 2MB).
      *
      * @method isImagemValid
-     * @param {HTMLElement} field - Campo de upload de imagem
-     * @returns {boolean} Retorna true se a imagem é válida, false caso contrário
+     * @param {HTMLInputElement} field - Campo de upload de imagem (input type="file")
+     * @returns {boolean} Retorna true se a imagem é válida ou se nenhum arquivo foi selecionado (em caso de edição onde a imagem não é obrigatória), false caso contrário
      * @private
      */
     isImagemValid(field) {
-        const imgFakePath = field.value;
-        return true;
+        let valid = true;
+        const file = field.files[0]; // Pega o primeiro arquivo selecionado
+
+        // Se não há arquivo selecionado e o campo não é obrigatório para um novo upload, é válido.
+        // Se for um formulário de 'criação', e a imagem for obrigatória, essa lógica pode precisar de ajuste.
+        // Assumindo que no update a imagem não é obrigatória, e no create ela pode ser,
+        // mas a validação de 'campo em branco' já deveria pegar.
+        if (!file) {
+            // Se não há arquivo e o formulário é para edição (PUT), a imagem pode não ser obrigatória
+            // Se for criação, e a imagem for obrigatória, você precisaria adicionar uma regra aqui
+            // para 'campo vazio' específico para o input file.
+            // Por enquanto, consideramos válido se nenhum arquivo for selecionado.
+            // Se você quer que a imagem seja obrigatória em 'create', adicione:
+            // if (this.formulario.classList.contains('form-create-prato')) { // Add a class to your create form
+            //    CreateMessages.errorMessage(field, 'O campo imagem é obrigatório.');
+            //    valid = false;
+            // }
+            return valid;
+        }
+
+        const maxSizeBytes = 2 * 1024 * 1024; // 2MB em bytes
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+
+        // 1. Validar Tipo de Arquivo
+        if (!allowedTypes.includes(file.type)) {
+            CreateMessages.errorMessage(field, 'A imagem deve ser do tipo JPEG, PNG, JPG ou GIF.');
+            valid = false;
+        }
+
+        // 2. Validar Tamanho do Arquivo
+        if (file.size > maxSizeBytes) {
+            CreateMessages.errorMessage(field, 'A imagem não pode ser maior que 2MB.');
+            valid = false;
+        }
+
+        return valid;
     }
 }
 
