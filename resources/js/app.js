@@ -14,7 +14,8 @@ import { searchReservations, searchDishes } from './components/SearchBar';
 import relatorioReservas from './components/relatorioReservas';
 import initFavorite from './components/toggleFavorite';
 import favoriteDishes from './components/favoriteDishes';
-import initCancelModal from './components/modal';
+import initCancelModal, { modalMaxCapacity } from './components/modal';
+import { getSettings, getMaxCapacity } from './components/settings';
 
 function init() {
     scrollButtons();
@@ -24,6 +25,9 @@ function init() {
     initFavorite();
     favoriteDishes();
     initCancelModal();
+    modalMaxCapacity();
+    getSettings();
+    getMaxCapacity();
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

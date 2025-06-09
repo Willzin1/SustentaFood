@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ReservasController as AdminReserva;
 use App\Http\Controllers\Admin\UserController as AdminUser;
 use App\Http\Controllers\Admin\CardapioController as AdminCardapio;
 use App\Http\Controllers\Admin\RelatorioReservasController;
+use App\Http\Controllers\Admin\SystemSettingsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Cardapio\CardapioController;
 use App\Http\Controllers\Home\HomeController;
@@ -105,6 +106,11 @@ Route::middleware('checkApiToken')->group(function() {
             Route::get('/relatorios/reservas/dia', 'getTodayReservations')->name('admin.reservas.dia');
             Route::get('/relatorios/reservas/semana', 'getWeekReservations')->name('admin.reservas.semana');
             Route::get('/relatorios/reservas/mes', 'getMonthReservations')->name('admin.reservas.mes');
+        });
+
+        Route::controller(SystemSettingsController::class)->group(function() {
+            Route::get('/admin/configuracoes', 'getSettings')->name('admin.config.index');
+            Route::put('/admin/configuracoes', 'changeCapacity')->name('admin.config.update');
         });
     });
 });

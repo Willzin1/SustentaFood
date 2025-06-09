@@ -36,7 +36,8 @@ class LoginController extends Controller
                 'api_token' => $data['token'],
                 'user_id' => $user['id'],
                 'user_role' => $user['role'],
-                'user_name' => $user['name']
+                'user_name' => $user['name'],
+                'user_email' => $user['email']
             ]);
 
             if ($user['role'] == 'admin') {
