@@ -8,7 +8,7 @@
     <meta name="api-token" content="{{ session('api_token') }}">
 
     <meta name="apple-mobile-web-app-status-bar color" content="#01d679">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
     <title>@yield('title')</title>
 
