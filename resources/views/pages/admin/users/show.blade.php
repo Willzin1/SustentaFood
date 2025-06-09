@@ -44,7 +44,7 @@ Sustenta Food | Admin
                             </tbody>
                         </table>
                         <button onclick="exportClientToPDF()">Exportar PDF</button>
-                        <a href="{{ route('admin.reservas.index') }}" class="btn-link btn-link-dark">Voltar</a>
+                        <a href="{{ route('admin.reservas.index') }}" class="">Voltar</a>
                         @endif
                     </div>
                 </section>

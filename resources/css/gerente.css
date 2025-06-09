@@ -75,8 +75,8 @@
 .barra-lateral a:hover {
     color: var(--color-primary-1);
     background-color: var(--color-primary-5);
-    border-radius: 4px;
-    padding: 5px 5px;
+    
+    padding: 3% 7%;
     transition: 0.3s ease;
 }
 
@@ -192,6 +192,14 @@ button:hover {
     padding-left: 10px;
     transition: 0.3s ease;
 }
+/* Deixa o aside só até o topo do conteúdo */
+.barra-lateral {
+    align-self: flex-start;
+    height: auto;
+    max-height: auto;
+    position: sticky;
+    top: 170px;
+}
 
 .aside-section {
     margin-bottom: 24px;
@@ -213,14 +221,39 @@ button:hover {
     font-size: 1rem;
 }
 
-.aside-divider {
+/*As linha sestão comentadas podendo ser recoladas no site*/
+/*.aside-divider {
     border: none;
     border-top: 2.5px solid var(--color-primary-2);
     margin: 16px 0;
     width: 85%;
     align-self: center;
-    opacity: 0.7;
+    opacity: 0.7; 
+} 
+
+/* Estilo para dropdowns no aside Bsarra Lateral */
+.aside-submenu {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 8px;
+    display: none;
+    flex-direction: column;
+    color: var(--color-primary-6);
+    transition: color 0.2s;
 }
+
+.aside-dropdown:hover .aside-submenu {
+    display: flex;
+}
+
+/* Estilo para links do submenu */
+.aside-submenu a:hover {
+    color: var(--color-primary-1);
+    background-color: var(--color-primary-5);
+    border-radius: 4px;
+    padding: 4px 6px;
+}
+
 
 /* Centraliza e deixa responsivo o dashboard */
 .dashboard-content {
@@ -274,14 +307,7 @@ button:hover {
     justify-content: center;
 }
 
-/* Deixa o aside só até o topo do conteúdo */
-.barra-lateral {
-    align-self: flex-start;
-    height: auto;
-    max-height: auto;
-    position: sticky;
-    top: 170px;
-}
+
 
 /* Responsividade */
 @media (max-width: 1100px) {
@@ -337,23 +363,23 @@ button:hover {
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     padding: 32px 24px;
-    /* display: flex; */
+    /*display: flex;*/ 
     text-align: center;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    /*gap: 18px;*/
 }
 
 .container-reservas h2 {
     /* text-align: center; */
-    margin-bottom: 18px;
+    margin-bottom: 1%;
 }
 
 .container-reservas form,
 .container-reservas p,
 .container-reservas a {
     width: 50%;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .button-container {
@@ -365,6 +391,20 @@ button:hover {
 
 .shadow__btn, .btn-red {
     margin: 6px 0;
+}
+/* botao voltar da pagina gerente */
+.btnA{
+     padding: 10px 15px;
+    background-color: var(--color-primary-4);
+    border: none;
+    border-radius: 8px;
+    color: var(--color-neutral-0);
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    
+}
+.btnA:hover {
+    background-color: var(--color-primary-5);
 }
 
 /* Responsivo */
