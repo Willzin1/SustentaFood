@@ -1,6 +1,9 @@
 <header>
     <nav id="navbar">
-        <a href="{{ route('index') }}"><i class="fa-solid fa-leaf" id="nav_logo"><br>SUSTENTA<BR>FOOD</i></a>
+        <a href="{{ route('index') }}" id="logo_link">
+            <i class="fa-solid fa-leaf"></i>
+            <span>SUSTENTAFOOD</span>
+        </a>
 
         <ul id="nav_list">
             <li class="nav-item active">
@@ -32,9 +35,8 @@
                 <button type="submit" class="profile-button btn-red">Sair</button>
             </form>
         @else
-            <button class="btn-default">
-            <a href="{{ route('reservas.create') }}">Faça sua reserva</a>
-            </button>
+            <a href="{{ route('reservas.create') }}" id="reserva-desktop" class="btn-link-light">FAÇA SUA RESERVA</a>
+
         @endif
 
         <button id="mobile_btn">
@@ -66,9 +68,9 @@
                 </li>
             @endif
         </ul>
-    <!-- ESSE BOTÃO FICA NO MODO "MOBILE" -->
-        <button class="btn-default">
+        <!-- ESSE BOTÃO FICA NO MODO "MOBILE" -->
+        <!-- <button class="btn-default">
             <a href="{{ route('reservas.create') }}">RESERVA</a>
-        </button>
+        </button> -->
     </div>
 </header>

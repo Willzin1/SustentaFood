@@ -4,8 +4,8 @@
     margin: 20px auto;
     padding: 20px;
     text-align: center;
-    box-sizing: border-box; /* Inclui padding e border no tamanho do elemento */
-}
+    /* box-sizing: border-box; /* Inclui padding e border no tamanho do elemento */
+} */
 
 /* Títulos */
 h1 {
@@ -22,7 +22,7 @@ h1 {
 label {
     display: block;
     margin-bottom: 8px;
-    color: var(--color-primary-6);
+    /* color: var(--color-primary-6); */
     font-weight: bold; /* Tornar os labels mais visíveis */
 }
 
@@ -68,9 +68,9 @@ select:focus {
     min-width: 120px; /* Tamanho mínimo para o botão */
 }
 
-.shadow__btn:hover {
-    background-color: var(--color-primary-6);
-}
+    /* .shadow__btn:hover {
+        background-color: var(--color-primary-6);
+    } */
 
 /* Esconde o campo de entrada personalizada de assentos até que necessário */
 .hidden {
