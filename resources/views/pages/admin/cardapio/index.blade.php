@@ -13,7 +13,7 @@ Sustenta Food | Admin
             <section id="reservas">
 
             <h2>Gerenciar Cardápio</h2>
-            <div class="reservas-tabela">
+            <div class="reservas-tabela"> <!-- .Colocar um estilizi~]ao diferenciada -->
             <a href="{{ route('admin.cardapio.create') }}" class="btn-link btn-link-dark">Adicionar Prato</a>
 
             <div>
