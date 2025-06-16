@@ -414,3 +414,26 @@ button:hover {
         padding: 18px 4vw;
     }
 }
+
+.reservation-status-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.reservation-status-btn:hover {
+    background-color: #45a049;
+}
+
+.reservation-status-btn.paused {
+    background-color: #f44336;
+}
+
+.reservation-status-btn.paused:hover {
+    background-color: #da190b;
+}
