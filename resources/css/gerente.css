@@ -29,9 +29,13 @@
     border-radius: 8px;
     padding: 20px;
     color: var(--color-neutral-1);
-    position: relative; /* mantém o padrão */
-    height: 100%;       /* ocupa toda a altura da coluna */
     /* min-height: 100vh; */
+
+    align-self: flex-start;
+    height: auto;
+    max-height: auto;
+    position: sticky;
+    top: 170px;
 }
 
 
@@ -70,14 +74,6 @@
     text-decoration: none;
     font-weight: bold;
     transition: color 0.2s;
-}
-
-.barra-lateral a:hover {
-    color: var(--color-primary-1);
-    background-color: var(--color-primary-5);
-    
-    padding: 3% 7%;
-    transition: 0.3s ease;
 }
 
 .containerGerente main {
@@ -186,21 +182,6 @@ button:hover {
     background-color: var(--color-primary-5);
 }
 
-/* Estilo da barra de navegação do gerente */
-.barra-lateral a:hover {
-    background-color: var(--color-primary-5);
-    padding-left: 10px;
-    transition: 0.3s ease;
-}
-/* Deixa o aside só até o topo do conteúdo */
-.barra-lateral {
-    align-self: flex-start;
-    height: auto;
-    max-height: auto;
-    position: sticky;
-    top: 170px;
-}
-
 .aside-section {
     margin-bottom: 24px;
     padding-left: 0;
@@ -228,8 +209,8 @@ button:hover {
     margin: 16px 0;
     width: 85%;
     align-self: center;
-    opacity: 0.7; 
-} 
+    opacity: 0.7;
+}
 
 /* Estilo para dropdowns no aside Bsarra Lateral */
 .aside-submenu {
@@ -247,13 +228,15 @@ button:hover {
 }
 
 /* Estilo para links do submenu */
-.aside-submenu a:hover {
+.aside-submenu a:hover,
+.barra-lateral h2 a:hover {
     color: var(--color-primary-1);
     background-color: var(--color-primary-5);
     border-radius: 4px;
     padding: 4px 6px;
-}
 
+    transition: 0.3s ease;
+}
 
 /* Centraliza e deixa responsivo o dashboard */
 .dashboard-content {
@@ -363,7 +346,7 @@ button:hover {
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     padding: 32px 24px;
-    /*display: flex;*/ 
+    /*display: flex;*/
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -401,7 +384,7 @@ button:hover {
     color: var(--color-neutral-0);
     font-weight: bold;
     transition: background-color 0.3s ease;
-    
+
 }
 .btnA:hover {
     background-color: var(--color-primary-5);
