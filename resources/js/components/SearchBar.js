@@ -121,12 +121,12 @@ function changeTable(data, type) {
         if (type === 'reservas') {
             row.innerHTML = `
                 <td>${item.id}</td>
-                ${item.user ? `<td><a href="/admin/users/${item.user.id}">${item.user.name}</a></td>` : `<td>${item.name}</td>`}
+                ${item.user ? `<td><a href="/admin/users/${item.user.id}">${item.user.name}</a></td>` : `<td>** ${item.name}</td>`}
                 <td>${formatDate(item.data)}</td>
                 <td>${item.hora}</td>
                 <td>${item.quantidade_cadeiras}</td>
                 <td>${item.status}</td>
-                <td><a href="/admin/reservas/${item.id}/edit">Gerenciar reserva</a></td>
+                <td><a href="/admin/reservas/${item.id}/edit">Gerenciar</a></td>
             `;
         } else if (type === 'pratos') {
             row.innerHTML = `

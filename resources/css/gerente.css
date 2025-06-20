@@ -9,6 +9,7 @@
     display: flex;
     align-items: flex-start;
     gap: 24px;
+    min-height: calc(100vh - 60px); /* Garante que o conteúdo ocupe a tela toda menos o footer */
 }
 
 .btn-group {
@@ -43,6 +44,7 @@
     flex: 1;
     flex-direction: column;
     min-width: 0;
+    padding: 20px 0;
 }
 
 /* Barra lateral */
@@ -131,7 +133,7 @@
     padding: 15px;
     background-color: var(--color-primary-2);
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
     overflow-x: auto;
 }
 
@@ -192,6 +194,30 @@
 }
 /* FIM FILTROS */
 
+.admin-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-settings h3 {
+    color: var(--color-primary-4);
+    font-size: 1.5em;
+}
+
+.admin-settings p strong {
+    color: var(--color-primary-6);
+    text-decoration: underline var(--color-primary-6);
+}
+
+.admin-settings button {
+    height: auto;
+    border-radius: 10px;
+    width: 35%;
+    text-align: center;
+}
 
 .reservas-tabela th, .reservas-tabela td {
     padding: 10px;
@@ -203,6 +229,7 @@
     background-color: var(--color-primary-3);
     color: var(--color-neutral-0);
     font-weight: bold;
+    border-radius: 3px;
 }
 
 .reservas-tabela td {
@@ -219,11 +246,6 @@
 /* Estilos adicionais para as tabelas (bordas e melhorias) */
 .reservas-tabela tr:nth-child(even) {
     background-color: var(--color-primary-1);
-}
-
-.reservas-tabela tr:hover {
-    background-color: var(--color-primary-3);
-    cursor: pointer;
 }
 
 /* Responsividade das tabelas */
@@ -324,7 +346,8 @@ button:hover {
     align-items: center;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 2px 12px 12px rgba(0, 0, 0, 0.1)
+    box-shadow: 2px 12px 12px rgba(0, 0, 0, 0.2);
+    min-height: 300px;
 }
 
 .dashboard-title {
@@ -393,12 +416,18 @@ button:hover {
 }
 
 @media (max-width: 768px) {
-    .containerGerente {
+    .dashboard-container {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        min-height: calc(100vh - 60px);
+    }
+    .containerGerente {
+        margin: 0 0 20px 0;
+        border-radius: 8px;
     }
     .dashboard-content {
-        padding: 16px 0;
+        padding: 12px 2vw;
+        min-height: 200px;
     }
     .dashboard-charts {
         flex-direction: column;
@@ -478,27 +507,4 @@ button:hover {
         max-width: 98vw;
         padding: 18px 4vw;
     }
-}
-
-.reservation-status-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.reservation-status-btn:hover {
-    background-color: #45a049;
-}
-
-.reservation-status-btn.paused {
-    background-color: #f44336;
-}
-
-.reservation-status-btn.paused:hover {
-    background-color: #da190b;
 }

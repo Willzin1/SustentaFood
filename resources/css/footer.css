@@ -2,6 +2,8 @@ footer {
     background-color: var(--color-primary-2);
     font-family: 'Poppins', sans-serif;
     text-align: center;
+    width: 100%;
+    min-height: 48px;
 }
 
 footer #footer_items {
@@ -20,7 +22,7 @@ footer #footer_items .copyright {
 }
 
 @media screen and (max-width: 600px) {
-    .footer_items {
+    footer #footer_items {
         flex-direction: column;
         gap: 20px;
     }

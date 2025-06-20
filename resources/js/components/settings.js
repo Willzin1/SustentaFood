@@ -70,12 +70,10 @@ function updateReservationButton(isPaused) {
             button.textContent = 'Retomar novas reservas';
             statusReservations.textContent = 'Pausadas'
             button.onclick = unpauseReservations;
-            button.classList.add('paused');
         } else {
             button.textContent = 'Pausar novas reservas';
             statusReservations.textContent = 'Ativas';
             button.onclick = pauseReservations;
-            button.classList.remove('paused');
         }
     }
 }
