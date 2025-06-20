@@ -8,7 +8,7 @@
     @include('includes.aside')
     <div class="containerGerente">
         <div class="dashboard-content">
-            <h2 class="dashboard-title">Estatísticas de Pratos Favoritados</h2>
+            <h3 class="dashboard-title">Estatísticas de Pratos Favoritados</h3>
             <div class="dashboard-charts">
                 <div class="stats-item dashboard-chart">
                     <h2>Bebidas</h2>

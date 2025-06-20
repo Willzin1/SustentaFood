@@ -9,7 +9,7 @@ Sustenta Food | Admin
     @include('includes.aside')
     <div class="containerGerente">
         <div class="dashboard-content">
-            <h2 class="dashboard-title">Gráfico de Reservas</h2>
+            <h3 class="dashboard-title">Gráfico de Reservas</h3>
             <div class="dashboard-charts">
                 <div class="dashboard-chart">
                     <h5>Hoje</h5>
