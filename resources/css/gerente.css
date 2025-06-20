@@ -11,6 +11,30 @@
     gap: 24px;
 }
 
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.dashboard-dishes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-dishes form textarea {
+    height: 80px;
+    width: 100%;
+}
+
+.dashboard-dishes input[type="file"] {
+    background-color: #ddd;
+}
+
 .containerGerente {
     display: flex;
     margin: 0 20px 20px 0;
@@ -24,7 +48,7 @@
 /* Barra lateral */
 .barra-lateral {
     width: 250px;
-    background-color: var(--color-neutral-0);
+    background-color: #ffffffc2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 20px;
@@ -116,6 +140,58 @@
     border-collapse: collapse;
     margin-top: 10px;
 }
+
+.reservas-tabela button {
+    height: 40px;
+}
+
+.reservas-tabela table a {
+    background-color: var(--color-primary-4);
+    padding: 8px 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    color: var(--color-neutral-0);
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.reservas-tabela table a:hover {
+    background-color: var(--color-primary-3);
+    transition: 0.03 ease;
+}
+
+/* FILTROS */
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.filters .filterSelect {
+    width: 120px;
+    min-width: 90px;
+    padding: 6px 8px;
+    font-size: 1rem;
+}
+
+.filters .search {
+    flex: 1;
+    min-width: 180px;
+    height: 40px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+}
+
+.filters button {
+    padding: 20px 14px;
+    font-size: 1rem;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+/* FIM FILTROS */
+
 
 .reservas-tabela th, .reservas-tabela td {
     padding: 10px;
@@ -240,11 +316,15 @@ button:hover {
 
 /* Centraliza e deixa responsivo o dashboard */
 .dashboard-content {
+    margin: 30px 0;
     width: 100%;
+    background-color: #ffffffc2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 32px 0;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 2px 12px 12px rgba(0, 0, 0, 0.1)
 }
 
 .dashboard-title {
@@ -377,15 +457,17 @@ button:hover {
 }
 /* botao voltar da pagina gerente */
 .btnA{
-     padding: 10px 15px;
+    padding: 10px;
     background-color: var(--color-primary-4);
     border: none;
+    width: 135px;
+    text-align: center;
     border-radius: 8px;
     color: var(--color-neutral-0);
     font-weight: bold;
     transition: background-color 0.3s ease;
-
 }
+
 .btnA:hover {
     background-color: var(--color-primary-5);
 }
