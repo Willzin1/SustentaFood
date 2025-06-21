@@ -7,7 +7,7 @@
     @include('includes.aside')
     <div class="containerGerente">
         <div class="dashboard-content">
-            <section id="reservas">
+            <div class="reservas">
 
                 <h2>Gerenciar Cardápio</h2>
                 <div class="reservas-tabela"> <!-- Colocar um estilização diferenciada -->
@@ -57,7 +57,8 @@
                         <x-pagination :links="$paginate['links']" :currentPage="$paginate['current_page']"
                         :lastPage="$paginate['last_page']" base-url="{{ route('admin.cardapio.index') }}" />
                     @endif
-            </section>
+                </div>
+            </div>
         </div>
     </div>
 </div>

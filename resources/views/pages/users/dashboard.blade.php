@@ -40,17 +40,21 @@ Sustenta Food | Perfil
             <div class="reservations">
                 @foreach($reservas as $reserva)
                     <div class="reservation-card">
+                        @if($reserva['status'] == 'confirmada')
+                        <p class="confirmed-reservation">Reserva confirmada</p>
                         <p class="reserDate"><strong>Data:</strong> {{ $reserva['data'] }}</p>
                         <p class="reserTime"><strong>Hora:</strong> {{ date('H:i', strtotime($reserva['hora'])) }}</p>
                         <p><strong>Quantidade cadeiras:</strong> {{ $reserva['quantidade_cadeiras'] }}</p>
-                        @if($reserva['status'] == 'confirmada')
-                            <p class="confirmed-reservation">Reserva confirmada</p>
                             <form action="{{ route('reservas.cancel', ['reserva' => $reserva['id']]) }}" method="post">
                                 @csrf
                                 <button type="submit" class="button-link">Cancelar reserva</button>
                             </form>
                         @else
-                            <a href="{{ route('reservas.edit', ['reserva' => $reserva['id']]) }}" class="button-link">Editar reserva</a>
+                            <p class="reserDate"><strong>Data:</strong> {{ $reserva['data'] }}</p>
+                            <p class="reserTime"><strong>Hora:</strong> {{ date('H:i', strtotime($reserva['hora'])) }}</p>
+                            <p><strong>Quantidade cadeiras:</strong> {{ $reserva['quantidade_cadeiras'] }}</p>
+
+                            <a href="{{ route('reservas.edit', ['reserva' => $reserva['id']]) }}" class="btn-link btn-link-dark">Editar reserva</a>
                         @endif
                     </div>
                 @endforeach

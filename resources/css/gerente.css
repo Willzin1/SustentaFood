@@ -113,14 +113,11 @@
     gap: 20px;
 }
 
-
 .containerGerente h2 {
     color:var(--color-neutral-1);
     font-size: 1.5rem;
     margin-bottom: 15px;
 }
-
-
 
 /* Reservas */
 .reservas-tabela {
@@ -248,7 +245,7 @@
     /* .reservas-tabela table { */
         /* font-size: 0.9rem; Ajuste de tamanho de fonte para telas menores */
     /* } */
-/* 
+/*
     .reservas-tabela th, .reservas-tabela td {
         padding: 8px;
     }
@@ -338,6 +335,10 @@ button:hover {
     border-radius: 15px;
     box-shadow: 2px 12px 12px rgba(0, 0, 0, 0.2);
     min-height: 300px;
+}
+
+.dashboard-content .reservas {
+    text-align: center;
 }
 
 .dashboard-content small {
@@ -463,6 +464,31 @@ button:hover {
     background-color: var(--color-primary-5);
 }
 
+td .actions {
+    /* display: flex;
+    gap: 2px; */
+
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+.actions a,
+.actions button {
+    min-width: 90px;
+    height: 36px;
+    padding: 0 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 2px 0;
+    box-sizing: border-box;
+}
+
 /* Responsividade */
 @media (max-width: 1100px) {
     .dashboard-container {
@@ -496,6 +522,17 @@ button:hover {
         max-height: unset;
         margin-bottom: 16px;
     }
+    .actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .actions a,
+    .actions button {
+        width: 100%;
+        min-width: 0;
+        max-width: 120px;
+        margin: 2px 0;
+    }
 }
 
 @media (max-width: 900px) {
@@ -528,6 +565,17 @@ button:hover {
         width: 100%;
         max-height: unset;
         margin-bottom: 16px;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .actions a,
+    .actions button {
+        width: 100%;
+        min-width: 0;
+        max-width: 120px;
+        margin: 2px 0;
     }
 }
 
@@ -566,6 +614,17 @@ button:hover {
         width: 700px;
         padding: 10px;
     }
+    .actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .actions a,
+    .actions button {
+        width: 100%;
+        min-width: 0;
+        max-width: 120px;
+        margin: 2px 0;
+    }
 }
 /* Melhorias de responsividade para admin */
 @media (max-width: 600px) {
@@ -597,18 +656,17 @@ button:hover {
         font-size: 0.50rem;
         min-width: 480px;
     }
-    td .actions {
-        display: flex;
-        gap: 2px;
-    }
     .reservas-tabela {
         overflow-x: auto;
         width: 350px;
     }
-    .prato-form, .admin-settings, .container-reservas form, .container-reservas p, .container-reservas a {
+    .prato-form,
+    .admin-settings,
+    .container-reservas form,
+    .container-reservas p,
+    .container-reservas a {
         width: 100% !important;
         min-width: 0;
-        padding: 0 2vw;
     }
     .btn-group, .button-container {
         flex-direction: column;
@@ -618,6 +676,17 @@ button:hover {
     .admin-settings button, .btn-group button, .button-container button {
         width: 100% !important;
         min-width: 0;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .actions a,
+    .actions button {
+        width: 100%;
+        min-width: 0;
+        max-width: 120px;
+        margin: 2px 0;
     }
 }
 

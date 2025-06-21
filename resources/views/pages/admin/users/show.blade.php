@@ -11,9 +11,9 @@ Sustenta Food | Admin
         <div class="dashboard-content">
             <section id="reservas">
                 <h2>Informações do Cliente</h2>
-                <p><strong>Nome:</strong> {{ $user['name'] }}</p>
-                <p><strong>Email:</strong> {{ $user['email'] }}</p>
-                <p class="phoneUser">{{ $user['phone'] }}</p>
+                <p class="user-info user-name"><strong>Nome:</strong> {{ $user['name'] }}</p>
+                <p class="user-info user-email"><strong>Email:</strong> {{ $user['email'] }}</p>
+                <p class="user-info user-phone phoneUser">{{ $user['phone'] }}</p>
 
                 <h3>Reservas do Cliente</h3>
                 <div class="reservas-tabela">
@@ -44,7 +44,7 @@ Sustenta Food | Admin
                             </tbody>
                         </table>
                         <small>
-                            <button onclick="exportClientToPDF()">Exportar PDF</button> 
+                            <button onclick="exportClientToPDF()">Exportar PDF</button>
                             |
                             <a href="{{ route('admin.reservas.index') }}" class="">Voltar</a>
                         </small>

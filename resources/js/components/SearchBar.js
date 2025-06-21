@@ -134,7 +134,7 @@ function changeTable(data, type) {
                 <td>${item.nome}</td>
                 <td>${item.descricao}</td>
                 <td>${item.categoria}</td>
-                <td>
+                <td class="actions">
                     <a href="/admin/cardapio/${item.id}/edit" class="btn-link btn-link-dark">Editar</a>
                     <form action="/admin/cardapio/${item.id}" method="POST" style="display:inline;">
                         <input type="hidden" name="_method" value="DELETE">

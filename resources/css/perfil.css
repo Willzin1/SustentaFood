@@ -150,3 +150,9 @@
 .profile-info a {
     color: inherit;
 }
+
+.confirmed-reservation {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 1em;
+}

@@ -32,7 +32,6 @@ Sustenta Food | Editar perfil
                 <button type="submit" class="shadow__btn btn-red">Deletar Perfil</button>
             </form>
 
-            <!-- <a href="{{ url()->previous() }}" class="btn btn-primary">⬅️ Voltar</a> -->
         </div>
     </div>
 @endsection

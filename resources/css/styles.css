@@ -92,10 +92,6 @@ section {
     background-color: #ff0000c2;
 }
 
-.btn-red:hover{
-    background-color: #ffffff;
-}
-
 .social-media-buttons {
     display: flex;
     gap: 18px;
@@ -127,14 +123,6 @@ section {
 
 .section-subtitle {
     font-size: 2.1875rem;
-}
-
-.message-box {
-    display: none;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    text-align: center;
 }
 .error {
     background-color: #f8d7da;
@@ -211,18 +199,6 @@ section {
     text-align: center;
     max-width: 300px;
     margin: 1rem auto;
-}
-
-.alert-success-custom {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #155724;
-}
-
-.alert-warning-custom {
-    background-color: #fff3cd;
-    color: #af8300;
-    border: 1px solid #af8300;
 }
 
 .alert-danger-custom {

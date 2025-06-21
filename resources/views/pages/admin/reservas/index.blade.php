@@ -9,8 +9,8 @@ Sustenta Food | Admin
     @include('includes.aside')
     <div class="containerGerente">
         <div class="dashboard-content">
-            <class id="reservas">
-                
+            <div class="reservas">
+
                 <h2>{{ $titulo ?? 'Todas as Reservas' }}</h2>
                 <div class="reservas-tabela">
 
@@ -65,7 +65,7 @@ Sustenta Food | Admin
                         :lastPage="$reservas['last_page']" base-url="{{ route('admin.reservas.index') }}" />
                     @endif
                 </div>
-            </section>
+            </div>
             <small>** usuários não cadastrados no sistema</small>
         </div>
     </div>
