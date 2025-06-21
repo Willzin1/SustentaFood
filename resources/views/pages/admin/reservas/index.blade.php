@@ -9,7 +9,7 @@ Sustenta Food | Admin
     @include('includes.aside')
     <div class="containerGerente">
         <div class="dashboard-content">
-            <section id="reservas">
+            <class id="reservas">
                 
                 <h2>{{ $titulo ?? 'Todas as Reservas' }}</h2>
                 <div class="reservas-tabela">

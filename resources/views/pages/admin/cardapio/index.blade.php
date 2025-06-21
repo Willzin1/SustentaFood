@@ -42,7 +42,7 @@
                                         <td>{{ $prato['nome'] }}</td>
                                         <td>{{ $prato['descricao'] }}</td>
                                         <td>{{ ucfirst($prato['categoria']) }}</td>
-                                        <td>
+                                        <td class="actions">
                                             <a href="{{ route('admin.cardapio.edit', ['prato' => $prato['id']]) }}">Editar</a>
                                             <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato['id']]) }}" style="display:inline;" method="POST">
                                                 @csrf
