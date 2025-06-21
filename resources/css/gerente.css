@@ -9,6 +9,31 @@
     display: flex;
     align-items: flex-start;
     gap: 24px;
+    min-height: calc(100vh - 60px); /* Garante que o conteúdo ocupe a tela toda menos o footer */
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.dashboard-dishes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard-dishes form textarea {
+    height: 80px;
+    width: 100%;
+}
+
+.dashboard-dishes input[type="file"] {
+    background-color: #ddd;
 }
 
 .containerGerente {
@@ -19,19 +44,24 @@
     flex: 1;
     flex-direction: column;
     min-width: 0;
+    padding: 20px 0;
 }
 
 /* Barra lateral */
 .barra-lateral {
     width: 250px;
-    background-color: var(--color-neutral-0);
+    background-color: #ffffffc2;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 20px;
     color: var(--color-neutral-1);
-    position: relative; /* mantém o padrão */
-    height: 100%;       /* ocupa toda a altura da coluna */
     /* min-height: 100vh; */
+
+    align-self: flex-start;
+    height: auto;
+    max-height: auto;
+    position: sticky;
+    top: 170px;
 }
 
 
@@ -72,14 +102,6 @@
     transition: color 0.2s;
 }
 
-.barra-lateral a:hover {
-    color: var(--color-primary-1);
-    background-color: var(--color-primary-5);
-    
-    padding: 3% 7%;
-    transition: 0.3s ease;
-}
-
 .containerGerente main {
     flex: 1;
     padding: 20px;
@@ -91,18 +113,10 @@
     gap: 20px;
 }
 
-
 .containerGerente h2 {
     color:var(--color-neutral-1);
     font-size: 1.5rem;
     margin-bottom: 15px;
-}
-
-/* Responsividade para o conteúdo principal */
-@media (max-width: 768px) {
-    main {
-        padding: 15px;
-    }
 }
 
 /* Reservas */
@@ -111,7 +125,7 @@
     padding: 15px;
     background-color: var(--color-primary-2);
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
     overflow-x: auto;
 }
 
@@ -119,6 +133,82 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+}
+
+.reservas-tabela button {
+    height: 40px;
+}
+
+.reservas-tabela table a {
+    background-color: var(--color-primary-4);
+    padding: 8px 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    color: var(--color-neutral-0);
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.reservas-tabela table a:hover {
+    background-color: var(--color-primary-3);
+    transition: 0.03 ease;
+}
+
+/* FILTROS */
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.filters .filterSelect {
+    width: 120px;
+    min-width: 90px;
+    padding: 6px 8px;
+    font-size: 1rem;
+}
+
+.filters .search {
+    flex: 1;
+    min-width: 180px;
+    height: 40px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+}
+
+.filters button {
+    padding: 20px 14px;
+    font-size: 1rem;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+/* FIM FILTROS */
+
+.admin-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-settings h3 {
+    color: var(--color-primary-4);
+    font-size: 1.5em;
+}
+
+.admin-settings p strong {
+    color: var(--color-primary-6);
+    text-decoration: underline var(--color-primary-6);
+}
+
+.admin-settings button {
+    height: auto;
+    border-radius: 10px;
+    width: 35%;
+    text-align: center;
 }
 
 .reservas-tabela th, .reservas-tabela td {
@@ -131,6 +221,7 @@
     background-color: var(--color-primary-3);
     color: var(--color-neutral-0);
     font-weight: bold;
+    border-radius: 3px;
 }
 
 .reservas-tabela td {
@@ -149,26 +240,16 @@
     background-color: var(--color-primary-1);
 }
 
-.reservas-tabela tr:hover {
-    background-color: var(--color-primary-3);
-    cursor: pointer;
-}
-
 /* Responsividade das tabelas */
-@media (max-width: 768px) {
-    .reservas-tabela table {
-        font-size: 0.9rem; /* Ajuste de tamanho de fonte para telas menores */
-    }
-
+/* @media (max-width: 768px) { */
+    /* .reservas-tabela table { */
+        /* font-size: 0.9rem; Ajuste de tamanho de fonte para telas menores */
+    /* } */
+/*
     .reservas-tabela th, .reservas-tabela td {
         padding: 8px;
     }
-}
-
-/* Seções */
-section {
-    padding: 20px 0;
-}
+} */
 
 /* Botões */
 button {
@@ -184,21 +265,6 @@ button {
 
 button:hover {
     background-color: var(--color-primary-5);
-}
-
-/* Estilo da barra de navegação do gerente */
-.barra-lateral a:hover {
-    background-color: var(--color-primary-5);
-    padding-left: 10px;
-    transition: 0.3s ease;
-}
-/* Deixa o aside só até o topo do conteúdo */
-.barra-lateral {
-    align-self: flex-start;
-    height: auto;
-    max-height: auto;
-    position: sticky;
-    top: 170px;
 }
 
 .aside-section {
@@ -228,8 +294,8 @@ button:hover {
     margin: 16px 0;
     width: 85%;
     align-self: center;
-    opacity: 0.7; 
-} 
+    opacity: 0.7;
+}
 
 /* Estilo para dropdowns no aside Bsarra Lateral */
 .aside-submenu {
@@ -247,28 +313,61 @@ button:hover {
 }
 
 /* Estilo para links do submenu */
-.aside-submenu a:hover {
+.aside-submenu a:hover,
+.barra-lateral h2 a:hover {
     color: var(--color-primary-1);
     background-color: var(--color-primary-5);
     border-radius: 4px;
     padding: 4px 6px;
-}
 
+    transition: 0.3s ease;
+}
 
 /* Centraliza e deixa responsivo o dashboard */
 .dashboard-content {
+    margin: 30px 0;
     width: 100%;
+    background-color: #ffffffc2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 32px 0;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 2px 12px 12px rgba(0, 0, 0, 0.2);
+    min-height: 300px;
+}
+
+.dashboard-content .reservas {
+    text-align: center;
+}
+
+.dashboard-content small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+}
+
+.dashboard-content small a {
+    background-color: var(--color-primary-4);
+    font-size: inherit;
+    color: var(--color-neutral-0);
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.dashboard-content small a:hover {
+    background-color: var(--color-primary-5);
+    transition: color 0.3s ease;
 }
 
 .dashboard-title {
     text-align: center;
     margin-bottom: 32px;
     font-size: 2rem;
-    color: var(--color-primary-4);
+    color: var(--color-primary-3);
 }
 
 /* Dashboard charts em grid de 2 colunas */
@@ -280,17 +379,21 @@ button:hover {
     align-items: start;
 }
 
+.dashboard-charts h2 {
+    color: var(--color-primary-6);
+}
+
 .dashboard-chart {
     background: var(--color-neutral-0);
     border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-    padding: 24px 20px 16px 20px;
+    box-shadow: 1px 2px 10px 10px rgba(0, 0, 0, 0.09);
+    padding: 8px 10px;
     min-width: 260px;
     max-width: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
 .dashboard-chart h5 {
@@ -307,54 +410,6 @@ button:hover {
     justify-content: center;
 }
 
-
-
-/* Responsividade */
-@media (max-width: 1100px) {
-    .dashboard-charts {
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-    }
-    .dashboard-chart {
-        width: 90vw;
-        max-width: 400px;
-    }
-}
-
-@media (max-width: 900px) {
-    .dashboard-charts {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .containerGerente {
-        flex-direction: column;
-        align-items: center;
-    }
-    .dashboard-content {
-        padding: 16px 0;
-    }
-    .dashboard-charts {
-        flex-direction: column;
-        gap: 16px;
-    }
-    .dashboard-chart {
-        width: 98vw;
-        max-width: 98vw;
-        min-width: unset;
-        padding: 16px 8px;
-    }
-    .barra-lateral {
-        position: static;
-        width: 100%;
-        max-height: unset;
-        margin-bottom: 16px;
-    }
-}
-
 .container-reservas {
     height: 100%;
     width: 100%;
@@ -363,7 +418,7 @@ button:hover {
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     padding: 32px 24px;
-    /*display: flex;*/ 
+    /*display: flex;*/
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -394,46 +449,244 @@ button:hover {
 }
 /* botao voltar da pagina gerente */
 .btnA{
-     padding: 10px 15px;
+    padding: 10px;
     background-color: var(--color-primary-4);
     border: none;
+    width: 135px;
+    text-align: center;
     border-radius: 8px;
     color: var(--color-neutral-0);
     font-weight: bold;
     transition: background-color 0.3s ease;
-    
 }
+
 .btnA:hover {
     background-color: var(--color-primary-5);
 }
 
-/* Responsivo */
+td .actions {
+    /* display: flex;
+    gap: 2px; */
+
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+.actions a,
+.actions button {
+    min-width: 90px;
+    height: 36px;
+    padding: 0 10px;
+    font-size: 1rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 2px 0;
+    box-sizing: border-box;
+}
+
+/* Responsividade */
+@media (max-width: 1100px) {
+    .dashboard-container {
+        flex-direction: column;
+        align-items: stretch;
+        min-height: calc(100vh - 60px);
+        padding: 10px;
+    }
+    .containerGerente {
+        margin: 0 0 5px;
+        border-radius: 8px;
+    }
+    .dashboard-content {
+        padding: 12px 2vw;
+        min-height: 200px;
+        text-align: center;
+    }
+    .dashboard-charts {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .dashboard-chart {
+        width: 100%;
+        max-width: 98vw;
+        min-width: unset;
+        padding: 5px 0;
+    }
+    .barra-lateral {
+        position: static;
+        width: 100%;
+        max-height: unset;
+        margin-bottom: 16px;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .actions a,
+    .actions button {
+        width: 100%;
+        min-width: 0;
+        max-width: 120px;
+        margin: 2px 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .dashboard-container {
+        flex-direction: column;
+        align-items: stretch;
+        min-height: calc(100vh - 60px);
+        padding: 10px;
+    }
+    .containerGerente {
+        margin: 0 0 5px;
+        border-radius: 8px;
+    }
+    .dashboard-content {
+        padding: 12px 2vw;
+        min-height: 200px;
+    }
+    .dashboard-charts {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .dashboard-chart {
+        width: 100%;
+        max-width: 98vw;
+        min-width: unset;
+        padding: 5px 0;
+    }
+    .barra-lateral {
+        position: static;
+        width: 100%;
+        max-height: unset;
+        margin-bottom: 16px;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .actions a,
+    .actions button {
+        width: 100%;
+        min-width: 0;
+        max-width: 120px;
+        margin: 2px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+        align-items: stretch;
+        min-height: calc(100vh - 60px);
+        padding: 10px;
+    }
+    .containerGerente {
+        margin: 0 0 5px;
+        border-radius: 8px;
+    }
+    .dashboard-content {
+        padding: 12px 2vw;
+        min-height: 200px;
+    }
+    .dashboard-charts {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .dashboard-chart {
+        width: 100%;
+        max-width: 98vw;
+        min-width: unset;
+        padding: 5px 0;
+    }
+    .barra-lateral {
+        position: static;
+        width: 100%;
+        max-height: unset;
+        margin-bottom: 16px;
+    }
+    .reservas-tabela {
+        width: 700px;
+        padding: 10px;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .actions a,
+    .actions button {
+        width: 100%;
+        min-width: 0;
+        max-width: 120px;
+        margin: 2px 0;
+    }
+}
+/* Melhorias de responsividade para admin */
 @media (max-width: 600px) {
     .container-reservas {
         max-width: 98vw;
         padding: 18px 4vw;
     }
+    .dashboard-charts {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .dashboard-chart {
+        width: 100%;
+        max-width: 98vw;
+        min-width: unset;
+        padding: 8px 2px;
+    }
+    .dashboard-chart canvas {
+        max-width: 100% !important;
+        height: 120px !important;
+    }
+
+    .filters button {
+        font-size: 0.50rem;
+    }
+
+    .reservas-tabela table,
+    .table-reservations {
+        font-size: 0.50rem;
+        min-width: 480px;
+    }
+    .reservas-tabela {
+        overflow-x: auto;
+        width: 350px;
+    }
+    .prato-form,
+    .admin-settings,
+    .container-reservas form,
+    .container-reservas p,
+    .container-reservas a {
+        width: 100% !important;
+        min-width: 0;
+    }
+    .btn-group, .button-container {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+    .admin-settings button, .btn-group button, .button-container button {
+        width: 100% !important;
+        min-width: 0;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .actions a,
+    .actions button {
+        width: 100%;
+        min-width: 0;
+        max-width: 120px;
+        margin: 2px 0;
+    }
 }
 
-.reservation-status-btn {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.reservation-status-btn:hover {
-    background-color: #45a049;
-}
-
-.reservation-status-btn.paused {
-    background-color: #f44336;
-}
-
-.reservation-status-btn.paused:hover {
-    background-color: #da190b;
-}

@@ -63,15 +63,17 @@ function updateReservationButton(isPaused) {
     if (!token) return;
 
     const button = document.querySelector('.reservation-status-btn');
+    const statusReservations = document.querySelector('.reservation-status');
+
     if (button) {
         if (isPaused) {
             button.textContent = 'Retomar novas reservas';
+            statusReservations.textContent = 'Pausadas'
             button.onclick = unpauseReservations;
-            button.classList.add('paused');
         } else {
             button.textContent = 'Pausar novas reservas';
+            statusReservations.textContent = 'Ativas';
             button.onclick = pauseReservations;
-            button.classList.remove('paused');
         }
     }
 }

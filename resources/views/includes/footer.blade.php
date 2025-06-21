@@ -1,13 +1,11 @@
 <!-- Onde irá ficar o FOOTER -->
 <footer>
-    <img src="{{ asset('assets/images/wave.svg') }}" alt="">
-
     <div id="footer_items">
         <span class="copyright">
             &copy 2025 Sustenta Food
         </span>
 
-        <div class="social-media-buttons">
+        <!-- <div class="social-media-buttons">
             <a href="">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
@@ -19,6 +17,6 @@
             <a href="">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-        </div>
+        </div> -->
     </div>
 </footer>

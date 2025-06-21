@@ -8,12 +8,13 @@ Sustenta Food | Admin
 <div class="dashboard-container">
     @include('includes.aside')
     <div class="containerGerente">
-        <div class="container-reservas">
-            <section id="reservas">
-                <h2>{{ $titulo ?? 'Todas as Reservas' }}</h2>
+        <div class="dashboard-content">
+            <div class="reservas">
 
+                <h2>{{ $titulo ?? 'Todas as Reservas' }}</h2>
                 <div class="reservas-tabela">
-                    <div class="searcBarDiv">
+
+                    <div class="filters">
                         <select name="filter" id="filter" class="filterSelect">
                             <option value="ID" {{ request('filter') == 'ID' ? 'selected' : '' }}>ID</option>
                             <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
@@ -21,12 +22,10 @@ Sustenta Food | Admin
                             <option value="Hora" {{ request('filter') == 'Hora' ? 'selected' : '' }}>Hora</option>
                             <option value="Quantidade" {{ request('filter') == 'Quantidade' ? 'selected' : '' }}>Quantidade</option>
                         </select>
-
                         <input type="search" name="search" class="search" placeholder="Busque uma reserva (ex: ID, Nome cliente, Data, Hora)" value="{{ request('search') }}">
-
                         <button type="button" class="btn btn-secondary clearFilters">Limpar filtros</button>
                         <button class="btn btn-danger btnBusca">Buscar</button>
-                    </div class="searcBarDiv">
+                    </div>
 
                     @if(empty($reservas['data']))
                         <p>Não há reservas registradas.</p>
@@ -50,14 +49,14 @@ Sustenta Food | Admin
                                             @if(isset($reserva['user']))
                                                 <a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}">{{ $reserva['name'] }}</a>
                                             @else
-                                                {{ $reserva['name'] }}
+                                                ** {{ $reserva['name'] }}
                                             @endif
                                         </td>
                                         <td>{{ date('d/m/Y', strtotime($reserva['data'])) }}</td>
                                         <td>{{ $reserva['hora'] }}</td>
                                         <td>{{ $reserva['quantidade_cadeiras'] }}</td>
                                         <td>{{ $reserva['status'] }}</td>
-                                        <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}" class="btn-link btn-link-dark">Gerenciar reserva</a></td>
+                                        <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}">Gerenciar</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -66,7 +65,8 @@ Sustenta Food | Admin
                         :lastPage="$reservas['last_page']" base-url="{{ route('admin.reservas.index') }}" />
                     @endif
                 </div>
-            </section>
+            </div>
+            <small>** usuários não cadastrados no sistema</small>
         </div>
     </div>
 </div>

@@ -172,14 +172,14 @@ function exportReservationsToPDF(data, reportTitle) {
 
 /**
  * Gera e faz download de um arquivo PDF contendo relatório detalhado de um cliente.
- * 
+ *
  * O PDF gerado inclui:
  * - Título do relatório
  * - Data e hora de geração
  * - Informações pessoais do cliente (nome, email, telefone)
  * - Tabela com histórico de reservas do cliente
  * - Número de páginas no rodapé
- * 
+ *
  * @function exportClientToPDF
  * @description Exporta as informações do cliente e seu histórico de reservas para um arquivo PDF
  * @example
@@ -210,10 +210,10 @@ function exportClientToPDF() {
 
     // Adicionar informações do cliente
     doc.setFontSize(12);
-    const clientName = document.querySelector('#user-info p:nth-child(2)').textContent.split(': ')[1];
-    const clientEmail = document.querySelector('#user-info p:nth-child(3)').textContent.split(': ')[1];
-    const clientPhone = document.querySelector('#user-info .phoneUser').textContent;
-    
+    const clientName = document.querySelector('.user-name').textContent.split(': ')[1];
+    const clientEmail = document.querySelector('.user-email').textContent.split(': ')[1];
+    const clientPhone = document.querySelector('.user-phone').textContent;
+
     doc.text(`Nome: ${clientName}`, 14, 35);
     doc.text(`Email: ${clientEmail}`, 14, 45);
     doc.text(`Telefone: ${clientPhone}`, 14, 55);
@@ -222,7 +222,7 @@ function exportClientToPDF() {
     autoTable(doc, {
         startY: 65,
         head: [['ID', 'Data', 'Hora', 'Qtd. Pessoas', 'Status']],
-        body: Array.from(document.querySelectorAll('#reservasTable tbody tr')).map(row => {
+        body: Array.from(document.querySelectorAll('.reservas-tabela tbody tr')).map(row => {
             const cells = row.getElementsByTagName('td');
             return [
                 cells[0].textContent,

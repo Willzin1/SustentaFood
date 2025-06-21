@@ -34,10 +34,14 @@
             </ul>
         </li>
     </ul>
-    
-    <hr class="aside-divider">
+
+    <!-- <hr class="aside-divider"> -->
     <ul class="aside-section">
-        <li class="aside-title">Configurações</li>
-        <li><a href="{{ route('admin.config.index') }}">Configurações Gerais</a></li>
+        <li class="aside-dropdown">
+            <span class="aside-title">Configurações ▾</span>
+            <ul class="aside-submenu">
+                <li><a href="{{ route('admin.config.index') }}">Configuração geral</a></li>
+            </ul>
+        </li>
     </ul>
 </aside>

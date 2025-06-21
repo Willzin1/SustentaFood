@@ -29,6 +29,11 @@ label {
 /* Estilo dos inputs e selects */
 input[type="text"],
 input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+textarea,
 select {
     width: 100%;
     padding: 12px;
