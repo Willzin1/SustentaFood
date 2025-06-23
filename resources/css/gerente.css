@@ -6,6 +6,7 @@
 }
 
 .dashboard-container {
+    
     display: flex;
     align-items: flex-start;
     gap: 24px;
@@ -17,6 +18,7 @@
     gap: 20px;
     background-color: var(--color-neutral-2);
     flex: 1;
+   
     flex-direction: column;
     min-width: 0;
 }
@@ -107,18 +109,20 @@
 
 /* Reservas */
 .reservas-tabela {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; 
     margin-top: 20px;
     padding: 15px;
-    background-color: var(--color-primary-2);
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
+    
+    
 }
 
 .reservas-tabela table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    min-width: 600px;
 }
 
 .reservas-tabela th, .reservas-tabela td {
@@ -131,12 +135,15 @@
     background-color: var(--color-primary-3);
     color: var(--color-neutral-0);
     font-weight: bold;
+    
 }
 
 .reservas-tabela td {
     background-color: var(--color-neutral-0);
     color: var(--color-neutral-1);
+    
 }
+
 
 .reservas-tabela p {
     font-size: 1.1rem;
@@ -257,11 +264,13 @@ button:hover {
 
 /* Centraliza e deixa responsivo o dashboard */
 .dashboard-content {
+
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 32px 0;
+    
 }
 
 .dashboard-title {
@@ -278,6 +287,7 @@ button:hover {
     gap: 32px;
     width: 100%;
     align-items: start;
+    margin: 60px auto 24px auto;
 }
 
 .dashboard-chart {
@@ -291,6 +301,7 @@ button:hover {
     flex-direction: column;
     align-items: center;
     margin-bottom: 24px;
+    
 }
 
 .dashboard-chart h5 {
@@ -363,11 +374,11 @@ button:hover {
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
     padding: 32px 24px;
-    /*display: flex;*/ 
+    display: flex;
     text-align: center;
     flex-direction: column;
     align-items: center;
-    /*gap: 18px;*/
+    gap: 18px;
 }
 
 .container-reservas h2 {
@@ -380,7 +391,9 @@ button:hover {
 .container-reservas a {
     width: 50%;
     margin: auto;
+    
 }
+
 
 .button-container {
     display: flex;
@@ -394,18 +407,42 @@ button:hover {
 }
 /* botao voltar da pagina gerente */
 .btnA{
-     padding: 10px 15px;
+     padding: 10px;
     background-color: var(--color-primary-4);
     border: none;
     border-radius: 8px;
     color: var(--color-neutral-0);
     font-weight: bold;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+     
     
 }
 .btnA:hover {
     background-color: var(--color-primary-5);
 }
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    /* Permite que os botões fiquem lado a lado */
+    flex-wrap: wrap; 
+    /* Ajusta o espaçamento entre os botões */  
+    gap: 10px;
+    margin-top: 16px;
+
+}
+.btn-link-ancora {
+    padding: 10px;
+    background-color: var(--color-primary-4);
+    border: none;
+    border-radius: 8px;
+    color: var(--color-neutral-0);
+    font-weight: bold;
+    transition: background-color 0.3s ease; 
+}
+
 
 /* Responsivo */
 @media (max-width: 600px) {
@@ -415,6 +452,7 @@ button:hover {
     }
 }
 
+/*Configurações gerais gerente*/
 .reservation-status-btn {
     padding: 8px 16px;
     border: none;
@@ -424,6 +462,7 @@ button:hover {
     cursor: pointer;
     font-weight: 500;
     transition: all 0.3s ease;
+    margin: 4px;
 }
 
 .reservation-status-btn:hover {
@@ -436,4 +475,32 @@ button:hover {
 
 .reservation-status-btn.paused:hover {
     background-color: #da190b;
+}
+
+@media (max-width: 600px) {
+    .reservation-status-btn {
+        width: 100%;
+        margin: 4px 0;  
+    }
+}
+
+.container-cardapio{
+     height: 100%;
+    width: 100%;
+    margin: auto;
+    background: var(--color-neutral-0);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 32px 24px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+@media (max-width: 600px) {
+    .container-cardapio {
+        max-width: 98vw;
+        padding: 18px 4vw;
+    }
 }

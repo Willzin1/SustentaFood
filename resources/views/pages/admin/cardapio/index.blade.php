@@ -5,18 +5,18 @@ Sustenta Food | Admin
 @endsection
 
 @section('content')
-<div class="dashboard-container">
+<div class="dashboard-container" >
 
     @include('includes.aside')
     <div class="containerGerente">
-        <div class="container-reservas">
+        <div class="container-cardapio">
             <section id="reservas">
 
             <h2>Gerenciar Cardápio</h2>
             <div class="reservas-tabela"> <!-- .Colocar um estilizi~]ao diferenciada -->
-            <a href="{{ route('admin.cardapio.create') }}" class="btn-link btn-link-dark">Adicionar Prato</a>
+            <a href="{{ route('admin.cardapio.create') }}" class="btnA">Adicionar Prato</a>
 
-            <div>
+            <div class="btn-group">
                 <select name="filter" id="filter" class="filterSelect">
                     <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
                     <option value="Descricao" {{ request('filter') == 'Descricao' ? 'selected' : '' }}>Descrição</option>
@@ -24,7 +24,7 @@ Sustenta Food | Admin
                 </select>
                 <input type="search" name="search" class="search" placeholder="Busque um prato (ex: Nome, Descrição ou Categoria)" value="{{ request('search') }}">
                 <button type="button" class="btn btn-secondary clearFilters">Limpar filtros</button>
-                <button class="btn btn-danger btnBuscaDish">Buscar</button>
+                <button class="btn btn-danger btnBuscaDish">Buscar pratos</button>
             </div>
 
             @if(empty($paginate['data']))
@@ -37,6 +37,8 @@ Sustenta Food | Admin
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Categoria</th>
+                            <th></th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -46,12 +48,15 @@ Sustenta Food | Admin
                                 <td>{{ $prato['nome'] }}</td>
                                 <td>{{ $prato['descricao'] }}</td>
                                 <td>{{ ucfirst($prato['categoria']) }}</td>
-                                <td>
-                                    <a href="{{ route('admin.cardapio.edit', ['prato' => $prato['id']]) }}" class="btn-link btn-link-dark">Editar</a>
+                                <td class="actions">
+                                    <!-- Arrumar essa Parte  -->
+                                    <div class="btn-group">
+                                        <a href="{{ route('admin.cardapio.edit', ['prato' => $prato['id']]) }}" class="btn-link btn-link-dark">Editar</a>
                                     <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato['id']]) }}" style="display:inline;" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger">Excluir</button>
+                                    </div>
                                     </form>
                                 </td>
                             </tr>

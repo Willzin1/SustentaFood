@@ -13,7 +13,7 @@ Sustenta Food | Admin
                 <h2>{{ $titulo ?? 'Todas as Reservas' }}</h2>
 
                 <div class="reservas-tabela">
-                    <div class="searcBarDiv">
+                    <div class="btn-group">
                         <select name="filter" id="filter" class="filterSelect">
                             <option value="ID" {{ request('filter') == 'ID' ? 'selected' : '' }}>ID</option>
                             <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
@@ -25,8 +25,8 @@ Sustenta Food | Admin
                         <input type="search" name="search" class="search" placeholder="Busque uma reserva (ex: ID, Nome cliente, Data, Hora)" value="{{ request('search') }}">
 
                         <button type="button" class="btn btn-secondary clearFilters">Limpar filtros</button>
-                        <button class="btn btn-danger btnBusca">Buscar</button>
-                    </div class="searcBarDiv">
+                        <button class="btn btn-danger btnBusca">Buscar reservas</button>
+                    </div class="btn-group">
 
                     @if(empty($reservas['data']))
                         <p>Não há reservas registradas.</p>
@@ -40,6 +40,7 @@ Sustenta Food | Admin
                                     <th>Hora reserva</th>
                                     <th>Quantidade pesssoas</th>
                                     <th>Status</th>
+                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +58,9 @@ Sustenta Food | Admin
                                         <td>{{ $reserva['hora'] }}</td>
                                         <td>{{ $reserva['quantidade_cadeiras'] }}</td>
                                         <td>{{ $reserva['status'] }}</td>
-                                        <td><a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}" class="btn-link btn-link-dark">Gerenciar reserva</a></td>
+                                        <td class="">
+                                            <a href="{{ route('admin.reserva.edit', ['reserva' => $reserva['id']]) }}"  class="btn-link btn-link-dark">Gerenciar reserva</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

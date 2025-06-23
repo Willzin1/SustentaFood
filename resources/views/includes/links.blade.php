@@ -55,3 +55,5 @@
     <!-- Android Chrome maskable icons -->
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('pwa/icons/android/android-launchericon-192-192.png') }}" purpose="maskable">
     <link rel="icon" type="image/png" sizes="512x512" href="{{ asset('pwa/icons/android/android-launchericon-512-512.png') }}" purpose="maskable">
+
+  

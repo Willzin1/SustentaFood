@@ -34,10 +34,11 @@ Sustenta Food | Admin
                 <label for="imagem">Imagem</label>
                 <input type="file" name="imagem" class="validar imagem" id="imagem" accept="image/*">
 
-                <div class>
+                <div class="btn-group">
                     <button type="submit">Adicionar Prato</button>
-                <a href="{{ route('admin.cardapio.index') }}" class="btnA">Voltar</a>
+                <a href="{{ route('admin.cardapio.index') }}" class="btn-link btn-link-dark">Voltar</a>
                 </div>
+                <!-- Aruumar ADD PRATO  -->
             </form>
         </div>
     </div>

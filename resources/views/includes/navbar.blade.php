@@ -69,8 +69,8 @@
             @endif
         </ul>
         <!-- ESSE BOTÃO FICA NO MODO "MOBILE" -->
-        <!-- <button class="btn-default">
+         <button class="btn-default">
             <a href="{{ route('reservas.create') }}">RESERVA</a>
-        </button> -->
+        </button> 
     </div>
 </header>
