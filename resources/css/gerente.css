@@ -299,7 +299,7 @@ button:hover {
 }
 
 /*As linha sestão comentadas podendo ser recoladas no site*/
-/*.aside-divider {
+.aside-divider {
     border: none;
     border-top: 2.5px solid var(--color-primary-2);
     margin: 16px 0;
@@ -476,9 +476,7 @@ button:hover {
 }
 
 td .actions {
-    /* display: flex;
-    gap: 2px; */
-
+    
     display: flex;
     flex-direction: row;
     gap: 8px;
@@ -706,17 +704,18 @@ td .actions {
 .botao-ancora-reserva {
      display: block;
      color: var(--color-primary-4);
+     padding: 6px 10px;
      background-color: transparent;
     text-align: center;
-    margin-bottom: 10px;
+    
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 .botao-ancora-reserva:hover {
     
-    color: var(--color-neutral-1);
+    color: var(--color-neutral-0);
     border-radius: 8px;
-    padding: 6px 10px;
+    
 }
 /* Melhorias de responsividade para admin */
 @media (max-width: 480px) {

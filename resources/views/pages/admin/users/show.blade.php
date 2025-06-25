@@ -43,6 +43,7 @@ Sustenta Food | Admin
                                 @endforeach
                             </tbody>
                         </table>
+
                         <small>
                             <button onclick="exportClientToPDF()">Exportar PDF</button>
                             |
@@ -52,6 +53,7 @@ Sustenta Food | Admin
                 </div>
             </section>
         </div>
+
     </div>
 </div>
 @endsection
