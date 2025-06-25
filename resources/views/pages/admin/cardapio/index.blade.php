@@ -29,10 +29,11 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Imagem</th>
+                                    <th style="border-radius: 8px 0 0 8px;">Imagem</th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
-                                    <th>Categoria</th>
+                                    <th style="border-radius: 0 8px 8px 0;">Categoria</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>

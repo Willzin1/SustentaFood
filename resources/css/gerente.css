@@ -61,7 +61,7 @@
     height: auto;
     max-height: auto;
     position: sticky;
-    top: 170px;
+    top: 70px;
 }
 
 
@@ -121,18 +121,22 @@
 
 /* Reservas */
 .reservas-tabela {
-    margin-top: 20px;
+    margin: 20px 10px;
     padding: 15px;
-    background-color: var(--color-primary-2);
+   /*border-color: var(--color-primary-2);*/
+   border: 2px solid  var(--color-primary-2);
     border-radius: 8px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;  
+    
 }
 
 .reservas-tabela table {
-    width: 100%;
+   width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    min-width: 600px;
 }
 
 .reservas-tabela button {
@@ -221,12 +225,19 @@
     background-color: var(--color-primary-3);
     color: var(--color-neutral-0);
     font-weight: bold;
-    border-radius: 3px;
+
 }
 
 .reservas-tabela td {
     background-color: var(--color-neutral-0);
     color: var(--color-neutral-1);
+}
+#name-reserva-tabela{
+    max-width: 200px;       /* Limita a largura da célula */
+    white-space: normal;    /* Permite quebra de linha */
+    word-wrap: break-word;  /* Quebra palavras muito longas */
+    overflow-wrap: break-word;
+    border: none; 
 }
 
 .reservas-tabela p {
@@ -478,7 +489,7 @@ td .actions {
 .actions button {
     min-width: 90px;
     height: 36px;
-    padding: 0 10px;
+    padding: 0 1px;
     font-size: 1rem;
     border-radius: 6px;
     display: flex;
@@ -655,6 +666,7 @@ td .actions {
     .table-reservations {
         font-size: 0.50rem;
         min-width: 480px;
+        
     }
     .reservas-tabela {
         overflow-x: auto;
@@ -688,6 +700,23 @@ td .actions {
         max-width: 120px;
         margin: 2px 0;
     }
+}
+    
+/* Botão Aancora nome na gerenciar reserva*/   
+.botao-ancora-reserva {
+     display: block;
+     color: var(--color-primary-4);
+     background-color: transparent;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.botao-ancora-reserva:hover {
+    
+    color: var(--color-neutral-1);
+    border-radius: 8px;
+    padding: 6px 10px;
 }
 /* Melhorias de responsividade para admin */
 @media (max-width: 480px) {

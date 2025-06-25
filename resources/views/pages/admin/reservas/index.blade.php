@@ -33,21 +33,23 @@ Sustenta Food | Admin
                         <table class="table-reservations">
                             <thead>
                                 <tr>
-                                    <th>ID reserva</th>
+                                    <th style="border-radius: 8px 0 0 8px;">ID reserva</th>
                                     <th>Nome cliente</th>
                                     <th>Data reserva</th>
                                     <th>Hora reserva</th>
                                     <th>Quantidade pesssoas</th>
-                                    <th>Status</th>
+                                    <th style="border-radius: 0 8px 8px 0;">Status</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($reservas['data'] as $reserva)
                                     <tr>
                                         <td>{{ $reserva['id'] }}</td>
-                                        <td>
+                                        <td >
                                             @if(isset($reserva['user']))
-                                                <a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}">{{ $reserva['name'] }}</a>
+                                                <a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}" class="botao-ancora-reserva"> 
+                                                    {{ $reserva['name'] }}</a>
                                             @else
                                                 ** {{ $reserva['name'] }}
                                             @endif
