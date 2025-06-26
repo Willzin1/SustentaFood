@@ -33,12 +33,13 @@ Sustenta Food | Admin
                         <table class="table-reservations">
                             <thead>
                                 <tr>
-                                    <th style="border-radius: 8px 0 0 8px;">ID reserva</th>
+                                    <th style="border-radius: 8px 0 0 2px;">ID reserva</th>
                                     <th>Nome cliente</th>
                                     <th>Data reserva</th>
                                     <th>Hora reserva</th>
                                     <th>Quantidade pesssoas</th>
-                                    <th style="border-radius: 0 8px 8px 0;">Status</th>
+                                    <th>Status</th>
+                                    <th style="border-radius: 0 8px 2px 0;"></th>
                                   
                                 </tr>
                             </thead>

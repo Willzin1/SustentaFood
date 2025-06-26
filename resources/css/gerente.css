@@ -121,9 +121,8 @@
 
 /* Reservas */
 .reservas-tabela {
-    margin: 20px 10px;
+    margin: 10px 10px;
     padding: 15px;
-   /*border-color: var(--color-primary-2);*/
    border: 2px solid  var(--color-primary-2);
     border-radius: 8px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.3);
@@ -136,7 +135,7 @@
    width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    min-width: 600px;
+    min-width: 700px;
 }
 
 .reservas-tabela button {
@@ -227,10 +226,15 @@
     font-weight: bold;
 
 }
-
+/* Estilo para as células da tabela de reservas */
 .reservas-tabela td {
     background-color: var(--color-neutral-0);
-    color: var(--color-neutral-1);
+    color: var(--color-neutral-1);   
+}
+
+.reservas-tabela tr {
+    border-bottom: 1.8px solid var(--color-primary-3); 
+    opacity: 0.9;
 }
 #name-reserva-tabela{
     max-width: 200px;       /* Limita a largura da célula */
@@ -251,16 +255,16 @@
     background-color: var(--color-primary-1);
 }
 
-/* Responsividade das tabelas */
-/* @media (max-width: 768px) { */
-    /* .reservas-tabela table { */
+/* Responsividade das tabelas 
+ @media (max-width: 768px) { 
+    /* .reservas-tabela table { 
         /* font-size: 0.9rem; Ajuste de tamanho de fonte para telas menores */
-    /* } */
-/*
+    /* } 
+
     .reservas-tabela th, .reservas-tabela td {
         padding: 8px;
     }
-} */
+} 
 
 /* Botões */
 button {
@@ -301,11 +305,11 @@ button:hover {
 /*As linha sestão comentadas podendo ser recoladas no site*/
 .aside-divider {
     border: none;
-    border-top: 2.5px solid var(--color-primary-2);
+    border-top: 2px solid var(--color-primary-2);
     margin: 16px 0;
     width: 85%;
     align-self: center;
-    opacity: 0.7;
+    opacity: 0.9;
 }
 
 /* Estilo para dropdowns no aside Bsarra Lateral */
@@ -336,7 +340,7 @@ button:hover {
 
 /* Centraliza e deixa responsivo o dashboard */
 .dashboard-content {
-    margin: 30px 0;
+    margin: 3px 0;
     width: 100%;
     background-color: #ffffffc2;
     display: flex;
@@ -379,6 +383,7 @@ button:hover {
     margin-bottom: 32px;
     font-size: 2rem;
     color: var(--color-primary-3);
+    
 }
 
 /* Dashboard charts em grid de 2 colunas */
@@ -781,3 +786,36 @@ td .actions {
     }
 }
 
+/* Estilo da paginação das tabelas */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.pagination li {
+    list-style: none;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    color: var(--color-primary-5);
+    border-radius: 6px;
+   
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: var(--color-primary-5);
+    color: var(--color-primary-1);
+}
+
+.pagination .active span {
+    background-color: var(--color-primary-6);
+    cursor: default;
+}
