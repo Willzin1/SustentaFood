@@ -35,8 +35,9 @@
                 <button type="submit" class="profile-button btn-red">Sair</button>
             </form>
         @else
-            <a href="{{ route('reservas.create') }}" id="reserva-desktop" class="btn-link-light">FAÇA SUA RESERVA</a>
-
+           <button class="btn-default">
+            <a href="{{ route('reservas.create') }}" id="reserva-desktop">FAZER RESERVA</a>
+        </button> 
         @endif
 
         <button id="mobile_btn">
@@ -69,8 +70,8 @@
             @endif
         </ul>
         <!-- ESSE BOTÃO FICA NO MODO "MOBILE" -->
-        <!-- <button class="btn-default">
-            <a href="{{ route('reservas.create') }}">RESERVA</a>
-        </button> -->
+   <button class="btn-default">
+            <a href="{{ route('reservas.create') }}" id="reserva-mobile">FAZER RESERVA</a>
+        </button> 
     </div>
 </header>

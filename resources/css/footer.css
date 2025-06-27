@@ -4,6 +4,7 @@ footer {
     text-align: center;
     width: 100%;
     min-height: 48px;
+
 }
 
 footer #footer_items {
@@ -12,6 +13,7 @@ footer #footer_items {
     align-items: center;
     padding: 12px 8% 12px 8%;
     width: 100%;
+   
 }
 
 footer #footer_items .copyright {
@@ -19,6 +21,7 @@ footer #footer_items .copyright {
     font-weight: 500;
     width: 100%;
     text-align: center;
+
 }
 
 @media screen and (max-width: 600px) {

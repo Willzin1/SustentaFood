@@ -17,7 +17,7 @@ Sustenta Food | Admin
                     <div class="filters">
                         <select name="filter" id="filter" class="filterSelect">
                             <option value="ID" {{ request('filter') == 'ID' ? 'selected' : '' }}>ID</option>
-                            <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
+                            <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }} >Nome</option>
                             <option value="Data" {{ request('filter') == 'Data' ? 'selected' : '' }}>Data</option>
                             <option value="Hora" {{ request('filter') == 'Hora' ? 'selected' : '' }}>Hora</option>
                             <option value="Quantidade" {{ request('filter') == 'Quantidade' ? 'selected' : '' }}>Quantidade</option>
@@ -33,21 +33,24 @@ Sustenta Food | Admin
                         <table class="table-reservations">
                             <thead>
                                 <tr>
-                                    <th>ID reserva</th>
+                                    <th style="border-radius: 8px 0 0 2px;">ID reserva</th>
                                     <th>Nome cliente</th>
                                     <th>Data reserva</th>
                                     <th>Hora reserva</th>
                                     <th>Quantidade pesssoas</th>
                                     <th>Status</th>
+                                    <th style="border-radius: 0 8px 2px 0;"></th>
+                                  
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($reservas['data'] as $reserva)
                                     <tr>
-                                        <td>{{ $reserva['id'] }}</td>
-                                        <td>
+                                        <td> {{ $reserva['id'] }}</td>
+                                        <td >
                                             @if(isset($reserva['user']))
-                                                <a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}">{{ $reserva['name'] }}</a>
+                                                <a  href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}" class="botao-ancora-reserva"> 
+                                                    {{ $reserva['name'] }}</a>
                                             @else
                                                 ** {{ $reserva['name'] }}
                                             @endif
