@@ -1,8 +1,6 @@
 @extends('templates.master')
 
-@section('title')
-Sustenta Food | Entrar
-@endsection
+@section('title', 'Sustenta Food | Entrar')
 
 @section('content')
 <div id="menu">

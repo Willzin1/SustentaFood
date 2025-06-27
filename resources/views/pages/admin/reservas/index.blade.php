@@ -1,8 +1,6 @@
 @extends('templates.master')
 
-@section('title')
-Sustenta Food | Admin
-@endsection
+@section('title', 'Sustenta Food | Admin')
 
 @section('content')
 <div class="dashboard-container">
@@ -22,7 +20,7 @@ Sustenta Food | Admin
                             <option value="Hora" {{ request('filter') == 'Hora' ? 'selected' : '' }}>Hora</option>
                             <option value="Quantidade" {{ request('filter') == 'Quantidade' ? 'selected' : '' }}>Quantidade</option>
                         </select>
-                        <input type="search" name="search" class="search" placeholder="Busque uma reserva (ex: ID, Nome cliente, Data, Hora)" value="{{ request('search') }}">
+                        <input type="search" name="search" class="search" id="searchInput" placeholder="Busque uma reserva (ex: ID, Nome cliente, Data, Hora)" value="{{ request('search') }}">
                         <button type="button" class="btn btn-secondary clearFilters">Limpar filtros</button>
                         <button class="btn btn-danger btnBusca">Buscar</button>
                     </div>
@@ -40,7 +38,7 @@ Sustenta Food | Admin
                                     <th>Quantidade pesssoas</th>
                                     <th>Status</th>
                                     <th style="border-radius: 0 8px 2px 0;"></th>
-                                  
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,7 +47,7 @@ Sustenta Food | Admin
                                         <td> {{ $reserva['id'] }}</td>
                                         <td >
                                             @if(isset($reserva['user']))
-                                                <a  href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}" class="botao-ancora-reserva"> 
+                                                <a  href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}" class="botao-ancora-reserva">
                                                     {{ $reserva['name'] }}</a>
                                             @else
                                                 ** {{ $reserva['name'] }}

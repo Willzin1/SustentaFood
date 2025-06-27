@@ -121,7 +121,7 @@ function changeTable(data, type) {
         if (type === 'reservas') {
             row.innerHTML = `
                 <td>${item.id}</td>
-                ${item.user ? `<td><a href="/admin/users/${item.user.id}">${item.user.name}</a></td>` : `<td>** ${item.name}</td>`}
+                ${item.user ? `<td><a href="/admin/users/${item.user.id}" class="botao-ancora-reserva">${item.user.name}</a></td>` : `<td>** ${item.name}</td>`}
                 <td>${formatDate(item.data)}</td>
                 <td>${item.hora}</td>
                 <td>${item.quantidade_cadeiras}</td>
@@ -135,12 +135,14 @@ function changeTable(data, type) {
                 <td>${item.descricao}</td>
                 <td>${item.categoria}</td>
                 <td class="actions">
-                    <a href="/admin/cardapio/${item.id}/edit" class="btn-link btn-link-dark">Editar</a>
-                    <form action="/admin/cardapio/${item.id}" method="POST" style="display:inline;">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').getAttribute('content')}">
-                        <button class="btn btn-danger">Excluir</button>
-                    </form>
+                    <div class="btn-group">
+                        <a href="/admin/cardapio/${item.id}/edit" class="btn-link btn-link-dark">Editar</a>
+                        <form action="/admin/cardapio/${item.id}" method="POST" style="display:inline;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="${document.querySelector('meta[name="csrf-token"]').getAttribute('content')}">
+                            <button class="btn btn-danger">Excluir</button>
+                        </form>
+                    </div>
                 </td>
             `;
         }
@@ -180,6 +182,9 @@ function getRightEndpoint(actualPath) {
  * @function formatDateToApi
  */
 function formatDateToApi(date) {
+    if (date.includes('-')) return date;
+
     const [day, month, year] = date.split('/');
+
     return `${year}-${month}-${day}`;
 }
