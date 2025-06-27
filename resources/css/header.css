@@ -40,6 +40,8 @@ header {
     border-bottom: 3px solid var(--color-primary-4);
 }*/
 
+
+
 #mobile_btn {
     display: none;
     color: var(--color-primary-5);
@@ -49,10 +51,23 @@ header {
     display: none;
 }
 
+#reserva-desktop {
+    padding: 10px 20px;
+    color: var(--color-neutral-0);
+    padding: 3px 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+#reserva-mobile{
+    color: var(--color-neutral-0);
+}
+
 @media screen and (max-width: 1170px) {
     #nav_list,
     #navbar .btn-default {
         display: none;
+        
     }
 
     #mobile_btn {
@@ -80,4 +95,8 @@ header {
         list-style: none;
         text-align: center;
     } 
+
+     
+   
 }
+  

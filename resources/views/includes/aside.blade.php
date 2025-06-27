@@ -1,6 +1,6 @@
 <aside class="barra-lateral">
     <h2><a href="{{ route('admin.dashboard') }}">Dashboard</a></h2>
-     <!--<hr class="aside-divider"> -->
+    <hr class="aside-divider">
     <ul class="aside-section">
         <li class="aside-dropdown">
             <span class="aside-title">Reservas ▾</span>
@@ -13,7 +13,7 @@
         </li>
 
     </ul>
-    <!--<hr class="aside-divider"> -->
+    <hr class="aside-divider">
     <ul class="aside-section">
         <li class="aside-dropdown">
             <span class="aside-title">Menu ▾</span>
@@ -25,7 +25,7 @@
 
 
     </ul>
-    <!--<hr class="aside-divider"> -->
+    <hr class="aside-divider"> 
     <ul class="aside-section">
         <li class="aside-dropdown">
             <span class="aside-title">Favoritos ▾</span>
@@ -35,7 +35,7 @@
         </li>
     </ul>
 
-    <!-- <hr class="aside-divider"> -->
+   <hr class="aside-divider"> 
     <ul class="aside-section">
         <li class="aside-dropdown">
             <span class="aside-title">Configurações ▾</span>

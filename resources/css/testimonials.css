@@ -12,8 +12,9 @@
 }
 
 #testimonials .section-subtitle {
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;  /* Centraliza o subtítulo */
+    
 }
 
 #testimonials_content {

@@ -23,11 +23,11 @@ Sustenta Food | Admin
                         <table class="table-reservations">
                             <thead>
                                 <tr>
-                                    <th>ID reserva</th>
+                                    <th style="border-radius: 8px 0 0 5px;">ID reserva</th>
                                     <th>Data reserva</th>
                                     <th>Hora reserva</th>
                                     <th>Quantidade pessoas</th>
-                                    <th>Status</th>
+                                    <th style="border-radius: 0 8px 5px 0;">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,6 +43,7 @@ Sustenta Food | Admin
                                 @endforeach
                             </tbody>
                         </table>
+
                         <small>
                             <button onclick="exportClientToPDF()">Exportar PDF</button>
                             |
@@ -52,6 +53,7 @@ Sustenta Food | Admin
                 </div>
             </section>
         </div>
+
     </div>
 </div>
 @endsection
