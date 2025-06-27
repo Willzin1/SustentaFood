@@ -717,11 +717,12 @@ td .actions {
     transition: background-color 0.3s ease;
 }
 .botao-ancora-reserva:hover {
-    
-    color: var(--color-neutral-0);
+      color: var(--color-neutral-0);
     border-radius: 8px;
-    
 }
+    
+  
+
 /* Melhorias de responsividade para admin */
 @media (max-width: 480px) {
     .container-reservas {

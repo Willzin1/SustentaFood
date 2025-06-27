@@ -17,7 +17,7 @@ Sustenta Food | Admin
                     <div class="filters">
                         <select name="filter" id="filter" class="filterSelect">
                             <option value="ID" {{ request('filter') == 'ID' ? 'selected' : '' }}>ID</option>
-                            <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }}>Nome</option>
+                            <option value="Nome" {{ request('filter') == 'Nome' ? 'selected' : '' }} >Nome</option>
                             <option value="Data" {{ request('filter') == 'Data' ? 'selected' : '' }}>Data</option>
                             <option value="Hora" {{ request('filter') == 'Hora' ? 'selected' : '' }}>Hora</option>
                             <option value="Quantidade" {{ request('filter') == 'Quantidade' ? 'selected' : '' }}>Quantidade</option>
@@ -46,10 +46,10 @@ Sustenta Food | Admin
                             <tbody>
                                 @foreach($reservas['data'] as $reserva)
                                     <tr>
-                                        <td>{{ $reserva['id'] }}</td>
+                                        <td> {{ $reserva['id'] }}</td>
                                         <td >
                                             @if(isset($reserva['user']))
-                                                <a href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}" class="botao-ancora-reserva"> 
+                                                <a  href="{{ route('admin.user', ['user' => $reserva['user']['id']]) }}" class="botao-ancora-reserva"> 
                                                     {{ $reserva['name'] }}</a>
                                             @else
                                                 ** {{ $reserva['name'] }}

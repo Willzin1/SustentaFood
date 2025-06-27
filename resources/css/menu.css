@@ -78,7 +78,7 @@
 
 @media screen and (max-width: 1170px) {
     #dishes {
-        flex-wrap: wrap;
+       
         justify-content: center;
     }
 
