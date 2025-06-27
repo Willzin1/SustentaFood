@@ -1,8 +1,6 @@
 @extends('templates.master')
 
-@section('title')
-Sustenta Food | Admin
-@endsection
+@section('title', 'Sustenta Food | Admin')
 
 @section('content')
 <div class="dashboard-container">

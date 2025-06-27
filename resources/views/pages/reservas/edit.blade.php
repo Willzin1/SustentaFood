@@ -1,8 +1,6 @@
 @extends('templates.master')
 
-@section('title')
-Sustenta Food | Edite sua reserva
-@endsection
+@section('title', 'Sustenta Food | Editar reserva')
 
 @section('content')
     <div class="container-reserva">

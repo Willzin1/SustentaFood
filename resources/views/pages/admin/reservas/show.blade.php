@@ -1,8 +1,6 @@
 @extends('templates.master')
 
-@section('title')
-Sustenta Food | Admin
-@endsection
+@section('title', 'Sustenta Food | Admin')
 
 @section('content')
 <div class="dashboard-container">
@@ -11,7 +9,7 @@ Sustenta Food | Admin
     <div class="containerGerente">
         <div class="container-reservas">
             <h2>Informações do Cliente</h2>
-            <p  class="botao-ancora-reserva"><strong >Nome:</strong> {{ $reserva['name'] }}</p>
+            <p><strong >Nome:</strong> {{ $reserva['name'] }}</p>
             <p><strong>Email:</strong> {{ $reserva['email'] }}</p>
             <p class="phoneUser"><strong>Telefone:</strong> {{ $reserva['phone'] }}</p>
 

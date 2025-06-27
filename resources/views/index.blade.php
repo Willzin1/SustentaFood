@@ -1,8 +1,6 @@
 @extends('templates.master')
 
-@section('title')
-SustentaFood
-@endsection
+@section('title', 'Sustenta Food')
 
 @section('content')
     <main id="content">
@@ -12,17 +10,17 @@ SustentaFood
                 <h1 class="title">O sabor que vai de ponta a <span>ponta</span></h1>
                 <p class="description">Nossa proposta é oferecer uma experiência gastronômica consciente, aproveitando ingredientes de forma integral e sustentável</p>
                 <div id="cta_buttons">
-<a href="{{ route('cardapio.index') }}" class="btn-default btn-cta">Ver cardápio</a>
+                    <a href="{{ route('cardapio.index') }}" class="btn-default btn-cta">Ver cardápio</a>
                     <!-- <a href="tel:+55555555555" id="phone_button">
                         <i class="fa-solid fa-phone"></i>
                         (11) 94002-8922
                     </a> -->
                 </div>
-                <div class="social-media-buttons">
+                <!-- <div class="social-media-buttons">
                     <a href=""><i class="fa-brands fa-whatsapp"></i></a>
                     <a href=""><i class="fa-brands fa-instagram"></i></a>
                     <a href=""><i class="fa-brands fa-facebook"></i></a>
-                </div>
+                </div> -->
             </div>
             <div id="banner">
                 <img src="{{ asset('assets/images/hero.png') }}" alt="">

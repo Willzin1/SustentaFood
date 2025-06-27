@@ -1,8 +1,6 @@
 @extends('templates.master')
 
-@section('title')
-Sustenta Food | Cardápio
-@endsection
+@section('title', 'Sustenta Food | Cardápio')
 
 @section('content')
     <section id="menu">
@@ -14,7 +12,7 @@ Sustenta Food | Cardápio
                 @foreach($pratos->where('categoria', $categoria) as $prato)
                     <div class="dish">
                     @if(session()->has('api_token') && session('user_role') != 'admin')
-                        <div class="dish-heart" 
+                        <div class="dish-heart"
                              onclick="toggleFavorite({{ $prato['id'] }})"
                              data-prato-id="{{ $prato['id'] }}">
                             <i class="fa-solid fa-heart"></i>

@@ -1,8 +1,6 @@
 @extends('templates.master')
 
-@section('title')
-Sustenta Food | Perfil
-@endsection
+@section('title', 'Sustenta Food | Meu Perfil')
 
 @section('content')
     <section id="profile">

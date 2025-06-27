@@ -29,7 +29,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th  style="border-radius: 8px 0 0 2px;">Imagem</th>
+                                    <th style="border-radius: 8px 0 0 2px;">Imagem</th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
                                     <th >Categoria</th>
@@ -46,11 +46,11 @@
                                         <td class="actions">
                                             <div class="btn-group">
                                                 <a href="{{ route('admin.cardapio.edit', ['prato' => $prato['id']]) }}">Editar</a>
-                                            <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato['id']]) }}" style="display:inline;" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit">Excluir</button>
-                                            </form>
+                                                <form action="{{ route('admin.cardapio.destroy', ['prato' => $prato['id']]) }}" style="display:inline;" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit">Excluir</button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
