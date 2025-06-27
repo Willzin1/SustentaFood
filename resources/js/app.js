@@ -16,6 +16,7 @@ import initFavorite from './components/toggleFavorite';
 import favoriteDishes from './components/favoriteDishes';
 import initCancelModal, { modalMaxCapacity } from './components/modal';
 import { getSettings, getMaxCapacity } from './components/settings';
+import changeSearchInputType from './components/changeSearchInputType';
 
 function init() {
     scrollButtons();
@@ -28,6 +29,7 @@ function init() {
     modalMaxCapacity();
     getSettings();
     getMaxCapacity();
+    changeSearchInputType();
 }
 
 document.addEventListener("DOMContentLoaded", async () => {

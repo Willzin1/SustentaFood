@@ -180,6 +180,9 @@ function getRightEndpoint(actualPath) {
  * @function formatDateToApi
  */
 function formatDateToApi(date) {
+    if (date.includes('-')) return date;
+
     const [day, month, year] = date.split('/');
+
     return `${year}-${month}-${day}`;
 }

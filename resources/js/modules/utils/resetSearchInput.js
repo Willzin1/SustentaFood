@@ -1,10 +1,10 @@
 /**
  * Inicializa o comportamento do botão de limpar filtros.
  * Quando clicado, limpa o campo de busca e reseta o select de filtros.
- * 
+ *
  * @function resetSearchInput
  * @returns {void}
- * 
+ *
  * @example
  * // O botão deve ter a classe 'clearFilters'
  * // O input de busca deve ter a classe 'search'
@@ -22,6 +22,8 @@ export default function resetSearchInput() {
         const filterSelect = document.querySelector('.filterSelect');
 
         searchInput.value = '';
+        searchInput.type = 'search';
+        // searchInput.placeholder = 'Busque uma reserva (ex: ID, Nome cliente, Data, Hora)';
         filterSelect.selectedIndex = 0;
     });
 }
