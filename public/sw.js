@@ -1,7 +1,30 @@
 const CACHE_NAME = 'v1.0.0';
 
 const cacheAssets = [
+    '/',
+    '/manifest.json',
     '/favicon.ico',
+    '/pwa/icons/android/android-launchericon-48-48.png',
+    '/pwa/icons/android/android-launchericon-72-72.png',
+    '/pwa/icons/android/android-launchericon-96-96.png',
+    '/pwa/icons/android/android-launchericon-144-144.png',
+    '/pwa/icons/android/android-launchericon-192-192.png',
+    '/pwa/icons/android/android-launchericon-512-512.png',
+    '/pwa/icons/ios/180.png',
+    // Adicione todos os outros ícones de iOS e Windows aqui
+    '/pwa/icons/windows11/SmallTile.scale-100.png',
+    '/pwa/icons/windows11/SmallTile.scale-125.png',
+    '/pwa/icons/windows11/SmallTile.scale-150.png',
+    '/pwa/icons/windows11/SmallTile.scale-200.png',
+    '/pwa/icons/windows11/Square150x150Logo.scale-100.png',
+    '/pwa/icons/windows11/Square150x150Logo.scale-125.png',
+    '/pwa/icons/windows11/Square150x150Logo.scale-150.png',
+    '/pwa/icons/windows11/Wide310x150Logo.scale-100.png',
+    '/pwa/icons/windows11/Wide310x150Logo.scale-125.png',
+    '/pwa/icons/windows11/Wide310x150Logo.scale-150.png',
+    '/pwa/icons/windows11/LargeTile.scale-100.png',
+    '/pwa/icons/windows11/LargeTile.scale-125.png',
+    '/pwa/icons/windows11/LargeTile.scale-150.png',
 ];
 
 self.addEventListener('install', (event) => {
