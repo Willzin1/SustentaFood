@@ -6,9 +6,26 @@ section {
 #minhasReservas {
      /* Fundo neutro para a seção */
     border-radius: 10px;
-    padding: 20px; /* Padding adicional para a seção */
+    padding:0 20px 20px ; /* Padding adicional para a seção */
 }
-
+#make-reservation {
+ background-color: var(--color-primary-6);
+  color: var(--color-neutral-0);
+  padding: 10px;
+  max-width: 280px;   
+ margin: 0 auto;
+  border-radius: 28px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  
+}
+#make-reservation:hover {
+    background-color: var(--color-secundary-1);
+    color: var(--color-neutral-0);
+}
+ 
 .reservations {
     display: flex;
     flex-wrap: wrap;
@@ -16,15 +33,20 @@ section {
     gap: 16px;
 }
 
-.reservation {
-    background-color: var(--color-neutral-0); /* Fundo neutro para cada reserva */
-    border-radius: 10px;
+.reservation-card{
+  background-color: var(--color-neutral-0);
+    color: var(--color-primary-5);
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(105, 55, 55, 0.1);
+    border: 2px solid var(--color-primary-5);
     padding: 16px;
-    width: calc(25% - 16px); /* Até quatro reservas por linha */
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    transform:  0.2s ease-in-out;
+    justify-content: center;
 }
 
 .btn-Res {
@@ -40,6 +62,10 @@ a {
 @media screen and (max-width: 800px) {
     .reservation {
         width: calc(50% - 16px); /* Duas reservas por linha */
+    }
+    #make-reservation{
+        width: 100%;
+        max-width: none; /* Remove o limite de largura */
     }
 }
 

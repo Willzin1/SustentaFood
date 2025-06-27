@@ -61,7 +61,7 @@ Sustenta Food | Perfil
             </div>
         @endif
 
-        <a href="{{ route('reservas.create') }}"><button class="profile-button btn-Res" id="make-reservation">Fazer Nova Reserva</button></a>
+        <a href="{{ route('reservas.create') }}"><button class="profile-button btn-Res" id="make-reservation" >Fazer Nova Reserva</button></a>
     </section>
     </div>
 @endsection

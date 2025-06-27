@@ -11,7 +11,7 @@ Sustenta Food | Admin
     <div class="containerGerente">
         <div class="container-reservas">
             <h2>Informações do Cliente</h2>
-            <p><strong>Nome:</strong> {{ $reserva['name'] }}</p>
+            <p  class="botao-ancora-reserva"><strong >Nome:</strong> {{ $reserva['name'] }}</p>
             <p><strong>Email:</strong> {{ $reserva['email'] }}</p>
             <p class="phoneUser"><strong>Telefone:</strong> {{ $reserva['phone'] }}</p>
 
